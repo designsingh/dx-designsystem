@@ -41,86 +41,13 @@
 .speaker-info-name { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--ink-dark); }
 .speaker-info-role { font-size: 11px; color: var(--ink-dark2); }
 
-/* ── Gradient Identity Variants ────────────────────────────────── */
+/* ── Gradient Identity Variants (uses shared mesh classes from styles.css) ── */
 .gvar { aspect-ratio: 16/7; border-radius: 14px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 16px 20px; }
 .gvar-label { position: relative; z-index: 10; }
-.gvar-name { font-weight: 700; font-size: 13px; color: var(--ink-dark); }
-.gvar-desc { font-family: var(--mono); font-size: 9px; color: var(--ink-dark3); margin-top: 2px; }
-
-/* Shared mesh base — soft / airy on white */
-.mesh-base {
-  background:
-    radial-gradient(ellipse 80% 70% at 5% 15%, rgba(255,140,50,0.55) 0%, transparent 100%),
-    radial-gradient(ellipse 70% 80% at 15% 85%, rgba(120,190,255,0.6) 0%, transparent 100%),
-    radial-gradient(ellipse 60% 65% at 55% 20%, rgba(255,90,60,0.5) 0%, transparent 100%),
-    radial-gradient(ellipse 75% 70% at 85% 25%, rgba(255,70,80,0.45) 0%, transparent 100%),
-    radial-gradient(ellipse 65% 75% at 80% 80%, rgba(255,120,170,0.5) 0%, transparent 100%),
-    radial-gradient(ellipse 50% 60% at 40% 60%, rgba(255,180,200,0.3) 0%, transparent 100%),
-    #ffffff;
-}
-
-/* Vivid mesh — saturated pools on white */
-.mesh-bright {
-  background:
-    radial-gradient(ellipse 85% 75% at 5% 10%, rgba(255,160,40,0.7) 0%, transparent 100%),
-    radial-gradient(ellipse 75% 85% at 12% 90%, rgba(80,170,255,0.75) 0%, transparent 100%),
-    radial-gradient(ellipse 65% 70% at 50% 15%, rgba(255,60,40,0.65) 0%, transparent 100%),
-    radial-gradient(ellipse 80% 75% at 88% 20%, rgba(255,50,70,0.6) 0%, transparent 100%),
-    radial-gradient(ellipse 70% 80% at 82% 85%, rgba(255,80,150,0.65) 0%, transparent 100%),
-    radial-gradient(ellipse 55% 65% at 42% 55%, rgba(255,200,210,0.4) 0%, transparent 100%),
-    #ffffff;
-}
-
-/* 1. Mesh Clean — no effects */
-
-/* 2. Mesh + Grain — paper texture feel */
-.gvar-grain::after {
-  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px; opacity: 0.12; mix-blend-mode: multiply;
-}
-
-/* 3. Mesh + Halftone — dot screen print */
-.gvar-halftone::after {
-  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
-  background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
-  background-size: 5px 5px; mix-blend-mode: multiply;
-}
-
-/* 4. Mesh + Stipple Dither — risograph feel */
-.gvar-dither::after {
-  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
-  background-image:
-    radial-gradient(circle, rgba(0,0,0,0.1) 0.5px, transparent 0.5px),
-    radial-gradient(circle, rgba(0,0,0,0.06) 0.5px, transparent 0.5px);
-  background-size: 3px 3px, 5px 5px;
-  background-position: 0 0, 1.5px 1.5px;
-  mix-blend-mode: multiply; opacity: 0.9;
-}
-
-/* 5. Mesh + Frosted Glass — diffused aurora */
-.gvar-glass::before {
-  content: ''; position: absolute; inset: 0; z-index: 2;
-  backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
-}
-.gvar-glass::after {
-  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(0,0,0,0.04); border-radius: 14px;
-}
-
-/* 6. Mesh + Scanlines — CRT on light */
-.gvar-scan::after {
-  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent 0px,
-    transparent 2px,
-    rgba(0,0,0,0.06) 2px,
-    rgba(0,0,0,0.06) 3px
-  );
-  mix-blend-mode: multiply;
-}
+.gvar-name-light { font-weight: 700; font-size: 13px; color: var(--ink-dark); }
+.gvar-name-dark { font-weight: 700; font-size: 13px; color: rgba(255,255,255,0.9); }
+.gvar-desc-light { font-family: var(--mono); font-size: 9px; color: var(--ink-dark3); margin-top: 2px; }
+.gvar-desc-dark { font-family: var(--mono); font-size: 9px; color: rgba(255,255,255,0.4); margin-top: 2px; }
 </style>
 </head>
 <body>
@@ -160,98 +87,114 @@
   <!-- GRADIENT IDENTITY — 6 Texture Variants                            -->
   <!-- ══════════════════════════════════════════════════════════════════ -->
 
-  <div class="sub-header" style="color:var(--ink3);">Gradient Identity — Mesh Variants</div>
-  <div style="font-size:12px;color:var(--ink2);margin-bottom:24px;line-height:1.6;">All 6 color worlds rendered as soft mesh gradients on white — diffused radial pools that blend into each other like watercolor. Top row: soft/airy for ambient use. Bottom row: vivid/saturated for hero moments.</div>
+  <div class="sub-header" style="color:var(--ink3);">Gradient Identity — 3 Tier Mesh System</div>
+  <div style="font-size:12px;color:var(--ink2);margin-bottom:24px;line-height:1.6;">All 6 color worlds rendered as mesh gradients across 3 tiers — dark (DesignX platform), mid (shared tools), and light (DLS conference). Each tier has a standard and vivid intensity. Inspired by how one gradient system can serve multiple brand contexts.</div>
 
-  <!-- Row 1: Soft mesh — 3 variants -->
-  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Soft / Airy</div>
+  <!-- ── TIER 1: DARK — DesignX Platform ────────────────────────── -->
+  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Dark — DesignX Platform</div>
   <div class="g3 mb-16" style="gap:16px;">
-
-    <!-- 1. Mesh Clean -->
     <div>
-      <div class="gvar mesh-base">
+      <div class="gvar mesh-dark">
         <div class="gvar-label">
-          <div class="gvar-name">Soft — Clean</div>
-          <div class="gvar-desc">6 radial layers · no texture overlay</div>
+          <div class="gvar-name-dark">Dark — Subtle</div>
+          <div class="gvar-desc-dark">Moody glows on deep base · ambient</div>
         </div>
       </div>
-      <div class="init-rule" style="margin-top:6px;">Pure pastel mesh on white. Soft organic color pools. Section backgrounds, loading states, ambient surfaces.</div>
+      <div class="init-rule" style="margin-top:6px;">Subtle color pools on near-black. Background surfaces, loading states, section separators on the dark platform.</div>
     </div>
-
-    <!-- 2. Mesh + Grain -->
     <div>
-      <div class="gvar mesh-base gvar-grain">
+      <div class="gvar mesh-dark-vivid">
         <div class="gvar-label">
-          <div class="gvar-name">Soft — Paper Grain</div>
-          <div class="gvar-desc">feTurbulence noise · multiply blend</div>
+          <div class="gvar-name-dark">Dark — Vivid</div>
+          <div class="gvar-desc-dark">Stronger glows · hero moments</div>
         </div>
       </div>
-      <div class="init-rule" style="margin-top:6px;">Fractal noise adds paper texture over soft mesh. Organic, editorial warmth. Brand stories, about pages, print feel.</div>
+      <div class="init-rule" style="margin-top:6px;">Punched-up color pools for hero sections. Feature launches, announcement banners, splash screens on dark platform.</div>
     </div>
-
-    <!-- 3. Mesh + Halftone -->
     <div>
-      <div class="gvar mesh-base gvar-halftone">
-        <div class="gvar-label">
-          <div class="gvar-name">Soft — Halftone</div>
-          <div class="gvar-desc">5px dot grid · multiply blend</div>
-        </div>
-      </div>
-      <div class="init-rule" style="margin-top:6px;">Screen-print dots over pastel mesh. Risograph aesthetic. Newsletter headers, conference posters, social art.</div>
-    </div>
-
-  </div>
-
-  <!-- Row 2: Vivid mesh — 3 variants -->
-  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Vivid / Saturated</div>
-  <div class="g3 mb-32" style="gap:16px;">
-
-    <!-- 4. Vivid Mesh + Dither -->
-    <div>
-      <div class="gvar mesh-bright gvar-dither">
-        <div class="gvar-label">
-          <div class="gvar-name">Vivid — Stipple</div>
-          <div class="gvar-desc">Saturated mesh · dual micro-dot dither</div>
-        </div>
-      </div>
-      <div class="init-rule" style="margin-top:6px;">Saturated pools with fine stipple texture. Lo-fi warmth meets bold color. Hero banners, email headers, data viz backgrounds.</div>
-    </div>
-
-    <!-- 5. Vivid Mesh + Glass -->
-    <div>
-      <div class="gvar mesh-bright gvar-glass">
+      <div class="gvar mesh-dark-vivid mesh-glass">
         <div class="gvar-label" style="z-index:10;">
-          <div class="gvar-name">Vivid — Frosted</div>
-          <div class="gvar-desc">Saturated mesh · backdrop-filter blur(50px)</div>
+          <div class="gvar-name-dark">Dark — Frosted</div>
+          <div class="gvar-desc-dark">Vivid + backdrop-filter blur</div>
         </div>
       </div>
-      <div class="init-rule" style="margin-top:6px;">Vivid color pools softened through glass blur. Dreamy aurora glow. Splash screens, feature drops, modal overlays.</div>
+      <div class="init-rule" style="margin-top:6px;">Glass-blurred dark mesh for premium depth. Modal overlays, onboarding screens, feature drop hero backgrounds.</div>
     </div>
-
-    <!-- 6. Vivid Mesh + Scanlines -->
-    <div>
-      <div class="gvar mesh-bright gvar-scan">
-        <div class="gvar-label">
-          <div class="gvar-name">Vivid — Scanline</div>
-          <div class="gvar-desc">Saturated mesh · 3px horizontal scan</div>
-        </div>
-      </div>
-      <div class="init-rule" style="margin-top:6px;">Fine scanlines over saturated mesh. Subtle digital artifact energy. Social cards, announcement heroes, video thumbnails.</div>
-    </div>
-
   </div>
 
-  <!-- Specbox: Usage guide -->
+  <!-- ── TIER 2: MID — Shared / Neutral ─────────────────────────── -->
+  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Mid — Shared Tools & Neutral Contexts</div>
+  <div class="g3 mb-16" style="gap:16px;">
+    <div>
+      <div class="gvar mesh-mid">
+        <div class="gvar-label">
+          <div class="gvar-name-light">Mid — Soft</div>
+          <div class="gvar-desc-light">Warm cream base · gentle pools</div>
+        </div>
+      </div>
+      <div class="init-rule" style="margin-top:6px;">Warm neutral mesh for shared contexts. Email templates, documentation, tools that bridge dark platform and light conference.</div>
+    </div>
+    <div>
+      <div class="gvar mesh-mid-vivid">
+        <div class="gvar-label">
+          <div class="gvar-name-light">Mid — Vivid</div>
+          <div class="gvar-desc-light">Saturated pools on warm cream</div>
+        </div>
+      </div>
+      <div class="init-rule" style="margin-top:6px;">Higher saturation on warm base. Newsletter heroes, social cards, cross-brand marketing that needs energy without going full light or dark.</div>
+    </div>
+    <div>
+      <div class="gvar mesh-mid-vivid mesh-glass">
+        <div class="gvar-label" style="z-index:10;">
+          <div class="gvar-name-light">Mid — Frosted</div>
+          <div class="gvar-desc-light">Vivid + backdrop-filter blur</div>
+        </div>
+      </div>
+      <div class="init-rule" style="margin-top:6px;">Frosted glass over warm vivid mesh. Premium warmth. About pages, brand story sections, investor/partner materials.</div>
+    </div>
+  </div>
+
+  <!-- ── TIER 3: LIGHT — DLS Conference ─────────────────────────── -->
+  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Light — DLS Conference</div>
+  <div class="g3 mb-32" style="gap:16px;">
+    <div>
+      <div class="gvar mesh-light">
+        <div class="gvar-label">
+          <div class="gvar-name-light">Light — Airy</div>
+          <div class="gvar-desc-light">Pastel pools on white · watercolor</div>
+        </div>
+      </div>
+      <div class="init-rule" style="margin-top:6px;">Soft pastel mesh on white. Airy, open, inviting. Conference landing pages, speaker cards, registration backgrounds.</div>
+    </div>
+    <div>
+      <div class="gvar mesh-light-vivid">
+        <div class="gvar-label">
+          <div class="gvar-name-light">Light — Vivid</div>
+          <div class="gvar-desc-light">Saturated pools on white · bold</div>
+        </div>
+      </div>
+      <div class="init-rule" style="margin-top:6px;">Full-saturation pools on white. Bold, energetic, celebratory. Conference hero banners, event announcements, ticket pages.</div>
+    </div>
+    <div>
+      <div class="gvar mesh-light-vivid mesh-glass">
+        <div class="gvar-label" style="z-index:10;">
+          <div class="gvar-name-light">Light — Frosted</div>
+          <div class="gvar-desc-light">Vivid + backdrop-filter blur</div>
+        </div>
+      </div>
+      <div class="init-rule" style="margin-top:6px;">Dreamy frosted glass over bright mesh. Maximum softness. Splash screens, video overlays, premium DLS moments.</div>
+    </div>
+  </div>
+
+  <!-- Specbox: 3-tier usage guide -->
   <div class="specbox mb-48" style="border-color:rgba(245,158,11,.15);">
-    <div style="font-weight:700;font-size:11px;margin-bottom:10px;color:var(--ink);">When to use which</div>
-    <div class="specrow"><span class="sp">Soft</span><span class="sv" style="color:var(--ink2);">Ambient, supporting contexts — backgrounds, loading, section dividers</span></div>
-    <div class="specrow"><span class="sp">Vivid</span><span class="sv" style="color:var(--ink2);">Hero, primary contexts — announcements, headers, splash screens</span></div>
-    <div class="specrow"><span class="sp">Clean</span><span class="sv" style="color:var(--ink2);">Maximum color clarity. No texture competing with content on top.</span></div>
-    <div class="specrow"><span class="sp">Grain</span><span class="sv" style="color:var(--ink2);">Paper warmth. Best for large surfaces where you want organic softness.</span></div>
-    <div class="specrow"><span class="sp">Halftone</span><span class="sv" style="color:var(--ink2);">Print energy. Risograph aesthetic at medium sizes — cards, headers.</span></div>
-    <div class="specrow"><span class="sp">Stipple</span><span class="sv" style="color:var(--ink2);">Tactile texture. Fine enough to not distract from overlaid text.</span></div>
-    <div class="specrow"><span class="sp">Frosted</span><span class="sv" style="color:var(--ink2);">Premium diffusion. Dreamiest option — best where you need depth + legibility.</span></div>
-    <div class="specrow"><span class="sp">Scanline</span><span class="sv" style="color:var(--ink2);">Subtle digital edge. Pairs well with vivid saturation for social-first moments.</span></div>
+    <div style="font-weight:700;font-size:11px;margin-bottom:10px;color:var(--ink);">3-Tier System — When to Use Which</div>
+    <div class="specrow"><span class="sp">Dark</span><span class="sv" style="color:var(--ink2);">DesignX platform — app backgrounds, dark UI sections, product pages</span></div>
+    <div class="specrow"><span class="sp">Mid</span><span class="sv" style="color:var(--ink2);">Shared contexts — emails, docs, cross-brand tools, about pages</span></div>
+    <div class="specrow"><span class="sp">Light</span><span class="sv" style="color:var(--ink2);">DLS conference — event pages, speaker cards, registration, tickets</span></div>
+    <div class="specrow" style="border-top:1px solid var(--rule);padding-top:8px;margin-top:4px;"><span class="sp">Subtle</span><span class="sv" style="color:var(--ink2);">Ambient, supporting — backgrounds, loading states, section dividers</span></div>
+    <div class="specrow"><span class="sp">Vivid</span><span class="sv" style="color:var(--ink2);">Hero, primary — announcements, headers, splash screens, launches</span></div>
+    <div class="specrow"><span class="sp">Frosted</span><span class="sv" style="color:var(--ink2);">Premium — modal overlays, feature drops, brand story moments</span></div>
   </div>
 
 
