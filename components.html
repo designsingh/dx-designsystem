@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Components — Website & App UI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ── Page-specific: Website Frames ────────────────────────────── */
+.frame { border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; margin-bottom: 32px; }
+.frame-light { border-color: var(--rule-light); }
+
+/* Browser chrome bar */
+.chrome { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--bg3); border-bottom: 1px solid var(--rule); }
+.chrome-light { background: var(--stone); border-bottom-color: var(--rule-light); }
+.chrome-dot { width: 8px; height: 8px; border-radius: 50%; }
+.chrome-url { flex: 1; background: var(--glass2); border-radius: 4px; padding: 3px 10px; font-family: var(--mono); font-size: 9px; color: var(--ink3); }
+.chrome-url-light { background: rgba(26,17,24,0.06); color: var(--ink-dark3); }
+
+/* App sidebar */
+.app-sidebar { width: 220px; background: var(--bg2); border-right: 1px solid var(--rule); flex-shrink: 0; padding: 16px 0; }
+.sidebar-item { display: flex; align-items: center; gap: 8px; padding: 7px 18px; font-size: 12px; color: var(--ink3); cursor: pointer; transition: all 0.15s; }
+.sidebar-item:hover { color: var(--ink); background: var(--glass1); }
+.sidebar-item.active { color: var(--ink); background: var(--glass2); border-left: 2px solid var(--dx); }
+.sidebar-item .si-icon { width: 16px; text-align: center; font-size: 11px; }
+.sidebar-section { font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink4); padding: 16px 18px 6px; }
+
+/* DLS site nav */
+.dls-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 28px; background: var(--cream); border-bottom: 1px solid var(--rule-light); }
+.dls-nav-brand { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink-dark); }
+.dls-nav-link { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dark3); cursor: pointer; }
+.dls-nav-link:hover { color: var(--ink-dark); }
+
+/* DLS schedule row */
+.sched-row { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule-light); align-items: flex-start; }
+.sched-time { font-family: var(--mono); font-size: 11px; color: var(--ink-dark3); flex-shrink: 0; width: 60px; padding-top: 2px; }
+.sched-talk { flex: 1; }
+.sched-title { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--ink-dark); line-height: 1.25; }
+.sched-speaker { font-size: 11px; color: var(--ink-dark2); margin-top: 2px; }
+.sched-tag { display: inline-block; font-family: var(--mono); font-size: 8px; padding: 2px 6px; border-radius: 3px; background: rgba(26,17,24,0.06); color: var(--ink-dark3); margin-top: 4px; }
+
+/* Ticket CTA */
+.ticket-cta { background: var(--ink-dark); border-radius: 14px; padding: 40px; display: flex; align-items: center; justify-content: space-between; }
+.ticket-btn { display: inline-flex; align-items: center; padding: 12px 28px; border-radius: 999px; background: var(--cream); color: var(--ink-dark); font-weight: 700; font-size: 13px; cursor: pointer; }
+
+/* App page content area */
+.app-page { flex: 1; padding: 24px 28px; background: var(--bg); min-height: 400px; overflow: hidden; }
+.page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.page-title { font-weight: 800; font-size: 22px; text-transform: uppercase; letter-spacing: -0.02em; }
+
+/* Profile module */
+.profile-card { display: flex; gap: 20px; align-items: center; padding: 20px; background: var(--canvas); border: 1px solid var(--rule); border-radius: 14px; margin-bottom: 16px; }
+.profile-avatar { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.profile-name { font-weight: 800; font-size: 18px; }
+.profile-meta { font-family: var(--mono); font-size: 10px; color: var(--ink3); margin-top: 2px; }
+
+/* Stat row */
+.stat-row { display: flex; gap: 12px; margin-bottom: 16px; }
+.stat-box { flex: 1; background: var(--canvas); border: 1px solid var(--rule); border-radius: 10px; padding: 14px; }
+.stat-val { font-family: var(--mono); font-weight: 800; font-size: 20px; }
+.stat-label { font-family: var(--mono); font-size: 9px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+/* DLS speaker grid item */
+.speaker-grid-item { display: flex; gap: 14px; align-items: center; padding: 12px; border-radius: 10px; cursor: pointer; transition: background 0.15s; }
+.speaker-grid-item:hover { background: rgba(26,17,24,0.03); }
+.speaker-thumb { width: 56px; height: 56px; border-radius: 10px; flex-shrink: 0; position: relative; overflow: hidden; }
+.speaker-info-name { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--ink-dark); }
+.speaker-info-role { font-size: 11px; color: var(--ink-dark2); }
+.speaker-info-topic { font-family: var(--mono); font-size: 9px; color: var(--ink-dark3); margin-top: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────────────── -->
+<nav class="topnav">
+  <div class="container topnav-inner">
+    <div class="nav-brand">Design<span>X</span> System</div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Positioning</a>
+      <a class="nav-link" href="designx.html">DesignX Dark</a>
+      <a class="nav-link" href="dls.html">DLS Light</a>
+      <a class="nav-link active" href="components.html">Components</a>
+      <a class="nav-link" href="initiatives.html">Initiatives</a>
+      <a class="nav-link" href="archetypes.html">Archetypes</a>
+      <a class="nav-link" href="spectrum.html">Spectrum</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!-- INTRO                                                                -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="section section-dark">
+<div class="container">
+
+  <div class="sec-label" style="color:var(--ink3);">Website &amp; App UI</div>
+  <div class="sec-title">Component<br>Library</div>
+  <div class="sec-desc" style="color:var(--ink2);">How components actually appear in context — full page layouts for the DesignX app (app.designx.community) and the DLS website (designleadership.io). Components wear the brand of where they live.</div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- DESIGNX APP                                                       -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+
+  <div class="sub-header" style="color:var(--ink3);">DesignX App — Jobs Page</div>
+
+  <!-- App Frame: Jobs -->
+  <div class="frame">
+    <div class="chrome">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-url">app.designx.community/jobs</div>
+    </div>
+    <div style="display:flex;">
+      <!-- Sidebar -->
+      <div class="app-sidebar">
+        <div style="padding:4px 18px 14px;font-weight:900;font-size:14px;">DESIGN<span class="grad-text">X</span></div>
+        <div class="sidebar-section">Platform</div>
+        <div class="sidebar-item"><span class="si-icon">🏠</span> Home</div>
+        <div class="sidebar-item active"><span class="si-icon">💼</span> Jobs</div>
+        <div class="sidebar-item"><span class="si-icon">💰</span> Salary</div>
+        <div class="sidebar-item"><span class="si-icon">🎤</span> Talks</div>
+        <div class="sidebar-item"><span class="si-icon">🧱</span> The Stack</div>
+        <div class="sidebar-section">Community</div>
+        <div class="sidebar-item"><span class="si-icon">👥</span> Events</div>
+        <div class="sidebar-item"><span class="si-icon">✉️</span> Newsletter</div>
+        <div class="sidebar-section">Conference</div>
+        <div class="sidebar-item"><span class="si-icon">🎪</span> DLS 2026</div>
+        <div class="sidebar-section">Account</div>
+        <div class="sidebar-item"><span class="si-icon">👤</span> Profile</div>
+        <div class="sidebar-item"><span class="si-icon">⚙️</span> Settings</div>
+      </div>
+      <!-- Main Content: Job Board -->
+      <div class="app-page">
+        <div class="page-header">
+          <div class="page-title" style="color:var(--electric);">Jobs</div>
+          <div style="display:flex;gap:6px;">
+            <span class="jtag" style="border-color:var(--electric);color:var(--electric);">All Roles</span>
+            <span class="jtag">Staff+</span>
+            <span class="jtag">Director+</span>
+            <span class="jtag">Remote</span>
+          </div>
+        </div>
+        <div class="jr">
+          <div class="jl" style="color:var(--violet);font-size:16px;">F</div>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:5px;"><span style="font-size:13px;font-weight:700;">Staff Product Designer, AI</span><span class="hot">HOT</span></div><div style="font-size:10px;color:var(--ink3);margin-top:2px;">Figma · San Francisco, NYC</div></div>
+          <div class="jt"><span class="jtag">AI</span><span class="jtag">Staff+</span></div>
+          <div class="js">$190–240K</div>
+        </div>
+        <div class="jr">
+          <div class="jl" style="color:var(--electric);font-size:16px;">G</div>
+          <div style="flex:1;"><div><span style="font-size:13px;font-weight:700;">Design Director, Cloud UX</span></div><div style="font-size:10px;color:var(--ink3);margin-top:2px;">Google · Mountain View, Hybrid</div></div>
+          <div class="jt"><span class="jtag">Director</span><span class="jtag">Cloud</span></div>
+          <div class="js">$220–310K</div>
+        </div>
+        <div class="jr">
+          <div class="jl" style="color:var(--cyan);font-size:16px;">M</div>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:5px;"><span style="font-size:13px;font-weight:700;">Principal Designer, Reality Labs</span><span class="hot">HOT</span></div><div style="font-size:10px;color:var(--ink3);margin-top:2px;">Meta · Menlo Park, Remote US</div></div>
+          <div class="jt"><span class="jtag">XR</span><span class="jtag">Principal</span></div>
+          <div class="js">$250–350K</div>
+        </div>
+        <div class="jr">
+          <div class="jl" style="color:var(--neon);font-size:16px;">N</div>
+          <div style="flex:1;"><div><span style="font-size:13px;font-weight:700;">Staff Designer, Growth</span></div><div style="font-size:10px;color:var(--ink3);margin-top:2px;">Notion · NYC, Remote</div></div>
+          <div class="jt"><span class="jtag">Growth</span><span class="jtag">Staff</span></div>
+          <div class="js">$175–220K</div>
+        </div>
+        <div style="text-align:center;padding:16px 0;"><span style="font-family:var(--mono);font-size:10px;color:var(--ink4);">Showing 4 of 248 roles · Load more</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── App Frame: Salary Insights ──────────────────────────────── -->
+  <div class="sub-header" style="color:var(--neon);">DesignX App — Salary Insights</div>
+
+  <div class="frame">
+    <div class="chrome">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-url">app.designx.community/salary</div>
+    </div>
+    <div style="display:flex;">
+      <div class="app-sidebar">
+        <div style="padding:4px 18px 14px;font-weight:900;font-size:14px;">DESIGN<span class="grad-text">X</span></div>
+        <div class="sidebar-section">Platform</div>
+        <div class="sidebar-item"><span class="si-icon">🏠</span> Home</div>
+        <div class="sidebar-item"><span class="si-icon">💼</span> Jobs</div>
+        <div class="sidebar-item active"><span class="si-icon">💰</span> Salary</div>
+        <div class="sidebar-item"><span class="si-icon">🎤</span> Talks</div>
+        <div class="sidebar-item"><span class="si-icon">🧱</span> The Stack</div>
+      </div>
+      <div class="app-page">
+        <div class="page-header">
+          <div class="page-title" style="color:var(--neon);">Salary Insights</div>
+          <div class="badge-glass">2026 Data</div>
+        </div>
+        <!-- Stats -->
+        <div class="stat-row">
+          <div class="stat-box"><div class="stat-val" style="color:var(--neon);">$185K</div><div class="stat-label">Median Sr. Designer</div></div>
+          <div class="stat-box"><div class="stat-val" style="color:var(--neon);">$240K</div><div class="stat-label">Median Staff Designer</div></div>
+          <div class="stat-box"><div class="stat-val" style="color:var(--neon);">$310K</div><div class="stat-label">Median Director</div></div>
+          <div class="stat-box"><div class="stat-val" style="color:var(--neon);">$420K</div><div class="stat-label">Median VP Design</div></div>
+        </div>
+        <!-- Salary card in context -->
+        <div style="background:var(--canvas);border:1px solid var(--rule);border-radius:14px;padding:24px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, #0A2E0A, #15803D, #AAFF00);"></div>
+          <div style="display:flex;align-items:center;gap:20px;">
+            <div style="flex:1;">
+              <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;">Your Salary Benchmark</div>
+              <div style="font-family:var(--serif);font-style:italic;font-size:42px;color:var(--neon);line-height:1;">$185,000</div>
+              <div style="font-size:12px;color:var(--ink2);margin-top:4px;">Sr. Product Designer · Bay Area</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:var(--mono);font-weight:800;font-size:32px;color:var(--neon);">P72</div>
+              <div style="font-family:var(--mono);font-size:9px;color:var(--ink3);">PERCENTILE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── App Frame: Profile with Archetype ───────────────────────── -->
+  <div class="sub-header" style="color:var(--aAlly);">DesignX App — Profile + Archetype</div>
+
+  <div class="frame">
+    <div class="chrome">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-url">app.designx.community/profile/sarah-chen</div>
+    </div>
+    <div style="display:flex;">
+      <div class="app-sidebar">
+        <div style="padding:4px 18px 14px;font-weight:900;font-size:14px;">DESIGN<span class="grad-text">X</span></div>
+        <div class="sidebar-section">Platform</div>
+        <div class="sidebar-item"><span class="si-icon">🏠</span> Home</div>
+        <div class="sidebar-item"><span class="si-icon">💼</span> Jobs</div>
+        <div class="sidebar-item"><span class="si-icon">💰</span> Salary</div>
+        <div class="sidebar-item"><span class="si-icon">🎤</span> Talks</div>
+        <div class="sidebar-section">Account</div>
+        <div class="sidebar-item active"><span class="si-icon">👤</span> Profile</div>
+      </div>
+      <div class="app-page">
+        <!-- Profile header -->
+        <div class="profile-card">
+          <div class="profile-avatar" style="background:var(--aArch);"><span style="font-family:var(--serif);font-style:italic;font-size:28px;color:white;">SC</span></div>
+          <div style="flex:1;">
+            <div class="profile-name">Sarah Chen</div>
+            <div class="profile-meta">VP Design · Stripe · San Francisco</div>
+            <div style="display:flex;gap:6px;margin-top:8px;">
+              <span class="pill" style="color:var(--aArch);border:1px solid rgba(13,148,136,0.3);font-size:9px;">The Architect</span>
+              <span class="jtag">DLS Speaker 2026</span>
+            </div>
+          </div>
+        </div>
+        <!-- Archetype section -->
+        <div style="background:var(--canvas);border:1px solid var(--rule);border-radius:14px;padding:20px;margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--aArch);display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--serif);font-style:italic;font-size:18px;color:white;">A</span></div>
+            <div>
+              <div style="font-family:var(--serif);font-style:italic;font-size:20px;color:var(--aArch);">The Architect</div>
+              <div style="font-family:var(--mono);font-size:9px;color:var(--ink3);">Systems · Orchestration · Leverage</div>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--ink2);line-height:1.6;">Designs systems. Sees connections others miss. Scales through structure, not heroics. Builds the machine that builds the product.</div>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+            <span class="jtag" style="color:var(--aArch);border-color:rgba(13,148,136,0.2);">Superpowers</span>
+            <span class="jtag" style="color:var(--aArch);border-color:rgba(13,148,136,0.2);">Watch-Outs</span>
+            <span class="jtag" style="color:var(--aArch);border-color:rgba(13,148,136,0.2);">Growth Moves</span>
+            <span class="jtag" style="color:var(--aArch);border-color:rgba(13,148,136,0.2);">Famous Examples</span>
+          </div>
+        </div>
+        <!-- Stats -->
+        <div class="stat-row">
+          <div class="stat-box"><div class="stat-val">12</div><div class="stat-label">Talks Given</div></div>
+          <div class="stat-box"><div class="stat-val">3.2K</div><div class="stat-label">Followers</div></div>
+          <div class="stat-box"><div class="stat-val" style="color:var(--aArch);">P89</div><div class="stat-label">Architect Score</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- DLS WEBSITE                                                        -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+
+  <div class="divider"></div>
+
+  <div class="sub-header" style="color:var(--ink3);">DLS Website — Homepage (designleadership.io)</div>
+
+  <div class="frame frame-light">
+    <div class="chrome chrome-light">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-url chrome-url-light">designleadership.io</div>
+    </div>
+    <!-- DLS Nav -->
+    <div class="dls-nav">
+      <div class="dls-nav-brand">Design Leadership Summit</div>
+      <div style="display:flex;gap:20px;align-items:center;">
+        <span class="dls-nav-link">Speakers</span>
+        <span class="dls-nav-link">Schedule</span>
+        <span class="dls-nav-link">About</span>
+        <span class="dls-nav-link">Patrons</span>
+        <span style="display:inline-flex;align-items:center;padding:6px 16px;border-radius:999px;background:var(--ink-dark);color:var(--cream);font-size:11px;font-weight:600;cursor:pointer;">Get Tickets</span>
+      </div>
+    </div>
+    <!-- Hero Section -->
+    <div style="background:var(--cream);padding:60px 48px;position:relative;overflow:hidden;" class="grain grain-heavy paper">
+      <!-- Bauhaus blocks -->
+      <div style="position:absolute;width:180px;height:120px;background:var(--bRed);top:40px;right:80px;opacity:0.8;z-index:1;"></div>
+      <div style="position:absolute;width:100px;height:100px;background:var(--bYellow);top:100px;right:180px;opacity:0.85;z-index:1;"></div>
+      <div style="position:absolute;width:120px;height:80px;background:var(--bBlue);bottom:60px;right:120px;opacity:0.75;z-index:1;"></div>
+      <div style="position:absolute;width:70px;height:70px;background:var(--bGreen);top:30px;right:260px;border-radius:50%;opacity:0.85;z-index:1;"></div>
+      <div style="position:absolute;width:90px;height:50px;background:var(--bOrange);bottom:40px;right:260px;opacity:0.7;z-index:1;"></div>
+      <div style="position:absolute;width:60px;height:60px;background:var(--bRed);bottom:100px;right:40px;border-radius:50%;opacity:0.7;z-index:1;"></div>
+      <div style="position:relative;z-index:6;max-width:480px;">
+        <div style="font-family:var(--serif);font-style:italic;font-size:52px;color:var(--ink-dark);line-height:1.05;margin-bottom:16px;">Design Leadership Summit</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-dark3);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:20px;">Toronto · September 2026 · 2 Days · 24 Speakers</div>
+        <div style="font-size:14px;color:var(--ink-dark2);line-height:1.7;margin-bottom:24px;">A summit for the leaders building the future of design. Two days of talks, workshops, and community — on the practice of leading design at scale.</div>
+        <div style="display:flex;gap:10px;">
+          <span style="display:inline-flex;padding:10px 24px;border-radius:999px;background:var(--ink-dark);color:var(--cream);font-weight:700;font-size:13px;cursor:pointer;">Get Early Bird Tickets</span>
+          <span style="display:inline-flex;padding:10px 24px;border-radius:999px;border:1px solid var(--ink-dark3);color:var(--ink-dark);font-weight:500;font-size:13px;cursor:pointer;">View Speakers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DLS: Speakers Page ──────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">DLS Website — Speakers Page</div>
+
+  <div class="frame frame-light">
+    <div class="chrome chrome-light">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-url chrome-url-light">designleadership.io/speakers</div>
+    </div>
+    <div class="dls-nav">
+      <div class="dls-nav-brand">Design Leadership Summit</div>
+      <div style="display:flex;gap:20px;align-items:center;">
+        <span class="dls-nav-link" style="color:var(--ink-dark);font-weight:600;">Speakers</span>
+        <span class="dls-nav-link">Schedule</span>
+        <span class="dls-nav-link">About</span>
+        <span style="display:inline-flex;padding:6px 16px;border-radius:999px;background:var(--ink-dark);color:var(--cream);font-size:11px;font-weight:600;">Get Tickets</span>
+      </div>
+    </div>
+    <div style="background:var(--cream);padding:40px 48px;" class="paper">
+      <div style="font-family:var(--serif);font-style:italic;font-size:36px;color:var(--ink-dark);margin-bottom:24px;">Speakers</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="speaker-grid-item">
+          <div class="speaker-thumb" style="background:var(--bgOlive);" class="grain grain-heavy">
+            <div style="position:absolute;width:20px;height:20px;background:var(--bRed);top:6px;right:8px;opacity:0.85;"></div>
+            <div style="position:absolute;width:14px;height:14px;background:var(--bYellow);bottom:12px;left:6px;border-radius:50%;opacity:0.9;"></div>
+          </div>
+          <div><div class="speaker-info-name">Sarah Chen</div><div class="speaker-info-role">VP Design · Stripe</div><div class="speaker-info-topic">Designing Systems That Scale</div></div>
+        </div>
+        <div class="speaker-grid-item">
+          <div class="speaker-thumb" style="background:var(--bgCoral);" class="grain grain-heavy">
+            <div style="position:absolute;width:18px;height:18px;background:var(--bBlue);top:8px;left:8px;opacity:0.85;"></div>
+            <div style="position:absolute;width:16px;height:16px;background:var(--bYellow);bottom:8px;right:10px;border-radius:50%;opacity:0.9;"></div>
+          </div>
+          <div><div class="speaker-info-name">Marcus Rivera</div><div class="speaker-info-role">Director of Design · Shopify</div><div class="speaker-info-topic">The Art of Letting Go</div></div>
+        </div>
+        <div class="speaker-grid-item">
+          <div class="speaker-thumb" style="background:var(--bgTeal);" class="grain grain-heavy">
+            <div style="position:absolute;width:22px;height:15px;background:var(--bOrange);top:6px;right:6px;opacity:0.85;"></div>
+            <div style="position:absolute;width:15px;height:22px;background:var(--bGreen);bottom:8px;left:10px;opacity:0.8;"></div>
+          </div>
+          <div><div class="speaker-info-name">Priya Sharma</div><div class="speaker-info-role">Head of Product Design · Figma</div><div class="speaker-info-topic">AI-Native Design Tools</div></div>
+        </div>
+        <div class="speaker-grid-item">
+          <div class="speaker-thumb" style="background:var(--bgAmber);" class="grain grain-heavy">
+            <div style="position:absolute;width:18px;height:18px;background:var(--bRed);top:6px;left:6px;opacity:0.9;"></div>
+            <div style="position:absolute;width:14px;height:20px;background:var(--bBlue);bottom:10px;right:8px;opacity:0.8;"></div>
+          </div>
+          <div><div class="speaker-info-name">James Okafor</div><div class="speaker-info-role">Design Director · Notion</div><div class="speaker-info-topic">Leading Through Ambiguity</div></div>
+        </div>
+        <div class="speaker-grid-item">
+          <div class="speaker-thumb" style="background:var(--bgForest);" class="grain grain-heavy">
+            <div style="position:absolute;width:16px;height:16px;background:var(--bYellow);top:8px;right:8px;border-radius:50%;opacity:0.85;"></div>
+            <div style="position:absolute;width:20px;height:12px;background:var(--bRed);bottom:10px;left:6px;opacity:0.8;"></div>
+          </div>
+          <div><div class="speaker-info-name">Elena Voss</div><div class="speaker-info-role">VP Product · Linear</div><div class="speaker-info-topic">The Calm Company</div></div>
+        </div>
+        <div class="speaker-grid-item">
+          <div class="speaker-thumb" style="background:var(--bgOlive);" class="grain grain-heavy">
+            <div style="position:absolute;width:20px;height:14px;background:var(--bBlue);top:8px;left:8px;opacity:0.8;"></div>
+            <div style="position:absolute;width:14px;height:14px;background:var(--bOrange);bottom:8px;right:10px;border-radius:50%;opacity:0.85;"></div>
+          </div>
+          <div><div class="speaker-info-name">David Kim</div><div class="speaker-info-role">CDO · Vercel</div><div class="speaker-info-topic">Design at Developer Speed</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DLS: Schedule Page ──────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">DLS Website — Schedule Page</div>
+
+  <div class="frame frame-light">
+    <div class="chrome chrome-light">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-url chrome-url-light">designleadership.io/schedule</div>
+    </div>
+    <div class="dls-nav">
+      <div class="dls-nav-brand">Design Leadership Summit</div>
+      <div style="display:flex;gap:20px;align-items:center;">
+        <span class="dls-nav-link">Speakers</span>
+        <span class="dls-nav-link" style="color:var(--ink-dark);font-weight:600;">Schedule</span>
+        <span class="dls-nav-link">About</span>
+        <span style="display:inline-flex;padding:6px 16px;border-radius:999px;background:var(--ink-dark);color:var(--cream);font-size:11px;font-weight:600;">Get Tickets</span>
+      </div>
+    </div>
+    <div style="background:var(--cream);padding:40px 48px;" class="paper">
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:24px;">
+        <div style="font-family:var(--serif);font-style:italic;font-size:36px;color:var(--ink-dark);">Schedule</div>
+        <div style="display:flex;gap:6px;">
+          <span style="font-family:var(--mono);font-size:10px;padding:4px 12px;border-radius:999px;background:var(--ink-dark);color:var(--cream);cursor:pointer;">Day 1</span>
+          <span style="font-family:var(--mono);font-size:10px;padding:4px 12px;border-radius:999px;border:1px solid var(--ink-dark3);color:var(--ink-dark3);cursor:pointer;">Day 2</span>
+        </div>
+      </div>
+
+      <div class="sched-row">
+        <div class="sched-time">9:00 AM</div>
+        <div class="sched-talk">
+          <div class="sched-title">Opening Keynote: The State of Design Leadership</div>
+          <div class="sched-speaker">Preet Singh · Founder, DesignX</div>
+          <div class="sched-tag">Keynote · Main Stage</div>
+        </div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">10:15 AM</div>
+        <div class="sched-talk">
+          <div class="sched-title">Designing Systems That Scale</div>
+          <div class="sched-speaker">Sarah Chen · VP Design, Stripe</div>
+          <div class="sched-tag">Talk · 45 min</div>
+        </div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">11:15 AM</div>
+        <div class="sched-talk">
+          <div class="sched-title">The Art of Letting Go</div>
+          <div class="sched-speaker">Marcus Rivera · Director of Design, Shopify</div>
+          <div class="sched-tag">Talk · 30 min</div>
+        </div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">12:00 PM</div>
+        <div class="sched-talk">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--ink-dark3);text-transform:uppercase;letter-spacing:0.1em;">Lunch · Networking · 90 min</div>
+        </div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">1:30 PM</div>
+        <div class="sched-talk">
+          <div class="sched-title">AI-Native Design Tools</div>
+          <div class="sched-speaker">Priya Sharma · Head of Product Design, Figma</div>
+          <div class="sched-tag">Interactive Session · 60 min</div>
+        </div>
+      </div>
+      <div class="sched-row" style="border-bottom:none;">
+        <div class="sched-time">2:45 PM</div>
+        <div class="sched-talk">
+          <div class="sched-title">Leading Through Ambiguity</div>
+          <div class="sched-speaker">James Okafor · Design Director, Notion</div>
+          <div class="sched-tag">Workshop · 90 min</div>
+        </div>
+      </div>
+
+      <!-- Ticket CTA -->
+      <div class="ticket-cta" style="margin-top:32px;">
+        <div>
+          <div style="font-family:var(--serif);font-style:italic;font-size:24px;color:var(--cream);">Join us in Toronto</div>
+          <div style="font-family:var(--mono);font-size:10px;color:rgba(240,236,227,0.5);margin-top:4px;">SEPTEMBER 2026 · EARLY BIRD PRICING AVAILABLE</div>
+        </div>
+        <div class="ticket-btn">Get Tickets →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DLS: Talks Page (post-event) ─────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">DLS Website — Talks Archive (post-event)</div>
+
+  <div class="frame frame-light">
+    <div class="chrome chrome-light">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-url chrome-url-light">designleadership.io/talks</div>
+    </div>
+    <div class="dls-nav">
+      <div class="dls-nav-brand">Design Leadership Summit</div>
+      <div style="display:flex;gap:20px;align-items:center;">
+        <span class="dls-nav-link" style="color:var(--ink-dark);font-weight:600;">Talks</span>
+        <span class="dls-nav-link">Speakers</span>
+        <span class="dls-nav-link">About</span>
+      </div>
+    </div>
+    <div style="background:var(--cream);padding:40px 48px;" class="paper">
+      <div style="font-family:var(--serif);font-style:italic;font-size:36px;color:var(--ink-dark);margin-bottom:24px;">Talks</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+        <!-- Talk 1 -->
+        <div style="border:1px solid var(--rule-light);border-radius:12px;overflow:hidden;background:var(--parchment);">
+          <div style="aspect-ratio:16/9;background:var(--bgOlive);position:relative;overflow:hidden;" class="grain grain-heavy htd">
+            <div style="position:absolute;bottom:8px;right:8px;font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.7);z-index:6;">28:15</div>
+          </div>
+          <div style="padding:12px;">
+            <div style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-dark);line-height:1.25;">Designing Systems That Scale</div>
+            <div style="font-size:10px;color:var(--ink-dark2);margin-top:4px;">Sarah Chen · Stripe</div>
+          </div>
+        </div>
+        <!-- Talk 2 -->
+        <div style="border:1px solid var(--rule-light);border-radius:12px;overflow:hidden;background:var(--parchment);">
+          <div style="aspect-ratio:16/9;background:var(--bgCoral);position:relative;overflow:hidden;" class="grain grain-heavy htd">
+            <div style="position:absolute;bottom:8px;right:8px;font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.7);z-index:6;">42:30</div>
+          </div>
+          <div style="padding:12px;">
+            <div style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-dark);line-height:1.25;">The Art of Letting Go</div>
+            <div style="font-size:10px;color:var(--ink-dark2);margin-top:4px;">Marcus Rivera · Shopify</div>
+          </div>
+        </div>
+        <!-- Talk 3 -->
+        <div style="border:1px solid var(--rule-light);border-radius:12px;overflow:hidden;background:var(--parchment);">
+          <div style="aspect-ratio:16/9;background:var(--bgTeal);position:relative;overflow:hidden;" class="grain grain-heavy htd">
+            <div style="position:absolute;bottom:8px;right:8px;font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.7);z-index:6;">35:45</div>
+          </div>
+          <div style="padding:12px;">
+            <div style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-dark);line-height:1.25;">AI-Native Design Tools</div>
+            <div style="font-size:10px;color:var(--ink-dark2);margin-top:4px;">Priya Sharma · Figma</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- Footer -->
+<div style="padding:32px 0;text-align:center;">
+  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;">Components · Website & App UI · v2.0</div>
+</div>
+
+</body>
+</html>

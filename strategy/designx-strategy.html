@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignX + DLS — Complete Design System Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#000;--bg2:#0A0A0F;--bg3:#111118;
+  --ink:rgba(255,255,255,1);--ink2:rgba(255,255,255,.7);--ink3:rgba(255,255,255,.4);--ink4:rgba(255,255,255,.18);
+  --rule:rgba(255,255,255,.06);
+  --violet:#A78BFA;--purple:#8B5CF6;--deepPurple:#6D28D9;
+  --neon:#AAFF00;--electric:#06B6D4;--coral:#F97316;--warm:#FCD34D;
+  --cream:#F0ECE3;--parchment:#EDE8DE;--stone:#D9D2C7;
+  --bRed:#DC2626;--bYellow:#FACC15;--bGreen:#4D7C0F;--bBlue:#2563EB;--bOrange:#EA580C;--bCoral:#E8927C;--bPurple:#6D28D9;
+  --aAlly:#d4a843;--aArchitect:#0D9488;--aPathfinder:#2563EB;--aAnchor:#E8927C;--aCultivator:#65783E;
+  --sans:'DM Sans',sans-serif;--serif:'Instrument Serif',serif;--mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+.container{max-width:960px;margin:0 auto;padding:0 32px;}
+
+/* Header */
+.header{padding:64px 0 48px;border-bottom:1px solid var(--rule);}
+.header .eyebrow{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--purple);margin-bottom:12px;}
+.header h1{font-size:48px;font-weight:900;text-transform:uppercase;letter-spacing:-2px;line-height:.92;margin-bottom:16px;}
+.header .subtitle{color:var(--ink2);font-size:15px;max-width:640px;line-height:1.7;}
+.header .meta{font-family:var(--mono);font-size:10px;color:var(--ink4);margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;}
+
+/* Sections */
+.section{padding:56px 0;border-bottom:1px solid var(--rule);}
+.section:last-child{border-bottom:none;padding-bottom:80px;}
+.sl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--purple);margin-bottom:8px;}
+.st{font-size:28px;font-weight:900;text-transform:uppercase;letter-spacing:-1px;line-height:1;margin-bottom:16px;}
+.sd{color:var(--ink2);max-width:680px;margin-bottom:28px;line-height:1.7;}
+.sub{font-weight:700;font-size:14px;color:var(--ink);margin:36px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--rule);}
+.sub:first-of-type{margin-top:0;}
+.sub-v{color:var(--violet);}
+.sub-n{color:var(--neon);}
+.sub-e{color:var(--electric);}
+.sub-a{color:var(--aAlly);}
+.sub-c{color:var(--bCoral);}
+
+/* Artifact links */
+.artifact{display:block;background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:20px 24px;margin-bottom:12px;text-decoration:none;transition:all .25s;position:relative;overflow:hidden;}
+.artifact:hover{border-color:rgba(139,92,246,.4);transform:translateY(-2px);box-shadow:0 8px 32px rgba(139,92,246,.08);}
+.artifact::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.artifact.a-core::before{background:linear-gradient(90deg,var(--deepPurple),var(--violet));}
+.artifact.a-color::before{background:linear-gradient(90deg,var(--neon),var(--electric));}
+.artifact.a-dls::before{background:linear-gradient(90deg,var(--bCoral),var(--bYellow),var(--bGreen),var(--bBlue));}
+.artifact.a-arch::before{background:linear-gradient(90deg,var(--aAlly),var(--aArchitect),var(--aPathfinder));}
+.artifact.a-vis::before{background:linear-gradient(90deg,var(--coral),var(--warm));}
+.artifact.a-fx::before{background:linear-gradient(90deg,var(--electric),var(--purple));}
+.artifact.a-ht::before{background:linear-gradient(90deg,var(--deepPurple),var(--bCoral));}
+.a-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.a-title{font-weight:700;font-size:14px;color:var(--ink);}
+.a-file{font-family:var(--mono);font-size:10px;color:var(--ink4);}
+.a-desc{font-size:12px;color:var(--ink3);margin-top:6px;line-height:1.5;}
+.a-tabs{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px;}
+.a-tag{font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:4px;background:rgba(255,255,255,.04);color:var(--ink4);}
+
+/* Spec boxes */
+.specbox{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:16px;margin-bottom:16px;}
+.specrow{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--rule);gap:16px;}
+.specrow:last-child{border-bottom:none;}
+.sp{font-family:var(--mono);font-size:10px;color:var(--ink3);flex-shrink:0;}
+.sv{font-size:11px;color:var(--ink2);text-align:right;}
+
+/* Light spec */
+.lspecbox{background:var(--cream);border:1px solid var(--stone);border-radius:12px;padding:16px;margin-bottom:16px;}
+.lspecrow{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.08);gap:16px;}
+.lspecrow:last-child{border-bottom:none;}
+.lsp{font-family:var(--mono);font-size:10px;color:rgba(0,0,0,.4);flex-shrink:0;}
+.lsv{font-size:11px;color:rgba(0,0,0,.6);text-align:right;}
+
+/* Grids */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+@media(max-width:768px){.g2,.g3,.g5{grid-template-columns:1fr;}}
+
+/* Spectrum bar */
+.spectrum{height:48px;border-radius:12px;margin-bottom:16px;position:relative;overflow:hidden;}
+.spectrum-labels{display:flex;justify-content:space-between;padding:0 4px;margin-bottom:8px;}
+.spectrum-labels span{font-family:var(--mono);font-size:9px;color:var(--ink4);}
+
+/* Gradient zone cards */
+.zone-card{border-radius:10px;padding:16px;min-height:120px;display:flex;flex-direction:column;justify-content:flex-end;}
+.zone-card .zl{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:1.5px;opacity:.7;margin-bottom:4px;}
+.zone-card .zn{font-weight:700;font-size:13px;}
+.zone-card .zd{font-size:11px;opacity:.7;line-height:1.4;margin-top:4px;}
+
+/* Tags */
+.tag{display:inline-block;font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:4px;margin-right:3px;margin-bottom:3px;}
+.tag-dls{background:rgba(245,240,232,.12);color:var(--cream);}
+.tag-dx{background:rgba(139,92,246,.15);color:var(--violet);}
+.tag-shared{background:rgba(170,255,0,.12);color:var(--neon);}
+.tag-arch{background:rgba(212,168,67,.15);color:var(--aAlly);}
+
+/* Decision table */
+.dtable{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:11px;}
+.dtable th{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--ink3);text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);background:var(--bg2);}
+.dtable td{color:var(--ink2);padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;}
+.dtable tr:last-child td{border-bottom:none;}
+.dtable tr:nth-child(even) td{background:rgba(255,255,255,.01);}
+
+/* Ref image */
+.ref-img{width:100%;border-radius:8px;margin-bottom:16px;border:1px solid var(--rule);}
+
+/* Callout */
+.callout{border-left:3px solid var(--purple);padding:16px 20px;background:rgba(139,92,246,.04);border-radius:0 10px 10px 0;margin-bottom:20px;}
+.callout.callout-neon{border-color:var(--neon);background:rgba(170,255,0,.03);}
+.callout.callout-gold{border-color:var(--aAlly);background:rgba(212,168,67,.04);}
+.callout p{font-size:12px;color:var(--ink2);line-height:1.6;}
+.callout strong{color:var(--ink);}
+
+/* Flow */
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.fstep{background:var(--bg2);border:1px solid var(--rule);border-radius:6px;padding:6px 12px;font-family:var(--mono);font-size:9px;color:var(--ink3);}
+.fstep.active{border-color:var(--purple);color:var(--purple);}
+.fstep.light{background:var(--cream);border-color:var(--stone);color:rgba(0,0,0,.5);}
+.farrow{color:var(--ink4);font-size:14px;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<div class="header"><div class="container">
+  <div class="eyebrow">Creative Direction Guide</div>
+  <h1>DesignX + DLS<br>Design System<br>Strategy</h1>
+  <div class="subtitle">The complete reference for every design decision across both brands. Maps the entire system — what exists, where to find specs, how the two brands relate, and what to build next. Share with anyone creating assets for DesignX or DLS.</div>
+  <div class="meta">
+    <span>February 2026</span>
+    <span>7 spec documents</span>
+    <span>40+ tabs of specification</span>
+    <span>2 brands · 6 color worlds</span>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 01 SYSTEM ARCHITECTURE ═══════════════════ -->
+<div class="section" id="architecture"><div class="container">
+  <div class="sl">01 · Foundation</div>
+  <h2 class="st">System<br>Architecture</h2>
+  <p class="sd">Two brands. One ecosystem. DesignX is the platform — dark, systematic, tool-oriented. DLS (Design Leadership Summit) is the conference brand — light, maximalist, editorial. They share DNA but express it completely differently.</p>
+
+  <div class="g2" style="margin-bottom:32px;">
+    <div class="specbox">
+      <div style="font-weight:700;font-size:14px;color:var(--purple);margin-bottom:12px;">🌙 DesignX (Platform)</div>
+      <p style="color:var(--ink2);font-size:12px;line-height:1.7;margin-bottom:16px;">The professional home for design leaders building with AI. Dark UI, systematic grid, glass effects. Houses tools: Salary, Jobs, The Stack, Archetypes.</p>
+      <div class="specrow"><span class="sp">Surfaces</span><span class="sv">app.designx.community · newsletter · YouTube · social (tool posts)</span></div>
+      <div class="specrow"><span class="sp">Headline voice</span><span class="sv">DM Sans 900 uppercase</span></div>
+      <div class="specrow"><span class="sp">Color system</span><span class="sv">6 product worlds on black</span></div>
+      <div class="specrow"><span class="sp">Photography</span><span class="sv">Purple duotone halftone</span></div>
+      <div class="specrow"><span class="sp">Texture</span><span class="sv">Subtle grain 15-20%, glass blur</span></div>
+      <div class="specrow"><span class="sp">Layout</span><span class="sv">Systematic grid, 4px base</span></div>
+    </div>
+    <div class="lspecbox">
+      <div style="font-weight:700;font-size:14px;color:var(--bPurple);margin-bottom:12px;">🌤 DLS (Conference)</div>
+      <p style="color:rgba(0,0,0,.6);font-size:12px;line-height:1.7;margin-bottom:16px;">Premium design leadership conference. Maximalist Bauhaus collage — geometric blocks, multi-color, paper grain. Physical collateral: badges, programs, speaker cards.</p>
+      <div class="lspecrow"><span class="lsp">Surfaces</span><span class="lsv">designleadership.io · social (speaker cards) · physical print</span></div>
+      <div class="lspecrow"><span class="lsp">Headline voice</span><span class="lsv">Instrument Serif italic</span></div>
+      <div class="lspecrow"><span class="lsp">Color system</span><span class="lsv">Full Bauhaus spectrum + archetype worlds</span></div>
+      <div class="lspecrow"><span class="lsp">Photography</span><span class="lsv">B&W halftone on colored backgrounds</span></div>
+      <div class="lspecrow"><span class="lsp">Texture</span><span class="lsv">Heavy paper grain 35-45%, watermark text</span></div>
+      <div class="lspecrow"><span class="lsp">Layout</span><span class="lsv">Collage, overlapping, scattered</span></div>
+    </div>
+  </div>
+
+  <div class="sub sub-v">Shared DNA (Both Modes)</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Purple as connector</span><span class="sv">#6D28D9 light · #8B5CF6 dark — the thread between brands</span></div>
+    <div class="specrow"><span class="sp">Halftone treatment</span><span class="sv">B&W grayscale → dot pattern — different color overlay per mode</span></div>
+    <div class="specrow"><span class="sp">Instrument Serif</span><span class="sv">Prominent on light (headlines) · Restricted on dark (3 uses only)</span></div>
+    <div class="specrow"><span class="sp">DM Sans</span><span class="sv">Body/UI on both · Headlines on dark only</span></div>
+    <div class="specrow"><span class="sp">JetBrains Mono</span><span class="sv">Data, dates, prices, metadata — both modes</span></div>
+    <div class="specrow"><span class="sp">Film grain</span><span class="sv">Both — heavy on light (35-45%), subtle on dark (15-20%)</span></div>
+  </div>
+
+  <div class="sub">The Golden Rule</div>
+  <div class="callout callout-neon">
+    <p><strong style="color:var(--neon);">Content wears the brand of where it's displayed.</strong><br>
+    A DLS talk on designleadership.io wears light Bauhaus. The same talk on app.designx wears dark platform. The content doesn't change — the presentation layer does.<br><br>
+    <strong>One exception:</strong> DLS speaker cards and Bauhaus visual assets are always light — they ARE the content, not a wrapper.</p>
+  </div>
+
+  <div class="sub">Product Stack</div>
+  <div class="g3">
+    <div class="specbox" style="border-color:rgba(139,92,246,.2);">
+      <div style="font-weight:700;font-size:12px;color:var(--violet);margin-bottom:4px;">DLS / Events</div>
+      <div style="font-size:11px;color:var(--ink3);">Purple · #2D1B69→#A78BFA</div>
+    </div>
+    <div class="specbox" style="border-color:rgba(170,255,0,.2);">
+      <div style="font-weight:700;font-size:12px;color:var(--neon);margin-bottom:4px;">Salary</div>
+      <div style="font-size:11px;color:var(--ink3);">Neon · #0A2E0A→#AAFF00</div>
+    </div>
+    <div class="specbox" style="border-color:rgba(6,182,212,.2);">
+      <div style="font-weight:700;font-size:12px;color:var(--electric);margin-bottom:4px;">Jobs</div>
+      <div style="font-size:11px;color:var(--ink3);">Blue · #1E3A5F→#06B6D4</div>
+    </div>
+    <div class="specbox" style="border-color:rgba(252,211,77,.2);">
+      <div style="font-weight:700;font-size:12px;color:var(--warm);margin-bottom:4px;">Community</div>
+      <div style="font-size:11px;color:var(--ink3);">Gold · #78350F→#FCD34D</div>
+    </div>
+    <div class="specbox" style="border-color:rgba(212,168,67,.2);">
+      <div style="font-weight:700;font-size:12px;color:var(--aAlly);margin-bottom:4px;">Archetypes ←NEW</div>
+      <div style="font-size:11px;color:var(--ink3);">Amber · #5C3D10→#D4A843</div>
+    </div>
+    <div class="specbox" style="border-color:rgba(255,255,255,.08);">
+      <div style="font-weight:700;font-size:12px;color:var(--ink3);margin-bottom:4px;">Season (Flex)</div>
+      <div style="font-size:11px;color:var(--ink4);">Multi-stop · Changes yearly</div>
+    </div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 02 GRADIENT SPECTRUM ═══════════════════ -->
+<div class="section" id="spectrum"><div class="container">
+  <div class="sl">02 · Visual Language</div>
+  <h2 class="st">Gradient<br>Spectrum</h2>
+  <p class="sd">The existing gradient library spans the full emotional range between the two brands. Rather than a hard binary switch (dark/light), these gradients create a continuous spectrum from pure DesignX through transitional zones to pure DLS. Each product world occupies a position on this spectrum.</p>
+
+  <img src="/mnt/user-data/uploads/1771974441796_image.png" class="ref-img" alt="Gradient library spanning the full DesignX–DLS spectrum">
+
+  <div class="sub sub-v">The Five Zones</div>
+  <p class="sd">Map the gradient library into five zones. Each zone serves a different brand context, and each product world gravitates toward a home zone.</p>
+
+  <div class="spectrum" style="background:linear-gradient(90deg, #1a0040 0%, #6D28D9 20%, #AAFF00 40%, #EA580C 60%, #E8927C 80%, #F0ECE3 100%);"></div>
+  <div class="spectrum-labels"><span>Pure DesignX Dark</span><span>Dark + Color</span><span>Tool Worlds</span><span>Warm Bridge</span><span>Pure DLS Light</span></div>
+
+  <div class="g5" style="margin-bottom:24px;">
+    <div class="zone-card" style="background:linear-gradient(135deg,#0a0020,#2D1B69);color:white;">
+      <div class="zl">Zone 1</div>
+      <div class="zn">Pure Dark</div>
+      <div class="zd">Deep purple-black. Core DesignX UI, nav, backgrounds.</div>
+    </div>
+    <div class="zone-card" style="background:linear-gradient(135deg,#1a0060,#8B5CF6);color:white;">
+      <div class="zl">Zone 2</div>
+      <div class="zn">Dark + Vibrant</div>
+      <div class="zd">Purple/blue/neon on dark. Tool heroes, DLS purple cards, salary neon.</div>
+    </div>
+    <div class="zone-card" style="background:linear-gradient(135deg,#0A2E0A,#06B6D4);color:white;">
+      <div class="zl">Zone 3</div>
+      <div class="zn">Tool Worlds</div>
+      <div class="zd">Green, blue, orange on dark. Product-specific gradients. Maximum color contrast.</div>
+    </div>
+    <div class="zone-card" style="background:linear-gradient(135deg,#8B4513,#E8927C);color:white;">
+      <div class="zl">Zone 4</div>
+      <div class="zn">Warm Bridge</div>
+      <div class="zd">Coral, amber, warm. Archetype territory. Transitional zone toward light.</div>
+    </div>
+    <div class="zone-card" style="background:linear-gradient(135deg,var(--parchment),var(--cream));color:rgba(0,0,0,.7);">
+      <div class="zl">Zone 5</div>
+      <div class="zn">Pure Light</div>
+      <div class="zd">Cream, paper, warm white. DLS editorial, Bauhaus blocks on top.</div>
+    </div>
+  </div>
+
+  <div class="sub">How Products Map to Zones</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">DesignX UI / Nav / Shell</span><span class="sv" style="color:var(--purple);">Zone 1 — Pure dark gradients</span></div>
+    <div class="specrow"><span class="sp">DLS on platform (event cards, ticket CTA)</span><span class="sv" style="color:var(--violet);">Zone 2 — Purple-dominant dark</span></div>
+    <div class="specrow"><span class="sp">Salary Tool</span><span class="sv" style="color:var(--neon);">Zone 2-3 — Neon green on deep dark</span></div>
+    <div class="specrow"><span class="sp">Job Board</span><span class="sv" style="color:var(--electric);">Zone 3 — Blue/cyan on dark</span></div>
+    <div class="specrow"><span class="sp">Community</span><span class="sv" style="color:var(--warm);">Zone 3-4 — Gold/warm on dark</span></div>
+    <div class="specrow"><span class="sp">Archetypes (on platform)</span><span class="sv" style="color:var(--aAlly);">Zone 4 — Warm amber, bridges to light</span></div>
+    <div class="specrow"><span class="sp">Archetypes (standalone/DLS)</span><span class="sv" style="color:var(--bCoral);">Zone 4-5 — Each archetype's own color on cream/paper</span></div>
+    <div class="specrow"><span class="sp">DLS editorial / designleadership.io</span><span class="sv" style="color:rgba(0,0,0,.4);">Zone 5 — Pure light, Bauhaus blocks on cream</span></div>
+  </div>
+
+  <div class="sub">Using the Gradient Library</div>
+  <div class="callout">
+    <p><strong>Selection rule:</strong> Pick gradients from the zone that matches your content's position on the spectrum. A Salary tool hero pulls from Zone 2-3 (neon/green family). A DLS speaker card backdrop pulls from Zone 5 (warm/light family). The Archetypes reveal moment can pull from Zone 4 (warm bridge) because it's the brand that literally bridges both worlds.</p>
+  </div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;margin-bottom:8px;">Gradient Usage by Asset Type</div>
+    <div class="specrow"><span class="sp">Platform hero sections</span><span class="sv">Zone 1-2 gradients · Behind product headlines</span></div>
+    <div class="specrow"><span class="sp">Card top borders / accents</span><span class="sv">Zone 2-3 gradients · Thin 2-3px strips from product world</span></div>
+    <div class="specrow"><span class="sp">Social graphics (DesignX)</span><span class="sv">Zone 2-3 gradients · Full-bleed behind DM Sans headlines</span></div>
+    <div class="specrow"><span class="sp">Social graphics (DLS)</span><span class="sv">Zone 4-5 gradients · Or pure Bauhaus blocks (no gradient needed)</span></div>
+    <div class="specrow"><span class="sp">Archetype reveal background</span><span class="sv">Zone 4 gradient · Floods to archetype's specific color</span></div>
+    <div class="specrow"><span class="sp">Newsletter hero</span><span class="sv">Zone 1-2 gradients · Season gradient for seasonal identity</span></div>
+    <div class="specrow"><span class="sp">YouTube thumbnails</span><span class="sv">Zone 2 gradients · Purple-dominant, matches player chrome</span></div>
+    <div class="specrow"><span class="sp">DLS website sections</span><span class="sv">Zone 5 · No gradients — cream base + Bauhaus blocks</span></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 03 ARTIFACT INDEX ═══════════════════ -->
+<div class="section" id="artifacts"><div class="container">
+  <div class="sl">03 · Reference Library</div>
+  <h2 class="st">Artifact<br>Index</h2>
+  <p class="sd">Every specification document in the system. Each is a standalone HTML file with tabbed sections. Open the one you need for the task at hand. Ordered from foundational to specific.</p>
+
+  <div class="sub sub-v">Tier 1 — Start Here</div>
+
+  <div class="artifact a-core">
+    <div class="a-row">
+      <div class="a-title">Complete Design System & Brand Review</div>
+      <div class="a-file">designx-complete-review.html</div>
+    </div>
+    <div class="a-desc">THE master document. Positioning strategy, all design tokens (3-tier backgrounds, 4-level text hierarchy, 6 product color worlds, motion tokens), typography in real contexts, photography pipeline with before/afters, halftone dot system, card anatomy for all card types, job board components, and full-page compositions. <strong style="color:var(--ink);">Start here for any DesignX platform work.</strong></div>
+    <div class="a-tabs">
+      <span class="a-tag">Positioning</span><span class="a-tag">Tokens</span><span class="a-tag">Typography</span><span class="a-tag">Photography</span><span class="a-tag">Halftone</span><span class="a-tag">Cards</span><span class="a-tag">Job Board</span><span class="a-tag">Compositions</span><span class="a-tag">Roadmap</span>
+    </div>
+  </div>
+
+  <div class="artifact a-dls">
+    <div class="a-row">
+      <div class="a-title">DLS Dual Mode Identity System v2</div>
+      <div class="a-file">designx-dls-dual-mode-v2.html</div>
+    </div>
+    <div class="a-desc">The corrected DLS light identity — rebuilt from actual source assets. Bauhaus block construction rules (layering, opacity, color counts), full multi-color palette (base surfaces, Bauhaus block colors, speaker card backgrounds, archetype worlds), Instrument Serif typography hierarchy, halftone pipeline for light mode, speaker/talk/sponsor/archetype card anatomy, and light↔dark handoff rules. <strong style="color:var(--ink);">Start here for any DLS work.</strong></div>
+    <div class="a-tabs">
+      <span class="a-tag">Overview</span><span class="a-tag">Bauhaus Collage</span><span class="a-tag">Full Palette</span><span class="a-tag">Typography</span><span class="a-tag">Photography</span><span class="a-tag">Card System</span><span class="a-tag">Archetypes</span><span class="a-tag">Light↔Dark Handoff</span><span class="a-tag">CSS Tokens</span>
+    </div>
+  </div>
+
+  <div class="sub sub-n">Tier 2 — Deep Dives</div>
+
+  <div class="artifact a-color">
+    <div class="a-row">
+      <div class="a-title">Color Worlds & Gradient System</div>
+      <div class="a-file">designx-color-worlds.html</div>
+    </div>
+    <div class="a-desc">Deep spec of all 6 product color worlds. Each defined with hero/subtle/border/glow/text/spot variants. Collision hierarchy (what happens when two color worlds share a page), usage constraints, and the DLS dual-mode strategy.</div>
+    <div class="a-tabs">
+      <span class="a-tag">Overview</span><span class="a-tag">DLS Purple</span><span class="a-tag">Salary</span><span class="a-tag">Jobs</span><span class="a-tag">Community</span><span class="a-tag">The Stack</span><span class="a-tag">Season</span><span class="a-tag">Usage Rules</span><span class="a-tag">Collisions</span>
+    </div>
+  </div>
+
+  <div class="artifact a-arch">
+    <div class="a-row">
+      <div class="a-title">Archetypes Product + Brand Boundaries</div>
+      <div class="a-file">designx-archetypes-boundaries.html</div>
+    </div>
+    <div class="a-desc">Archetypes graduating from DLS conference cards to a full DesignX platform product. Assessment flow (quiz → reveal → profile), dark mode treatment, plus the complete brand boundary map — where DLS and DesignX separate, merge, and cross-pollinate. Talks library merger, content routing flows.</div>
+    <div class="a-tabs">
+      <span class="a-tag">Overview</span><span class="a-tag">Archetypes Product</span><span class="a-tag">Assessment Flow</span><span class="a-tag">Profile Integration</span><span class="a-tag">Dark Mode</span><span class="a-tag">Brand Boundaries</span><span class="a-tag">Talks Library</span><span class="a-tag">Content Routing</span>
+    </div>
+  </div>
+
+  <div class="sub sub-e">Tier 3 — Specialist References</div>
+
+  <div class="artifact a-vis">
+    <div class="a-row">
+      <div class="a-title">Visual Treatments with Real Assets</div>
+      <div class="a-file">designx-visual-treatments.html</div>
+    </div>
+    <div class="a-desc">Full visual treatment library using real DesignX community photos and event assets. Live CSS demonstrations of duotone, halftone, grain overlays, glass effects. Copy-paste production code.</div>
+  </div>
+
+  <div class="artifact a-ht">
+    <div class="a-row">
+      <div class="a-title">Halftone Duotone System</div>
+      <div class="a-file">designx-halftone-system.html</div>
+    </div>
+    <div class="a-desc">Deep dive into the halftone dot overlay system. Dot size comparison, blend mode differences, the 4-step pipeline (grayscale → contrast → overlay → grain). Interactive examples.</div>
+  </div>
+
+  <div class="artifact a-fx">
+    <div class="a-row">
+      <div class="a-title">CSS Effects Sampler</div>
+      <div class="a-file">designx-css-effects-sampler.html</div>
+    </div>
+    <div class="a-desc">Standalone CSS effect demonstrations. Glass blur, gradient borders, glow effects, grain noise, card hover states. Implementation reference for developers.</div>
+  </div>
+
+  <div class="artifact a-dls" style="opacity:.6;">
+    <div class="a-row">
+      <div class="a-title">DLS Dual Mode v1 (Superseded)</div>
+      <div class="a-file">designx-dls-dual-mode.html</div>
+    </div>
+    <div class="a-desc">Original DLS light spec — too minimal, missed Bauhaus collage aesthetic. <strong>Superseded by v2.</strong> Kept for reference only.</div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 04 DESIGNX DARK QUICK REF ═══════════════════ -->
+<div class="section" id="designx-dark"><div class="container">
+  <div class="sl">04 · DesignX Platform</div>
+  <h2 class="st">Dark System<br>Quick Reference</h2>
+  <p class="sd">The essentials for any DesignX platform asset. Full specs are in the Complete Review document — this is the at-a-glance version for fast decisions.</p>
+
+  <div class="sub sub-v">Surfaces & Backgrounds</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Stage</span><span class="sv">#000000 — Page background</span></div>
+    <div class="specrow"><span class="sp">Canvas</span><span class="sv">#0A0A0F — Cards, content areas</span></div>
+    <div class="specrow"><span class="sp">Raised</span><span class="sv">#111118 — Modals, dropdowns</span></div>
+    <div class="specrow"><span class="sp">Glass</span><span class="sv">rgba(255,255,255, .03/.05/.08/.12) — Interactive surfaces</span></div>
+    <div class="specrow"><span class="sp">Rule</span><span class="sv">rgba(255,255,255,.06) — Borders, dividers</span></div>
+  </div>
+
+  <div class="sub">Type Stack</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Display headline</span><span class="sv">DM Sans 900, uppercase, -3% tracking, 36-64px</span></div>
+    <div class="specrow"><span class="sp">Section title</span><span class="sv">DM Sans 700, 20-28px</span></div>
+    <div class="specrow"><span class="sp">Card title</span><span class="sv">DM Sans 700, 14-16px</span></div>
+    <div class="specrow"><span class="sp">Body</span><span class="sv">DM Sans 400, 13-14px, ink2 (70%)</span></div>
+    <div class="specrow"><span class="sp">Meta / data</span><span class="sv">JetBrains Mono 400, 10-11px, ink3 (40%)</span></div>
+    <div class="specrow"><span class="sp">Serif (restricted!)</span><span class="sv">Instrument Serif italic — ONLY for: tagline, salary figures, pull quotes</span></div>
+  </div>
+
+  <div class="sub">Text Hierarchy</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Ink · 100%</span><span class="sv">Headlines, primary content, CTAs</span></div>
+    <div class="specrow"><span class="sp">Ink 2 · 70%</span><span class="sv">Body text, descriptions</span></div>
+    <div class="specrow"><span class="sp">Ink 3 · 40%</span><span class="sv">Supporting info, metadata labels</span></div>
+    <div class="specrow"><span class="sp">Ink 4 · 18%</span><span class="sv">Disabled states, decorative, watermarks</span></div>
+  </div>
+
+  <div class="sub">Photography Pipeline</div>
+  <div class="flow">
+    <div class="fstep">Original photo</div><div class="farrow">→</div>
+    <div class="fstep">Grayscale</div><div class="farrow">→</div>
+    <div class="fstep">Contrast(1.4) Brightness(1.1)</div><div class="farrow">→</div>
+    <div class="fstep active">Purple duotone multiply</div><div class="farrow">→</div>
+    <div class="fstep">Halftone dot overlay</div><div class="farrow">→</div>
+    <div class="fstep">Grain (15-20%)</div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Full specs →</strong> designx-complete-review.html (all tabs)<br>
+    <strong>Color worlds →</strong> designx-color-worlds.html<br>
+    <strong>Photo effects →</strong> designx-visual-treatments.html + designx-halftone-system.html</p>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 05 DLS LIGHT QUICK REF ═══════════════════ -->
+<div class="section" id="dls-light"><div class="container">
+  <div class="sl">05 · DLS Conference</div>
+  <h2 class="st">Light System<br>Quick Reference</h2>
+  <p class="sd">The essentials for any DLS editorial asset. Full specs in the DLS Dual Mode v2 document. The light system is maximalist Bauhaus collage — the opposite of DesignX's minimal dark.</p>
+
+  <div class="sub sub-c">The 6 Ingredients</div>
+  <div class="g3" style="margin-bottom:24px;">
+    <div class="lspecbox">
+      <div style="font-weight:700;font-size:12px;color:var(--bPurple);margin-bottom:4px;">① Bauhaus Blocks</div>
+      <div style="font-size:11px;color:rgba(0,0,0,.5);line-height:1.5;">Overlapping colored rectangles + circles. Never rotated. Full spectrum. 6-12 per speaker card, 3-6 for smaller uses. 30-50% overlap.</div>
+    </div>
+    <div class="lspecbox">
+      <div style="font-weight:700;font-size:12px;color:var(--bPurple);margin-bottom:4px;">② B&W Halftone</div>
+      <div style="font-size:11px;color:rgba(0,0,0,.5);line-height:1.5;">Grayscale → contrast(1.4) → halftone dot (3.5px grid). On light: sits on colored bg with Bauhaus visible behind.</div>
+    </div>
+    <div class="lspecbox">
+      <div style="font-weight:700;font-size:12px;color:var(--bPurple);margin-bottom:4px;">③ Text Wallpaper</div>
+      <div style="font-size:11px;color:rgba(0,0,0,.5);line-height:1.5;">"Speaker Speaker Speaker" repeating at angles. Instrument Serif italic, 28-48px, 3-6% opacity. Multi-color.</div>
+    </div>
+    <div class="lspecbox">
+      <div style="font-weight:700;font-size:12px;color:var(--bPurple);margin-bottom:4px;">④ Paper Grain</div>
+      <div style="font-size:11px;color:rgba(0,0,0,.5);line-height:1.5;">35-45% opacity. Visible fiber texture. Trading card / zine cutout feel. Covers everything.</div>
+    </div>
+    <div class="lspecbox">
+      <div style="font-weight:700;font-size:12px;color:var(--bPurple);margin-bottom:4px;">⑤ Serif Headlines</div>
+      <div style="font-size:11px;color:rgba(0,0,0,.5);line-height:1.5;">Instrument Serif is THE headline voice. Speaker names, talk titles, section headings, archetype names. DM Sans for body only.</div>
+    </div>
+    <div class="lspecbox">
+      <div style="font-weight:700;font-size:12px;color:var(--bPurple);margin-bottom:4px;">⑥ Multi-Color</div>
+      <div style="font-size:11px;color:rgba(0,0,0,.5);line-height:1.5;">Full Bauhaus spectrum: red, yellow, green, blue, orange, coral, purple. Speaker card backgrounds: olive, coral, amber, forest, teal.</div>
+    </div>
+  </div>
+
+  <div class="sub">DLS Card Types</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Speaker card</span><span class="sv">Colored bg + Bauhaus blocks + halftone portrait + "Speaker" wallpaper + serif name</span></div>
+    <div class="specrow"><span class="sp">Talk title card</span><span class="sv">Cream base + "Interactive Session" serif pill + serif title + halftone speakers in blocks</span></div>
+    <div class="specrow"><span class="sp">Sponsor/Patron card</span><span class="sv">Rainbow marquee text border all 4 sides + cream center + "Patrons" in serif + Bauhaus cluster</span></div>
+    <div class="specrow"><span class="sp">Archetype card</span><span class="sv">Lanyard badge + archetype color bg + Toronto illustration + watermark name + tagline strip</span></div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Full specs →</strong> designx-dls-dual-mode-v2.html (all 9 tabs)<br>
+    Includes Bauhaus block construction rules, full color tables, card anatomy breakdowns, and the complete light↔dark handoff spec.</p>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 06 ARCHETYPES PRODUCT ═══════════════════ -->
+<div class="section" id="archetypes"><div class="container">
+  <div class="sl">06 · New Initiative</div>
+  <h2 class="st">Archetypes<br>Product</h2>
+  <p class="sd">Archetypes graduate from DLS conference cards into the DesignX tool stack. A 6th product color world (gold/amber), a full assessment flow, profile badges, and platform-wide integration.</p>
+
+  <div class="sub sub-a">What to Build</div>
+  <div class="g2">
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;color:var(--aAlly);margin-bottom:8px;">Assessment Experience</div>
+      <div class="specrow"><span class="sp">Entry point</span><span class="sv">Tools nav + onboarding step 3 + standalone URL</span></div>
+      <div class="specrow"><span class="sp">Quiz</span><span class="sv">~15 scenario questions, one at a time, ~3 min</span></div>
+      <div class="specrow"><span class="sp">Reveal</span><span class="sv">Screen floods archetype color → serif name 48-72px → detail below</span></div>
+      <div class="specrow"><span class="sp">Share card</span><span class="sv">Auto-generated: archetype color + halftone user photo + name + type</span></div>
+      <div class="specrow"><span class="sp">Context-adaptive</span><span class="sv">Dark quiz from platform · Light quiz from DLS site</span></div>
+    </div>
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;color:var(--aAlly);margin-bottom:8px;">Platform Integration</div>
+      <div class="specrow"><span class="sp">Profile badge</span><span class="sv">Pill: archetype icon + name in archetype color</span></div>
+      <div class="specrow"><span class="sp">Community filter</span><span class="sv">"Show me all Pathfinders" in directory</span></div>
+      <div class="specrow"><span class="sp">Talks tagging</span><span class="sv">Talks tagged by archetype relevance</span></div>
+      <div class="specrow"><span class="sp">DLS upsell</span><span class="sv">"Your archetype thrives at DLS" → ticket CTA</span></div>
+      <div class="specrow"><span class="sp">Aggregate stats</span><span class="sv">"X% of DesignX are Architects" — anonymous</span></div>
+    </div>
+  </div>
+
+  <div class="sub">Design Rules</div>
+  <div class="callout callout-gold">
+    <p><strong>On the dark platform:</strong> Archetypes follow the same card language as Salary and Jobs — canvas bg, gradient border accent, DM Sans headlines, glass sections. No Bauhaus blocks, no paper grain, no watermark text. The archetype name appears in Instrument Serif italic ONLY on the reveal moment.<br><br>
+    <strong>On DLS / standalone:</strong> Full Bauhaus card treatment. Lanyard format, archetype color full-bleed, Toronto illustration, serif name, paper grain, watermark text. This is the conference badge format.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>Full specs →</strong> designx-archetypes-boundaries.html (tabs: Archetypes Product, Assessment Flow, Profile Integration, Dark Mode Treatment)</p>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 07 BRAND BOUNDARIES ═══════════════════ -->
+<div class="section" id="boundaries"><div class="container">
+  <div class="sl">07 · Brand Strategy</div>
+  <h2 class="st">Brand<br>Boundaries</h2>
+  <p class="sd">Where DLS and DesignX stay separate, where they merge, and how content transitions between them.</p>
+
+  <div class="sub sub-n">Content Routing Table</div>
+  <table class="dtable">
+    <thead>
+      <tr><th>Content</th><th>Origin</th><th>On DLS Site</th><th>On DesignX Platform</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong style="color:var(--ink);">DLS Conference</strong></td><td>DLS</td><td><span class="tag tag-dls">Light</span> always</td><td>—</td></tr>
+      <tr><td><strong style="color:var(--ink);">DLS Talk Recording</strong></td><td>DLS</td><td><span class="tag tag-dls">Light</span> Bauhaus</td><td><span class="tag tag-dx">Dark</span> with DLS badge</td></tr>
+      <tr><td><strong style="color:var(--ink);">DesignX Event Talk</strong></td><td>DesignX</td><td>Not shown</td><td><span class="tag tag-dx">Dark</span></td></tr>
+      <tr><td><strong style="color:var(--ink);">Speaker Profile</strong></td><td>Both</td><td><span class="tag tag-dls">Light</span></td><td><span class="tag tag-dx">Dark</span></td></tr>
+      <tr><td><strong style="color:var(--ink);">Archetypes Assessment</strong></td><td>DLS (born) → DesignX (lives)</td><td><span class="tag tag-dls">Light</span> standalone</td><td><span class="tag tag-dx">Dark</span> in platform</td></tr>
+      <tr><td><strong style="color:var(--ink);">Archetype Badge</strong></td><td>DesignX</td><td>—</td><td><span class="tag tag-dx">Dark</span></td></tr>
+      <tr><td><strong style="color:var(--ink);">Conference Badge</strong></td><td>DLS</td><td><span class="tag tag-dls">Light</span> always</td><td>—</td></tr>
+      <tr><td><strong style="color:var(--ink);">Salary / Jobs / Stack</strong></td><td>DesignX</td><td>—</td><td><span class="tag tag-dx">Dark</span></td></tr>
+      <tr><td><strong style="color:var(--ink);">Talks Library</strong></td><td>Both origins</td><td>DLS talks only <span class="tag tag-dls">Light</span></td><td>All talks <span class="tag tag-dx">Dark</span></td></tr>
+      <tr><td><strong style="color:var(--ink);">Social: Speaker Card</strong></td><td>DLS</td><td colspan="2"><span class="tag tag-dls">Light</span> Bauhaus always (the card IS the content)</td></tr>
+      <tr><td><strong style="color:var(--ink);">Social: Tool Launch</strong></td><td>DesignX</td><td colspan="2"><span class="tag tag-dx">Dark</span> platform screenshot style</td></tr>
+      <tr><td><strong style="color:var(--ink);">YouTube Thumbnails</strong></td><td>Both</td><td colspan="2"><span class="tag tag-dx">Dark</span> (matches video player)</td></tr>
+      <tr><td><strong style="color:var(--ink);">Newsletter</strong></td><td>DesignX</td><td colspan="2"><span class="tag tag-dx">Dark</span> Season template</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub">Talks Library — The Merger Point</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;margin-bottom:8px;">One library, two origins, context-adaptive display:</div>
+    <div class="specrow"><span class="sp">app.designx.community/talks</span><span class="sv">All talks (DLS + DesignX) in dark mode with origin badges</span></div>
+    <div class="specrow"><span class="sp">designleadership.io/talks</span><span class="sv">DLS talks only, light Bauhaus treatment</span></div>
+    <div class="specrow"><span class="sp">Filtering</span><span class="sv">By origin · By event · By archetype · By topic · By duration</span></div>
+    <div class="specrow"><span class="sp">Archetype tagging</span><span class="sv">Talks tagged with relevant archetypes → powers "Recommended for You"</span></div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Full specs →</strong> designx-archetypes-boundaries.html (tabs: Brand Boundaries, Talks Library, Content Routing)</p>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 08 ASSET CREATION GUIDE ═══════════════════ -->
+<div class="section" id="asset-guide"><div class="container">
+  <div class="sl">08 · For Designers</div>
+  <h2 class="st">Asset Creation<br>Quick Guide</h2>
+  <p class="sd">Making a specific thing? Find it here. Each row tells you which visual mode to use, which spec document to reference, and the key decisions to make.</p>
+
+  <div class="sub sub-v">DesignX Platform Assets</div>
+  <table class="dtable">
+    <thead><tr><th>Asset</th><th>Mode</th><th>Key Specs</th><th>Reference Doc</th></tr></thead>
+    <tbody>
+      <tr><td><strong style="color:var(--ink);">Platform page / feature</strong></td><td>Dark</td><td>Stage bg, canvas cards, product color world for accents, DM Sans 900 headline</td><td>complete-review → Tokens, Cards, Compositions</td></tr>
+      <tr><td><strong style="color:var(--ink);">Salary data card</strong></td><td>Dark</td><td>Neon green world, JetBrains Mono for figures, Instrument Serif italic for $ amount (exception)</td><td>complete-review → Cards · color-worlds → Salary</td></tr>
+      <tr><td><strong style="color:var(--ink);">Job listing card</strong></td><td>Dark</td><td>Blue world, company logo at 24px, role tags, salary range in mono</td><td>complete-review → Job Board</td></tr>
+      <tr><td><strong style="color:var(--ink);">Talk card (platform)</strong></td><td>Dark</td><td>16:9 purple duotone thumb, origin badge (DLS/DesignX), DM Sans title, archetype tags</td><td>archetypes-boundaries → Talks Library</td></tr>
+      <tr><td><strong style="color:var(--ink);">Member profile</strong></td><td>Dark</td><td>Halftone avatar, archetype badge pill, DM Sans name</td><td>archetypes-boundaries → Profile Integration</td></tr>
+      <tr><td><strong style="color:var(--ink);">Social graphic (tool)</strong></td><td>Dark</td><td>Zone 2-3 gradient bg, DM Sans 900 headline, product color accent, grain 15-20%</td><td>complete-review → Tokens · css-effects-sampler</td></tr>
+      <tr><td><strong style="color:var(--ink);">YouTube thumbnail</strong></td><td>Dark</td><td>Zone 2 purple gradient, DM Sans 900 title, halftone speaker portrait</td><td>complete-review → Photography · halftone-system</td></tr>
+      <tr><td><strong style="color:var(--ink);">Newsletter</strong></td><td>Dark</td><td>Season gradient hero, canvas cards for content, product world colors for sections</td><td>color-worlds → Season</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub sub-c">DLS Conference Assets</div>
+  <table class="dtable">
+    <thead><tr><th>Asset</th><th>Mode</th><th>Key Specs</th><th>Reference Doc</th></tr></thead>
+    <tbody>
+      <tr><td><strong style="color:var(--ink);">Speaker announcement card</strong></td><td>Light</td><td>Colored bg + 6-10 Bauhaus blocks + halftone portrait + "Speaker" wallpaper + serif name + DLS mark + paper grain 40%</td><td>dls-dual-mode-v2 → Cards, Bauhaus, Photography</td></tr>
+      <tr><td><strong style="color:var(--ink);">Talk title card</strong></td><td>Light</td><td>Cream base + "Interactive Session" serif pill + serif title 36-56px + speaker photos in Bauhaus frames</td><td>dls-dual-mode-v2 → Cards</td></tr>
+      <tr><td><strong style="color:var(--ink);">Sponsor/Patron card</strong></td><td>Light</td><td>Rainbow marquee text border (all 4 sides) + cream center + "Patrons" serif 48-80px + logo on Bauhaus cluster</td><td>dls-dual-mode-v2 → Cards</td></tr>
+      <tr><td><strong style="color:var(--ink);">Conference badge (physical)</strong></td><td>Light</td><td>Archetype lanyard card format + archetype color bg + Toronto illustration + watermark name</td><td>dls-dual-mode-v2 → Archetypes</td></tr>
+      <tr><td><strong style="color:var(--ink);">Speaker grid page</strong></td><td>Light</td><td>Cream page bg + "Our Speakers" in serif 48-72px + speaker card grid + Bauhaus accent blocks between</td><td>dls-dual-mode-v2 → Palette, Typography</td></tr>
+      <tr><td><strong style="color:var(--ink);">Ticket sales page</strong></td><td>Light</td><td>DLS editorial treatment — Bauhaus blocks, serif headlines, paper texture, CTA buttons</td><td>dls-dual-mode-v2 → all tabs</td></tr>
+      <tr><td><strong style="color:var(--ink);">Social graphic (speaker)</strong></td><td>Light</td><td>Same as speaker card — Bauhaus card IS the social asset</td><td>dls-dual-mode-v2 → Cards</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub sub-a">Archetypes Assets (Both Brands)</div>
+  <table class="dtable">
+    <thead><tr><th>Asset</th><th>Mode</th><th>Key Specs</th><th>Reference Doc</th></tr></thead>
+    <tbody>
+      <tr><td><strong style="color:var(--ink);">Assessment entry (platform)</strong></td><td>Dark</td><td>Gold gradient hero card, DM Sans headline, gold CTA button, assessment counter</td><td>archetypes-boundaries → Assessment Flow</td></tr>
+      <tr><td><strong style="color:var(--ink);">Assessment entry (DLS site)</strong></td><td>Light</td><td>Cream base, Bauhaus accent blocks, serif headline, paper grain</td><td>archetypes-boundaries → Assessment Flow</td></tr>
+      <tr><td><strong style="color:var(--ink);">Quiz screen (platform)</strong></td><td>Dark</td><td>Stage bg, canvas question card, glass option cards, gold progress bar</td><td>archetypes-boundaries → Assessment Flow</td></tr>
+      <tr><td><strong style="color:var(--ink);">Quiz screen (DLS)</strong></td><td>Light</td><td>Cream bg, paper grain, serif italic questions, parchment option cards</td><td>archetypes-boundaries → Assessment Flow</td></tr>
+      <tr><td><strong style="color:var(--ink);">Result reveal</strong></td><td>Archetype color</td><td>Full viewport flood to archetype color → serif name 48-72px → tagline below → fade in</td><td>archetypes-boundaries → Assessment Flow</td></tr>
+      <tr><td><strong style="color:var(--ink);">Shareable result card</strong></td><td>Archetype color</td><td>Archetype color bg + halftone user photo + name + archetype type — standalone, neither dark nor light</td><td>archetypes-boundaries → Assessment Flow</td></tr>
+      <tr><td><strong style="color:var(--ink);">Profile badge</strong></td><td>Dark</td><td>Pill: archetype icon 12×12 + name in DM Sans 500 11px + archetype color border</td><td>archetypes-boundaries → Profile Integration</td></tr>
+      <tr><td><strong style="color:var(--ink);">DLS physical badge</strong></td><td>Light</td><td>Full Bauhaus lanyard card — archetype color, Toronto illustration, watermark</td><td>dls-dual-mode-v2 → Archetypes</td></tr>
+    </tbody>
+  </table>
+</div></div>
+
+
+<!-- ═══════════════════ 09 ROADMAP ═══════════════════ -->
+<div class="section" id="roadmap"><div class="container">
+  <div class="sl">09 · What's Next</div>
+  <h2 class="st">Build<br>Roadmap</h2>
+  <p class="sd">What's specced and ready to build, what needs design work, and what's still open questions.</p>
+
+  <div class="sub sub-n">Ready to Build</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;color:var(--neon);margin-bottom:8px;">Full spec exists — needs implementation:</div>
+    <div class="specrow"><span class="sp">Archetype assessment quiz</span><span class="sv">Flow specced, both context variants defined</span></div>
+    <div class="specrow"><span class="sp">Archetype result reveal</span><span class="sv">Color flood + serif animation specced</span></div>
+    <div class="specrow"><span class="sp">Profile archetype badge</span><span class="sv">Badge design, placement, interaction specced</span></div>
+    <div class="specrow"><span class="sp">Unified talks library</span><span class="sv">Card anatomy, filtering, origin badges specced</span></div>
+    <div class="specrow"><span class="sp">DLS speaker cards (Figma/code)</span><span class="sv">Full Bauhaus construction rules in dls-dual-mode-v2</span></div>
+    <div class="specrow"><span class="sp">Halftone photo pipeline</span><span class="sv">CSS production code in halftone-system + visual-treatments</span></div>
+  </div>
+
+  <div class="sub sub-v">Needs Design Work</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;color:var(--violet);margin-bottom:8px;">Strategy defined, needs Figma mockups / prototypes:</div>
+    <div class="specrow"><span class="sp">Archetype detail page (dark)</span><span class="sv">Sections specced but no mockup — needs layout design</span></div>
+    <div class="specrow"><span class="sp">Archetype icons</span><span class="sv">5 icons needed for badges — abstract, not literal</span></div>
+    <div class="specrow"><span class="sp">Gradient library → zone mapping</span><span class="sv">Existing gradients need to be sorted into the 5 zones</span></div>
+    <div class="specrow"><span class="sp">DLS designleadership.io redesign</span><span class="sv">Bauhaus identity specced, needs page-level implementation</span></div>
+    <div class="specrow"><span class="sp">Archetype shareable card template</span><span class="sv">Needs generation pipeline (user photo + archetype overlay)</span></div>
+    <div class="specrow"><span class="sp">Assessment questions</span><span class="sv">Content writing — 15 scenario questions with 4 options each</span></div>
+  </div>
+
+  <div class="sub">Open Questions</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;color:var(--coral);margin-bottom:8px;">Decisions needed:</div>
+    <div class="specrow"><span class="sp">Archetype assessment gating</span><span class="sv">Free for all? Or DesignX members only? (Growth vs. exclusivity)</span></div>
+    <div class="specrow"><span class="sp">Retake frequency</span><span class="sv">Quarterly prompt? Annual? User-initiated only?</span></div>
+    <div class="specrow"><span class="sp">DLS Austin 2026 visual variant</span><span class="sv">Same Bauhaus system with Austin landmarks? Or Toronto stays?</span></div>
+    <div class="specrow"><span class="sp">Archetype × Job Board</span><span class="sv">How deep does the integration go? Match score? Soft signal?</span></div>
+    <div class="specrow"><span class="sp">Team assessment</span><span class="sv">Enterprise feature — team archetype distribution chart? Future scope?</span></div>
+    <div class="specrow"><span class="sp">Gradient library curation</span><span class="sv">Which of the existing gradients make the cut? Need art direction pass.</span></div>
+  </div>
+
+  <div class="sub">Document Maintenance</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;margin-bottom:8px;">Keeping the system current:</div>
+    <div class="specrow"><span class="sp">When adding a feature</span><span class="sv">Check asset creation guide (Section 08) for which mode + specs to use</span></div>
+    <div class="specrow"><span class="sp">When crossing brands</span><span class="sv">Check content routing table (Section 07) for how it transitions</span></div>
+    <div class="specrow"><span class="sp">When in doubt</span><span class="sv">The golden rule: content wears the brand of where it's displayed</span></div>
+    <div class="specrow"><span class="sp">Superseded docs</span><span class="sv">dls-dual-mode.html (v1) is superseded by v2 — don't use for new work</span></div>
+  </div>
+</div></div>
+
+</body>
+</html>

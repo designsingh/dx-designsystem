@@ -1,0 +1,15 @@
+# Python / generation tooling
+generate.py
+prompts.json
+designsystem.json
+outputs/
+__pycache__/
+*.pyc
+.env
+
+# Claude
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db

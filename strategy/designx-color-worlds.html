@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignX — Color Worlds & Gradient System</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#000;--canvas:#0A0A0F;--raised:#111118;
+  --glass1:rgba(255,255,255,0.03);--glass2:rgba(255,255,255,0.05);
+  --glass3:rgba(255,255,255,0.08);--glass4:rgba(255,255,255,0.12);
+  --ink:#fff;--ink2:rgba(255,255,255,0.70);--ink3:rgba(255,255,255,0.40);--ink4:rgba(255,255,255,0.18);
+  --rule:rgba(255,255,255,0.06);
+  --violet:#A78BFA;--purple:#8B5CF6;--deep:#6D28D9;--deepHex:#5a306b;
+  --neon:#AAFF00;--lime:#84CC16;--electric:#3B82F6;--cyan:#06B6D4;
+  --coral:#E8927C;--warm:#F59E0B;--red:#EF4444;
+  --display:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace;--serif:'Instrument Serif',Georgia,serif;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-size:14px;overflow-x:hidden;}
+::selection{background:rgba(167,139,250,0.3);}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--glass3);border-radius:3px;}
+
+.container{max-width:1200px;margin:0 auto;padding:0 32px;}
+
+/* Header */
+.header{padding:24px 0 0;border-bottom:1px solid var(--rule);margin-bottom:40px;}
+.brand{font-weight:900;font-size:15px;letter-spacing:-0.02em;margin-bottom:4px;}
+.brand span{color:var(--violet);}
+.header-meta{font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:16px;}
+
+/* Tabs */
+.tabs{display:flex;gap:0;overflow-x:auto;padding-bottom:0;-webkit-overflow-scrolling:touch;}
+.tabs::-webkit-scrollbar{height:0;}
+.tab{background:none;border:none;border-bottom:2px solid transparent;padding:8px 16px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.03em;color:var(--ink4);cursor:pointer;white-space:nowrap;transition:all 150ms;font-weight:500;}
+.tab:hover{color:var(--ink3);}
+.tab.active{color:var(--ink);border-bottom-color:var(--violet);font-weight:700;}
+
+/* Sections */
+.section{display:none;padding:0 0 100px;}
+.section.active{display:block;}
+.sec-label{font-family:var(--mono);font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:0.15em;font-weight:700;margin-bottom:6px;}
+.sec-title{font-weight:900;font-size:42px;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.9;margin-bottom:14px;}
+.sec-desc{font-size:13px;color:var(--ink2);line-height:1.7;max-width:620px;margin-bottom:44px;}
+.sub{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin:40px 0 14px;}
+.sub-v{color:var(--violet);}.sub-n{color:var(--neon);}.sub-c{color:var(--coral);}
+.sub-e{color:var(--electric);}.sub-w{color:var(--warm);}.sub-3{color:var(--ink3);}
+
+/* Grid helpers */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+
+/* Card */
+.card{background:var(--canvas);border:1px solid var(--rule);border-radius:14px;overflow:hidden;transition:transform 300ms var(--ease-out);}
+.card:hover{transform:translateY(-1px);}
+.cb{padding:14px 18px;}
+.cl{font-family:var(--mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;}
+.cd{font-size:10px;color:var(--ink3);line-height:1.5;}
+
+/* Swatch */
+.sw{width:100%;aspect-ratio:2.2/1;border-radius:10px;position:relative;overflow:hidden;}
+.sw-tall{aspect-ratio:1/1;}
+.sw-wide{aspect-ratio:4/1;border-radius:8px;}
+
+/* Spec box */
+.specbox{background:var(--raised);border:1px solid var(--rule);border-radius:10px;padding:14px 18px;}
+.specrow{display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.03);}
+.specrow:last-child{border:none;}
+.sp{font-family:var(--mono);font-size:9px;color:var(--ink3);}
+.sv{font-family:var(--mono);font-size:9px;color:var(--violet);text-align:right;max-width:55%;}
+
+/* Color dot */
+.dot{width:32px;height:32px;border-radius:50%;border:2px solid var(--rule);}
+.dot-sm{width:16px;height:16px;border-radius:50%;}
+.dot-lg{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,0.1);}
+
+/* Gradient border card */
+.gbc{position:relative;border-radius:14px;padding:1px;overflow:hidden;}
+.gbc-inner{background:var(--canvas);border-radius:13px;padding:16px 20px;position:relative;z-index:1;}
+
+/* Badge */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font-family:var(--mono);font-size:9px;font-weight:600;}
+
+/* Glow */
+.glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;opacity:0.15;}
+
+/* Text gradient */
+.tg{-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* Warning box */
+.warn{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:14px 18px;}
+.warn-title{font-weight:700;font-size:11px;color:var(--red);margin-bottom:4px;}
+
+/* Decision box */
+.decision{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:14px 18px;}
+.dec-title{font-weight:700;font-size:11px;color:var(--warm);margin-bottom:6px;}
+
+/* New badge */
+.new-badge{display:inline-block;background:rgba(170,255,0,0.12);color:var(--neon);font-family:var(--mono);font-size:8px;font-weight:800;padding:2px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:0.04em;vertical-align:middle;margin-left:6px;}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="header">
+  <div class="brand">DESIGN<span>X</span></div>
+  <div class="header-meta">Color Worlds & Gradient System · Feb 2026</div>
+  <div class="tabs" id="mainTabs">
+    <button class="tab active" data-t="overview">Overview</button>
+    <button class="tab" data-t="dls">DLS Purple</button>
+    <button class="tab" data-t="salary">Salary Green</button>
+    <button class="tab" data-t="jobs">Jobs Blue</button>
+    <button class="tab" data-t="community">Community Coral</button>
+    <button class="tab" data-t="stack">The Stack</button>
+    <button class="tab" data-t="season">Season Flex</button>
+    <button class="tab" data-t="usage">Usage Rules</button>
+    <button class="tab" data-t="collisions">Collisions</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════════════ -->
+<!-- OVERVIEW                           -->
+<!-- ═══════════════════════════════════ -->
+<div id="overview" class="section active"><div class="container">
+  <div class="sec-label">Color System</div>
+  <h1 class="sec-title">PRODUCT COLOR<br>WORLDS</h1>
+  <p class="sec-desc">Each product vertical owns a color world — a gradient, a spot color, a family of treatments at different intensities. This is the complete system with usage rules, new additions, and collision hierarchy.</p>
+
+  <div class="sub sub-v">The 6 Color Worlds — At a Glance</div>
+  <div class="g3" style="margin-bottom:20px;">
+
+    <!-- DLS -->
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#2D1B69 0%,#6D28D9 40%,#A78BFA 100%);"></div>
+      <div class="cb">
+        <div class="cl" style="color:var(--violet);">DLS / Events</div>
+        <div style="display:flex;gap:6px;margin:6px 0;">
+          <div class="dot-sm" style="background:#2D1B69;"></div>
+          <div class="dot-sm" style="background:#6D28D9;"></div>
+          <div class="dot-sm" style="background:#8B5CF6;"></div>
+          <div class="dot-sm" style="background:#A78BFA;"></div>
+          <div class="dot-sm" style="background:#C4B5FD;"></div>
+        </div>
+        <div class="cd">The premium world. Conference, talks, speaker content, DLS brand.</div>
+      </div>
+    </div>
+
+    <!-- Salary -->
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#0A2E0A 0%,#15803D 50%,#AAFF00 100%);"></div>
+      <div class="cb">
+        <div class="cl" style="color:var(--neon);">Salary / Data</div>
+        <div style="display:flex;gap:6px;margin:6px 0;">
+          <div class="dot-sm" style="background:#0A2E0A;"></div>
+          <div class="dot-sm" style="background:#15803D;"></div>
+          <div class="dot-sm" style="background:#84CC16;"></div>
+          <div class="dot-sm" style="background:#AAFF00;"></div>
+          <div class="dot-sm" style="background:#D4FF80;"></div>
+        </div>
+        <div class="cd">Money talks. Compensation data, salary reports, financial content.</div>
+      </div>
+    </div>
+
+    <!-- Jobs -->
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#1E3A5F 0%,#3B82F6 50%,#06B6D4 100%);"></div>
+      <div class="cb">
+        <div class="cl" style="color:var(--electric);">Jobs / Hiring</div>
+        <div style="display:flex;gap:6px;margin:6px 0;">
+          <div class="dot-sm" style="background:#1E3A5F;"></div>
+          <div class="dot-sm" style="background:#3B82F6;"></div>
+          <div class="dot-sm" style="background:#06B6D4;"></div>
+          <div class="dot-sm" style="background:#67E8F9;"></div>
+          <div class="dot-sm" style="background:#A5F3FC;"></div>
+        </div>
+        <div class="cd">Opportunity space. Job board, hiring content, career resources.</div>
+      </div>
+    </div>
+
+    <!-- Community -->
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#78350F 0%,#E8927C 60%,#FCD34D 100%);"></div>
+      <div class="cb">
+        <div class="cl" style="color:var(--coral);">Community / People</div>
+        <div style="display:flex;gap:6px;margin:6px 0;">
+          <div class="dot-sm" style="background:#78350F;"></div>
+          <div class="dot-sm" style="background:#E8927C;"></div>
+          <div class="dot-sm" style="background:#F59E0B;"></div>
+          <div class="dot-sm" style="background:#FCD34D;"></div>
+          <div class="dot-sm" style="background:#FEF3C7;"></div>
+        </div>
+        <div class="cd">The human side. Events, dinners, member spotlights, social.</div>
+      </div>
+    </div>
+
+    <!-- The Stack — NEW -->
+    <div class="card" style="border-color:rgba(170,255,0,0.15);">
+      <div class="sw" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 60%,#e94560 100%);"></div>
+      <div class="cb">
+        <div class="cl" style="color:#e94560;">The Stack<span class="new-badge">NEW</span></div>
+        <div style="display:flex;gap:6px;margin:6px 0;">
+          <div class="dot-sm" style="background:#1a1a2e;"></div>
+          <div class="dot-sm" style="background:#0f3460;"></div>
+          <div class="dot-sm" style="background:#e94560;"></div>
+          <div class="dot-sm" style="background:#f58b8b;"></div>
+          <div class="dot-sm" style="background:#ffd1d1;"></div>
+        </div>
+        <div class="cd">Tool curation. AI tool reviews, The Stack directory, tech content.</div>
+      </div>
+    </div>
+
+    <!-- Season -->
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#DC2626 0%,#F59E0B 25%,#000 50%,#3B82F6 75%,#06B6D4 100%);"></div>
+      <div class="cb">
+        <div class="cl" style="color:var(--warm);">Season '26 (Flex)</div>
+        <div style="display:flex;gap:6px;margin:6px 0;">
+          <div class="dot-sm" style="background:#DC2626;"></div>
+          <div class="dot-sm" style="background:#F59E0B;"></div>
+          <div class="dot-sm" style="background:#000;border:1px solid var(--glass4);"></div>
+          <div class="dot-sm" style="background:#3B82F6;"></div>
+          <div class="dot-sm" style="background:#06B6D4;"></div>
+        </div>
+        <div class="cd">Changes yearly. The overarching season identity. Multi-stop always.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub sub-3">System Summary</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Total product worlds</span><span class="sv">6 (was 5 — added The Stack)</span></div>
+    <div class="specrow"><span class="sp">Each world includes</span><span class="sv">Hero gradient · Subtle gradient · Spot color · Glow · Border treatment</span></div>
+    <div class="specrow"><span class="sp">Gradient directions</span><span class="sv">135deg default · 90deg for horizontal banners · 180deg for vertical cards</span></div>
+    <div class="specrow"><span class="sp">Reserved colors</span><span class="sv">Red #EF4444 = errors/destructive only. Never content.</span></div>
+    <div class="specrow"><span class="sp">White</span><span class="sv">Primary CTA color. Not a product world.</span></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ -->
+<!-- DLS PURPLE                         -->
+<!-- ═══════════════════════════════════ -->
+<div id="dls" class="section"><div class="container">
+  <div class="sec-label">DLS / Events</div>
+  <h1 class="sec-title">THE PURPLE<br>WORLD</h1>
+  <p class="sec-desc">Premium, conference-grade. Every DLS touchpoint — from ticket pages to stage graphics to speaker cards — lives in this gradient family. Purple signals "this is the paid, high-value tier."</p>
+
+  <div class="sub sub-v">Gradient Family</div>
+  <div class="g2" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#2D1B69 0%,#6D28D9 40%,#A78BFA 100%);display:flex;align-items:flex-end;padding:12px;">
+        <div>
+          <div style="font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:-0.03em;">HERO GRADIENT</div>
+          <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.5);margin-top:4px;">135deg · #2D1B69 → #6D28D9 → #A78BFA</div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--violet);">Primary · gDLS</div><div class="cd">Card headers, hero banners, section backgrounds. The signature.</div></div>
+    </div>
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,rgba(109,40,217,0.12) 0%,rgba(167,139,250,0.06) 100%);display:flex;align-items:flex-end;padding:12px;">
+        <div>
+          <div style="font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:-0.03em;color:var(--violet);">SUBTLE GRADIENT</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:4px;">135deg · purple 12% → violet 6%</div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--violet);">Ambient · gDLS-subtle</div><div class="cd">Page section washes, hover states, selected row backgrounds.</div></div>
+    </div>
+  </div>
+  <div class="g3" style="margin-bottom:20px;">
+    <div class="card">
+      <div style="height:80px;position:relative;overflow:hidden;background:var(--canvas);">
+        <div class="glow" style="width:200px;height:200px;background:#8B5CF6;top:-60px;right:-40px;"></div>
+        <div style="position:relative;z-index:1;padding:16px;">
+          <div style="font-weight:800;font-size:13px;text-transform:uppercase;">DLS 2026</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:2px;">Austin · April 15–17</div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--violet);">Glow · Radial</div><div class="cd">Ambient light behind cards, floating orbs.</div></div>
+    </div>
+    <div class="card">
+      <div style="padding:16px;">
+        <div class="gbc" style="background:linear-gradient(135deg,#6D28D9,#A78BFA);">
+          <div class="gbc-inner">
+            <div style="font-weight:800;font-size:12px;text-transform:uppercase;">GRADIENT BORDER</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:4px;">1px gradient stroke. Premium feel.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--violet);">Border · 1px gradient</div><div class="cd">Featured cards, CTAs, selected states.</div></div>
+    </div>
+    <div class="card">
+      <div style="padding:16px;">
+        <div style="font-weight:900;font-size:32px;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.9;background:linear-gradient(135deg,#6D28D9 0%,#A78BFA 50%,#C4B5FD 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">TEXT<br>GRADIENT</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:8px;">Hero headlines only. Never body.</div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--violet);">Text · gradient clip</div><div class="cd">Display type at 32px+. Sparingly.</div></div>
+    </div>
+  </div>
+
+  <div class="sub sub-v">Spot Colors — When You Need One Value</div>
+  <div class="g5">
+    <div class="card"><div style="padding:12px;text-align:center;">
+      <div class="dot-lg" style="background:#2D1B69;margin:0 auto 8px;"></div>
+      <div class="cl" style="color:var(--ink4);">Deep</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#2D1B69</div>
+      <div class="cd" style="margin-top:4px;">Duotone dark base</div>
+    </div></div>
+    <div class="card"><div style="padding:12px;text-align:center;">
+      <div class="dot-lg" style="background:#6D28D9;margin:0 auto 8px;"></div>
+      <div class="cl" style="color:var(--ink4);">Purple</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#6D28D9</div>
+      <div class="cd" style="margin-top:4px;">Duotone overlay, badge bg</div>
+    </div></div>
+    <div class="card" style="border-color:rgba(139,92,246,0.3);"><div style="padding:12px;text-align:center;">
+      <div class="dot-lg" style="background:#8B5CF6;margin:0 auto 8px;border-color:rgba(139,92,246,0.4);"></div>
+      <div class="cl" style="color:var(--violet);">Primary ★</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--violet);">#8B5CF6</div>
+      <div class="cd" style="margin-top:4px;">Links, icons, active states</div>
+    </div></div>
+    <div class="card"><div style="padding:12px;text-align:center;">
+      <div class="dot-lg" style="background:#A78BFA;margin:0 auto 8px;"></div>
+      <div class="cl" style="color:var(--ink4);">Violet</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#A78BFA</div>
+      <div class="cd" style="margin-top:4px;">Highlight, accent text</div>
+    </div></div>
+    <div class="card"><div style="padding:12px;text-align:center;">
+      <div class="dot-lg" style="background:#C4B5FD;margin:0 auto 8px;"></div>
+      <div class="cl" style="color:var(--ink4);">Pale</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#C4B5FD</div>
+      <div class="cd" style="margin-top:4px;">Light accents, disabled gradient end</div>
+    </div></div>
+  </div>
+
+  <div class="sub sub-v">DLS Sub-Events</div>
+  <div class="decision">
+    <div class="dec-title">Decision: Do DLS Toronto & Austin get distinct gradients?</div>
+    <div class="g2" style="margin-top:10px;">
+      <div>
+        <div style="font-weight:700;font-size:11px;margin-bottom:6px;">Option A: Same Purple, Different Accent</div>
+        <div class="cd">Both use purple gradient. Toronto gets a warm-violet shift, Austin gets a cool-violet shift. Minimal divergence, max brand consistency.</div>
+        <div style="margin-top:8px;">
+          <div class="sw-wide" style="background:linear-gradient(90deg,#2D1B69,#6D28D9,#A78BFA,#C084FC);margin-bottom:4px;"></div>
+          <div style="font-family:var(--mono);font-size:8px;color:var(--ink4);">Toronto — warm purple (adds #C084FC)</div>
+          <div class="sw-wide" style="background:linear-gradient(90deg,#2D1B69,#5B21B6,#7C3AED,#818CF8);margin-top:4px;"></div>
+          <div style="font-family:var(--mono);font-size:8px;color:var(--ink4);">Austin — cool indigo (shifts toward #818CF8)</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:11px;margin-bottom:6px;">Option B: Same Gradient, Location Badge Only</div>
+        <div class="cd">Identical gradient everywhere. Location identity comes from typography and badge treatment only. Simplest to maintain, strongest brand unity.</div>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <div class="badge" style="background:rgba(139,92,246,0.15);color:var(--violet);border:1px solid rgba(139,92,246,0.25);">DLS · Toronto '26</div>
+          <div class="badge" style="background:rgba(139,92,246,0.15);color:var(--violet);border:1px solid rgba(139,92,246,0.25);">DLS · Austin '26</div>
+        </div>
+        <div class="cd" style="margin-top:8px;color:var(--neon);">★ Recommended — keeps it clean.</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ -->
+<!-- SALARY GREEN                       -->
+<!-- ═══════════════════════════════════ -->
+<div id="salary" class="section"><div class="container">
+  <div class="sec-label">Salary / Data</div>
+  <h1 class="sec-title">THE GREEN<br>WORLD</h1>
+  <p class="sec-desc">Money, compensation, data. The neon green signals "hard numbers" — it's the only world that uses fluorescent color, which makes salary data feel electric and urgent. JetBrains Mono lives here.</p>
+
+  <div class="sub sub-n">Gradient Family</div>
+  <div class="g2" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#0A2E0A 0%,#15803D 50%,#AAFF00 100%);display:flex;align-items:flex-end;padding:12px;">
+        <div>
+          <div style="font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:-0.03em;">HERO GRADIENT</div>
+          <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.5);margin-top:4px;">135deg · #0A2E0A → #15803D → #AAFF00</div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--neon);">Primary · gSalary</div><div class="cd">Salary report hero, compensation dashboard header.</div></div>
+    </div>
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,rgba(21,128,61,0.1) 0%,rgba(170,255,0,0.05) 100%);display:flex;align-items:flex-end;padding:12px;">
+        <div>
+          <div style="font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:-0.03em;color:var(--neon);">SUBTLE GRADIENT</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:4px;">135deg · green 10% → neon 5%</div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--neon);">Ambient · gSalary-subtle</div><div class="cd">Data row highlights, salary range backgrounds.</div></div>
+    </div>
+  </div>
+  <div class="g3" style="margin-bottom:20px;">
+    <div class="card">
+      <div style="height:80px;position:relative;overflow:hidden;background:var(--canvas);">
+        <div class="glow" style="width:200px;height:200px;background:#AAFF00;top:-60px;right:-40px;"></div>
+        <div style="position:relative;z-index:1;padding:16px;">
+          <div style="font-family:var(--mono);font-size:28px;font-weight:800;color:var(--neon);">$175,000</div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--neon);">Glow</div><div class="cd">Behind salary figures. Ambient neon wash.</div></div>
+    </div>
+    <div class="card">
+      <div style="padding:16px;">
+        <div class="gbc" style="background:linear-gradient(135deg,#15803D,#AAFF00);">
+          <div class="gbc-inner">
+            <div style="font-family:var(--mono);font-weight:800;font-size:12px;color:var(--neon);">TOP 10% EARNER</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:4px;">Gradient border for premium data callouts.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--neon);">Border</div><div class="cd">High-value data callouts, percentile badges.</div></div>
+    </div>
+    <div class="card">
+      <div style="padding:16px;">
+        <div style="font-weight:900;font-size:32px;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.9;background:linear-gradient(135deg,#15803D 0%,#84CC16 40%,#AAFF00 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">COMP<br>REPORT</div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--neon);">Text gradient</div><div class="cd">Salary report titles. Green on dark = money energy.</div></div>
+    </div>
+  </div>
+
+  <div class="sub sub-n">Spot Colors</div>
+  <div class="g5">
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#0A2E0A;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Forest</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#0A2E0A</div><div class="cd" style="margin-top:4px;">Gradient dark base</div></div></div>
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#15803D;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Emerald</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#15803D</div><div class="cd" style="margin-top:4px;">Positive indicators</div></div></div>
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#84CC16;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Lime</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#84CC16</div><div class="cd" style="margin-top:4px;">Chart accents, mid-range</div></div></div>
+    <div class="card" style="border-color:rgba(170,255,0,0.2);"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#AAFF00;margin:0 auto 8px;border-color:rgba(170,255,0,0.3);"></div><div class="cl" style="color:var(--neon);">Neon ★</div><div style="font-family:var(--mono);font-size:9px;color:var(--neon);">#AAFF00</div><div class="cd" style="margin-top:4px;">Salary figures, badges, links</div></div></div>
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#D4FF80;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Pale Neon</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#D4FF80</div><div class="cd" style="margin-top:4px;">Hover states, light accents</div></div></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ -->
+<!-- JOBS BLUE                          -->
+<!-- ═══════════════════════════════════ -->
+<div id="jobs" class="section"><div class="container">
+  <div class="sec-label">Jobs / Hiring</div>
+  <h1 class="sec-title">THE BLUE<br>WORLD</h1>
+  <p class="sec-desc">Professional, trust-building, opportunity. Blue → cyan gradient signals career infrastructure — reliable but forward-looking. Added in v3 to separate jobs from the season gradient.</p>
+
+  <div class="sub sub-e">Gradient Family</div>
+  <div class="g2" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#1E3A5F 0%,#3B82F6 50%,#06B6D4 100%);display:flex;align-items:flex-end;padding:12px;">
+        <div>
+          <div style="font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:-0.03em;">HERO GRADIENT</div>
+          <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.5);margin-top:4px;">135deg · #1E3A5F → #3B82F6 → #06B6D4</div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--electric);">Primary · gJobs</div><div class="cd">"Design Jobs Worth Having" hero, job board headers.</div></div>
+    </div>
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,rgba(59,130,246,0.1) 0%,rgba(6,182,212,0.05) 100%);display:flex;align-items:flex-end;padding:12px;">
+        <div>
+          <div style="font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:-0.03em;color:var(--electric);">SUBTLE GRADIENT</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:4px;">135deg · blue 10% → cyan 5%</div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--electric);">Ambient · gJobs-subtle</div><div class="cd">Job row hover, application status backgrounds.</div></div>
+    </div>
+  </div>
+
+  <div class="sub sub-e">Spot Colors</div>
+  <div class="g5">
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#1E3A5F;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Navy</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#1E3A5F</div><div class="cd" style="margin-top:4px;">Gradient dark base</div></div></div>
+    <div class="card" style="border-color:rgba(59,130,246,0.2);"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#3B82F6;margin:0 auto 8px;border-color:rgba(59,130,246,0.3);"></div><div class="cl" style="color:var(--electric);">Electric ★</div><div style="font-family:var(--mono);font-size:9px;color:var(--electric);">#3B82F6</div><div class="cd" style="margin-top:4px;">Links, HOT badge, active</div></div></div>
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#06B6D4;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Cyan</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#06B6D4</div><div class="cd" style="margin-top:4px;">Secondary accent, tags</div></div></div>
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#67E8F9;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Light Cyan</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#67E8F9</div><div class="cd" style="margin-top:4px;">Hover highlight, new jobs</div></div></div>
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#A5F3FC;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Ice</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#A5F3FC</div><div class="cd" style="margin-top:4px;">Pale accents</div></div></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ -->
+<!-- COMMUNITY CORAL                    -->
+<!-- ═══════════════════════════════════ -->
+<div id="community" class="section"><div class="container">
+  <div class="sec-label">Community / People</div>
+  <h1 class="sec-title">THE CORAL<br>WORLD</h1>
+  <p class="sec-desc">Warmth, humanity, connection. The coral-to-gold gradient is the most "analog" feeling in the system — intentionally warmer than everything else. This is where people live, not products.</p>
+
+  <div class="sub sub-c">Gradient Family</div>
+  <div class="g2" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#78350F 0%,#E8927C 60%,#FCD34D 100%);display:flex;align-items:flex-end;padding:12px;">
+        <div>
+          <div style="font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:-0.03em;">HERO GRADIENT</div>
+          <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.5);margin-top:4px;">135deg · #78350F → #E8927C → #FCD34D</div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--coral);">Primary · gCommunity</div><div class="cd">Community section hero, dinner event graphics, member spotlights.</div></div>
+    </div>
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,rgba(232,146,124,0.08) 0%,rgba(252,211,77,0.04) 100%);display:flex;align-items:flex-end;padding:12px;">
+        <div>
+          <div style="font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:-0.03em;color:var(--coral);">SUBTLE GRADIENT</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:4px;">135deg · coral 8% → gold 4%</div>
+        </div>
+      </div>
+      <div class="cb"><div class="cl" style="color:var(--coral);">Ambient · gCommunity-subtle</div><div class="cd">Community content sections, event card hover.</div></div>
+    </div>
+  </div>
+
+  <div class="sub sub-c">Spot Colors</div>
+  <div class="g5">
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#78350F;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Brown</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#78350F</div><div class="cd" style="margin-top:4px;">Gradient dark base</div></div></div>
+    <div class="card" style="border-color:rgba(232,146,124,0.2);"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#E8927C;margin:0 auto 8px;border-color:rgba(232,146,124,0.3);"></div><div class="cl" style="color:var(--coral);">Coral ★</div><div style="font-family:var(--mono);font-size:9px;color:var(--coral);">#E8927C</div><div class="cd" style="margin-top:4px;">Links, badges, event labels</div></div></div>
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#F59E0B;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Amber</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#F59E0B</div><div class="cd" style="margin-top:4px;">Warm accents, highlights</div></div></div>
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#FCD34D;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Gold</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#FCD34D</div><div class="cd" style="margin-top:4px;">Gradient endpoint, celebration</div></div></div>
+    <div class="card"><div style="padding:12px;text-align:center;"><div class="dot-lg" style="background:#FEF3C7;margin:0 auto 8px;"></div><div class="cl" style="color:var(--ink4);">Cream</div><div style="font-family:var(--mono);font-size:9px;color:var(--ink4);">#FEF3C7</div><div class="cd" style="margin-top:4px;">Pale warm accents</div></div></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ -->
+<!-- THE STACK — NEW                    -->
+<!-- ═══════════════════════════════════ -->
+<div id="stack" class="section"><div class="container">
+  <div class="sec-label">The Stack · AI Tools</div>
+  <h1 class="sec-title">THE STACK<br>COLOR WORLD<span class="new-badge" style="font-size:12px;">NEW</span></h1>
+  <p class="sec-desc">The Stack needs its own identity — it's DesignX's tool curation platform. It can't share purple (that's DLS premium) or blue (that's jobs). It needs something that says "curated tech picks" without overlapping existing worlds.</p>
+
+  <div class="decision" style="margin-bottom:24px;">
+    <div class="dec-title">Three Options for The Stack's Color World</div>
+    <div class="cd" style="margin-bottom:12px;">The Stack sits between "editorial curation" and "tech tools." It needs to feel distinct from the 5 existing worlds while still belonging to the DesignX family.</div>
+  </div>
+
+  <div class="g3" style="margin-bottom:20px;">
+    <!-- Option A: Rose/Crimson -->
+    <div class="card" style="border-color:rgba(233,69,96,0.2);">
+      <div class="sw" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 60%,#e94560 100%);"></div>
+      <div class="cb">
+        <div class="cl" style="color:#e94560;">Option A: Dark Navy → Crimson</div>
+        <div style="display:flex;gap:6px;margin:8px 0;">
+          <div class="dot-sm" style="background:#1a1a2e;"></div>
+          <div class="dot-sm" style="background:#0f3460;"></div>
+          <div class="dot-sm" style="background:#e94560;"></div>
+          <div class="dot-sm" style="background:#f58b8b;"></div>
+        </div>
+        <div class="cd">Cinematic, editorial. The dark navy base is unique to this world, crimson endpoint is distinct from both coral and red-for-errors. Feels "curated picks" — like a film critic's favorites list.</div>
+        <div style="margin-top:6px;font-family:var(--mono);font-size:9px;color:var(--neon);">★ Recommended</div>
+      </div>
+    </div>
+
+    <!-- Option B: Teal/Mint -->
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#0d1117 0%,#0e4429 40%,#26a269 70%,#2DD4BF 100%);"></div>
+      <div class="cb">
+        <div class="cl" style="color:#2DD4BF;">Option B: Deep Green → Teal</div>
+        <div style="display:flex;gap:6px;margin:8px 0;">
+          <div class="dot-sm" style="background:#0d1117;"></div>
+          <div class="dot-sm" style="background:#0e4429;"></div>
+          <div class="dot-sm" style="background:#26a269;"></div>
+          <div class="dot-sm" style="background:#2DD4BF;"></div>
+        </div>
+        <div class="cd">Fresh, dev-adjacent. Teal sits between jobs-blue and salary-green without colliding with either. Feels like "code + design." Risk: might read too close to salary green at small scale.</div>
+      </div>
+    </div>
+
+    <!-- Option C: Copper/Bronze -->
+    <div class="card">
+      <div class="sw" style="background:linear-gradient(135deg,#1c1917 0%,#78350F 30%,#b45309 60%,#d97706 100%);"></div>
+      <div class="cb">
+        <div class="cl" style="color:#d97706;">Option C: Dark Copper → Amber</div>
+        <div style="display:flex;gap:6px;margin:8px 0;">
+          <div class="dot-sm" style="background:#1c1917;"></div>
+          <div class="dot-sm" style="background:#78350F;"></div>
+          <div class="dot-sm" style="background:#b45309;"></div>
+          <div class="dot-sm" style="background:#d97706;"></div>
+        </div>
+        <div class="cd">Metallic, premium tools vibe. Problem: overlaps significantly with Community coral world's brown and amber tones. Would need to steal from community.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub sub-3">If We Go With Option A (Crimson)</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Hero gradient</span><span class="sv">135deg · #1a1a2e → #0f3460 → #e94560</span></div>
+    <div class="specrow"><span class="sp">Subtle gradient</span><span class="sv">135deg · crimson 10% → rose 5%</span></div>
+    <div class="specrow"><span class="sp">Spot color (primary)</span><span class="sv">#e94560 — links, badges, active states</span></div>
+    <div class="specrow"><span class="sp">Spot color (light)</span><span class="sv">#f58b8b — hover, pale accents</span></div>
+    <div class="specrow"><span class="sp">Duotone overlay</span><span class="sv">#e94560 at 0.85 opacity, multiply blend</span></div>
+    <div class="specrow"><span class="sp">Collision with red</span><span class="sv">Crimson ≠ error red. #e94560 is pink-red, #EF4444 is pure red. Distinct.</span></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ -->
+<!-- SEASON FLEX                        -->
+<!-- ═══════════════════════════════════ -->
+<div id="season" class="section"><div class="container">
+  <div class="sec-label">Season Identity</div>
+  <h1 class="sec-title">SEASON '26<br>FLEX GRADIENT</h1>
+  <p class="sec-desc">The season gradient is the only one that changes year to year. It's the overarching identity that holds everything together — homepage heroes, marketing materials, social headers, membership badges.</p>
+
+  <div class="sub sub-w">Current: Season '26</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div style="height:120px;background:linear-gradient(135deg,#DC2626 0%,#F59E0B 25%,#000 50%,#3B82F6 75%,#06B6D4 100%);display:flex;align-items:flex-end;padding:16px;">
+      <div>
+        <div style="font-weight:900;font-size:28px;text-transform:uppercase;letter-spacing:-0.04em;">SEASON '26</div>
+        <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.4);">135deg · red → amber → black → blue → cyan</div>
+      </div>
+    </div>
+    <div class="cb">
+      <div class="cd">The black void in the middle is the signature of '26 — it creates a split-world effect, fire on one side, ice on the other. This is intentionally dramatic.</div>
+    </div>
+  </div>
+
+  <div class="sub sub-w">Season Gradient Variants</div>
+  <div class="g2" style="margin-bottom:16px;">
+    <div class="card">
+      <div style="height:80px;background:linear-gradient(90deg,#DC2626 0%,#F59E0B 25%,#000 50%,#3B82F6 75%,#06B6D4 100%);"></div>
+      <div class="cb"><div class="cl" style="color:var(--warm);">Horizontal · 90deg</div><div class="cd">Nav bars, stat strips, divider accents.</div></div>
+    </div>
+    <div class="card">
+      <div style="height:80px;background:linear-gradient(180deg,#DC2626 0%,#F59E0B 25%,#000 50%,#3B82F6 75%,#06B6D4 100%);"></div>
+      <div class="cb"><div class="cl" style="color:var(--warm);">Vertical · 180deg</div><div class="cd">Side accents, mobile full-bleed, stories.</div></div>
+    </div>
+  </div>
+  <div class="g3" style="margin-bottom:20px;">
+    <div class="card">
+      <div style="height:80px;background:radial-gradient(ellipse at 30% 50%,#DC2626 0%,#F59E0B 30%,#000 60%,#3B82F6 85%,#06B6D4 100%);"></div>
+      <div class="cb"><div class="cl" style="color:var(--warm);">Radial</div><div class="cd">Background ambience, behind hero content.</div></div>
+    </div>
+    <div class="card">
+      <div style="height:80px;background:conic-gradient(from 180deg,#DC2626,#F59E0B,#000,#3B82F6,#06B6D4,#DC2626);"></div>
+      <div class="cb"><div class="cl" style="color:var(--warm);">Conic</div><div class="cd">Loading spinners, avatar rings, progress.</div></div>
+    </div>
+    <div class="card">
+      <div style="height:80px;background:linear-gradient(135deg,rgba(220,38,38,0.08) 0%,rgba(245,158,11,0.06) 25%,transparent 50%,rgba(59,130,246,0.06) 75%,rgba(6,182,212,0.08) 100%);"></div>
+      <div class="cb"><div class="cl" style="color:var(--warm);">Subtle</div><div class="cd">Page-level ambient wash behind sections.</div></div>
+    </div>
+  </div>
+
+  <div class="sub sub-3">Future Seasons — Examples</div>
+  <div class="g3">
+    <div class="card">
+      <div style="height:80px;background:linear-gradient(135deg,#831843 0%,#be185d 30%,#000 55%,#a855f7 80%,#d946ef 100%);"></div>
+      <div class="cb"><div class="cl" style="color:var(--ink3);">Season '27 (example)</div><div class="cd">Magenta → void → purple. Always multi-stop, always dramatic.</div></div>
+    </div>
+    <div class="card">
+      <div style="height:80px;background:linear-gradient(135deg,#065f46 0%,#10b981 30%,#000 55%,#f59e0b 80%,#fbbf24 100%);"></div>
+      <div class="cb"><div class="cl" style="color:var(--ink3);">Season '28 (example)</div><div class="cd">Green → void → gold. Same structure, fresh palette.</div></div>
+    </div>
+    <div class="card">
+      <div style="padding:14px;">
+        <div class="specbox" style="background:transparent;padding:0;border:none;">
+          <div style="font-weight:700;font-size:11px;margin-bottom:6px;">Season Gradient Rules</div>
+          <div class="cd">Always 5 stops. Always includes #000 void in the middle. Always 135deg hero. Always multi-stop = "season" signal.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ -->
+<!-- USAGE RULES                        -->
+<!-- ═══════════════════════════════════ -->
+<div id="usage" class="section"><div class="container">
+  <div class="sec-label">Usage Rules</div>
+  <h1 class="sec-title">WHEN TO USE<br>WHAT</h1>
+  <p class="sec-desc">Not just "which gradient" — which gradient treatment at which intensity on which surface. This is the decision tree for every color situation.</p>
+
+  <div class="sub sub-v">Gradient Treatment Ladder — Every World Gets These</div>
+  <div class="specbox" style="margin-bottom:20px;">
+    <div style="font-weight:700;font-size:11px;margin-bottom:10px;">From most intense to most subtle:</div>
+    <div class="specrow"><span class="sp">1. Hero Gradient</span><span class="sv">Full saturation · 135deg · Card headers, page heroes, section banners</span></div>
+    <div class="specrow"><span class="sp">2. Text Gradient</span><span class="sv">background-clip:text · Display type 32px+ only · Never body or UI text</span></div>
+    <div class="specrow"><span class="sp">3. Gradient Border</span><span class="sv">1px stroke via padding trick · Featured cards, selected states, premium CTAs</span></div>
+    <div class="specrow"><span class="sp">4. Glow</span><span class="sv">Radial, blur(60px), 15% opacity · Ambient light behind key content</span></div>
+    <div class="specrow"><span class="sp">5. Subtle Gradient</span><span class="sv">5-12% opacity · Section washes, hover backgrounds, selected rows</span></div>
+    <div class="specrow"><span class="sp">6. Spot Color</span><span class="sv">Single hex value · Links, badges, icons, status indicators · Works at 12px</span></div>
+  </div>
+
+  <div class="sub sub-v">Which Product World Wins Where</div>
+  <div class="g2" style="margin-bottom:20px;">
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;margin-bottom:8px;">Surface → Color World</div>
+      <div class="specrow"><span class="sp">Homepage hero</span><span class="sv">Season '26</span></div>
+      <div class="specrow"><span class="sp">Conference pages</span><span class="sv">DLS Purple</span></div>
+      <div class="specrow"><span class="sp">Talk cards</span><span class="sv">DLS Purple (or talk-specific graphic)</span></div>
+      <div class="specrow"><span class="sp">Salary report pages</span><span class="sv">Salary Green</span></div>
+      <div class="specrow"><span class="sp">Job board pages</span><span class="sv">Jobs Blue</span></div>
+      <div class="specrow"><span class="sp">Community / events</span><span class="sv">Community Coral</span></div>
+      <div class="specrow"><span class="sp">The Stack / tools</span><span class="sv">Stack Crimson (new)</span></div>
+      <div class="specrow"><span class="sp">Newsletter header</span><span class="sv">Season '26</span></div>
+      <div class="specrow"><span class="sp">Social media headers</span><span class="sv">Season '26</span></div>
+      <div class="specrow"><span class="sp">App navigation</span><span class="sv">Neutral (white/glass) — no product color</span></div>
+    </div>
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;margin-bottom:8px;">Element → Treatment Level</div>
+      <div class="specrow"><span class="sp">Page hero</span><span class="sv">Hero gradient (full)</span></div>
+      <div class="specrow"><span class="sp">Section header</span><span class="sv">Text gradient or spot color</span></div>
+      <div class="specrow"><span class="sp">Card header stripe</span><span class="sv">Hero gradient, max 40% card height</span></div>
+      <div class="specrow"><span class="sp">Card hover state</span><span class="sv">Subtle gradient background</span></div>
+      <div class="specrow"><span class="sp">Featured/selected card</span><span class="sv">Gradient border (1px)</span></div>
+      <div class="specrow"><span class="sp">Active nav item</span><span class="sv">Spot color only</span></div>
+      <div class="specrow"><span class="sp">Badge / tag</span><span class="sv">Spot color at 12-15% opacity bg</span></div>
+      <div class="specrow"><span class="sp">Link text</span><span class="sv">Spot color (primary ★)</span></div>
+      <div class="specrow"><span class="sp">Icon</span><span class="sv">Spot color</span></div>
+      <div class="specrow"><span class="sp">Focus ring</span><span class="sv">Spot color at 50% opacity, 2px</span></div>
+    </div>
+  </div>
+
+  <div class="sub sub-3">Gradient Direction Rules</div>
+  <div class="g3">
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;margin-bottom:6px;">135deg — Default</div>
+      <div class="cd">Card headers, hero banners, section backgrounds. The diagonal creates dynamism and is the DesignX signature angle.</div>
+    </div>
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;margin-bottom:6px;">90deg — Horizontal</div>
+      <div class="cd">Nav accents, stat bars, horizontal dividers, wide thin strips. Use when the element is significantly wider than tall.</div>
+    </div>
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;margin-bottom:6px;">180deg — Vertical</div>
+      <div class="cd">Mobile stories, vertical cards, sidebar accents. Use when the element is taller than wide.</div>
+    </div>
+  </div>
+
+  <div class="sub sub-3" style="margin-top:30px;">Hard Rules</div>
+  <div class="warn">
+    <div class="warn-title">Never Do:</div>
+    <div class="cd">
+      Mix two product gradients on one surface — every element belongs to one world.
+      Use hero gradient as body text background — it overwhelms content.
+      Put gradient text under 32px — it becomes unreadable.
+      Use spot color for large fills — that's what the gradient is for.
+      Create new gradients per campaign — use the season flex for that.
+      Use #EF4444 red as a content color — it's reserved for errors/destructive.
+    </div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ -->
+<!-- COLLISIONS                         -->
+<!-- ═══════════════════════════════════ -->
+<div id="collisions" class="section"><div class="container">
+  <div class="sec-label">Collision Rules</div>
+  <h1 class="sec-title">WHEN WORLDS<br>OVERLAP</h1>
+  <p class="sec-desc">Salary data on the job board. DLS talks on the homepage. Community photos in the newsletter. When two product worlds show up in the same space, which one wins?</p>
+
+  <div class="sub sub-w">The Hierarchy</div>
+  <div class="specbox" style="margin-bottom:20px;">
+    <div style="font-weight:700;font-size:11px;margin-bottom:10px;">Page context wins. The page determines the gradient world — elements within it use their product's spot color only.</div>
+    <div class="specrow"><span class="sp">Salary card on Jobs page</span><span class="sv">Card uses green spot color text. Page hero stays blue.</span></div>
+    <div class="specrow"><span class="sp">Job listing with salary</span><span class="sv">Salary figure = neon green (JetBrains Mono). Job card frame = blue world.</span></div>
+    <div class="specrow"><span class="sp">DLS talk on homepage</span><span class="sv">Talk card uses DLS event graphic. Homepage hero = Season '26.</span></div>
+    <div class="specrow"><span class="sp">Community photo in newsletter</span><span class="sv">Photo gets coral duotone. Newsletter header = Season '26.</span></div>
+    <div class="specrow"><span class="sp">The Stack tool on homepage</span><span class="sv">Stack card uses crimson spot color. Homepage context = Season '26.</span></div>
+  </div>
+
+  <div class="sub sub-w">Cross-Product Rule</div>
+  <div class="g2" style="margin-bottom:20px;">
+    <div class="specbox" style="border-left:2px solid var(--warm);">
+      <div style="font-weight:700;font-size:11px;color:var(--warm);margin-bottom:6px;">Spot Color = Always Allowed</div>
+      <div class="cd">Any product's spot color can appear anywhere as text, icon, or badge color. Neon salary figures on blue job cards. Purple DLS badges on coral community pages. Spot colors are the "passport" — they travel freely.</div>
+    </div>
+    <div class="specbox" style="border-left:2px solid var(--warm);">
+      <div style="font-weight:700;font-size:11px;color:var(--warm);margin-bottom:6px;">Hero Gradient = Page Owner Only</div>
+      <div class="cd">Only the page's owning product world gets to use its hero gradient as a fill. You never see a full green gradient block inside a blue job board page. The gradient is territorial.</div>
+    </div>
+  </div>
+
+  <div class="sub sub-3">Specific Collision Scenarios</div>
+  <div class="g2">
+    <div class="card" style="padding:16px;">
+      <div style="font-weight:700;font-size:11px;margin-bottom:8px;">Job Card with Salary</div>
+      <div style="background:var(--raised);border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div style="font-weight:700;font-size:12px;">Staff Designer, AI</div>
+          <div style="font-size:10px;color:var(--ink3);">Figma · Remote</div>
+        </div>
+        <div style="font-family:var(--mono);font-size:14px;font-weight:800;color:var(--neon);">$190–240K</div>
+      </div>
+      <div class="cd" style="margin-top:8px;">Blue page context. Green salary text. No gradient clash — just spot colors coexisting.</div>
+    </div>
+    <div class="card" style="padding:16px;">
+      <div style="font-weight:700;font-size:11px;margin-bottom:8px;">Homepage with Mixed Content</div>
+      <div style="display:flex;gap:6px;">
+        <div style="flex:1;background:var(--raised);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-family:var(--mono);font-size:8px;color:var(--violet);font-weight:700;">DLS</div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:2px;">Purple spot</div>
+        </div>
+        <div style="flex:1;background:var(--raised);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-family:var(--mono);font-size:8px;color:var(--neon);font-weight:700;">SALARY</div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:2px;">Green spot</div>
+        </div>
+        <div style="flex:1;background:var(--raised);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-family:var(--mono);font-size:8px;color:var(--electric);font-weight:700;">JOBS</div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:2px;">Blue spot</div>
+        </div>
+        <div style="flex:1;background:var(--raised);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-family:var(--mono);font-size:8px;color:var(--coral);font-weight:700;">SOCIAL</div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:2px;">Coral spot</div>
+        </div>
+      </div>
+      <div class="cd" style="margin-top:8px;">Season '26 hero. Below fold, each section uses spot colors. No competing gradients.</div>
+    </div>
+  </div>
+
+  <div class="sub sub-3" style="margin-top:30px;">CSS Implementation — Complete Variables</div>
+  <div class="specbox">
+    <pre style="font-family:var(--mono);font-size:10px;color:var(--ink3);line-height:2;overflow-x:auto;">
+<span style="color:var(--violet);">/* Hero Gradients */</span>
+--gDLS:        linear-gradient(135deg, #2D1B69 0%, #6D28D9 40%, #A78BFA 100%);
+--gSalary:     linear-gradient(135deg, #0A2E0A 0%, #15803D 50%, #AAFF00 100%);
+--gJobs:       linear-gradient(135deg, #1E3A5F 0%, #3B82F6 50%, #06B6D4 100%);
+--gCommunity:  linear-gradient(135deg, #78350F 0%, #E8927C 60%, #FCD34D 100%);
+--gStack:      linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #e94560 100%);
+--gSeason:     linear-gradient(135deg, #DC2626 0%, #F59E0B 25%, #000 50%, #3B82F6 75%, #06B6D4 100%);
+
+<span style="color:var(--violet);">/* Subtle Gradients (section washes, hovers) */</span>
+--gDLS-s:      linear-gradient(135deg, rgba(109,40,217,0.12), rgba(167,139,250,0.06));
+--gSalary-s:   linear-gradient(135deg, rgba(21,128,61,0.10), rgba(170,255,0,0.05));
+--gJobs-s:     linear-gradient(135deg, rgba(59,130,246,0.10), rgba(6,182,212,0.05));
+--gCommunity-s:linear-gradient(135deg, rgba(232,146,124,0.08), rgba(252,211,77,0.04));
+--gStack-s:    linear-gradient(135deg, rgba(233,69,96,0.10), rgba(245,139,139,0.05));
+--gSeason-s:   linear-gradient(135deg, rgba(220,38,38,0.06), rgba(245,158,11,0.04), transparent, rgba(59,130,246,0.04), rgba(6,182,212,0.06));
+
+<span style="color:var(--violet);">/* Spot Colors (primary ★) */</span>
+--cDLS:        #8B5CF6;
+--cSalary:     #AAFF00;
+--cJobs:       #3B82F6;
+--cCommunity:  #E8927C;
+--cStack:      #e94560;
+--cSeason:     #F59E0B;
+
+<span style="color:var(--violet);">/* Glow Colors (15% opacity, blur 60px) */</span>
+--glowDLS:     #8B5CF6;
+--glowSalary:  #AAFF00;
+--glowJobs:    #3B82F6;
+--glowCommunity:#E8927C;
+--glowStack:   #e94560;
+</pre>
+  </div>
+</div></div>
+
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.t).classList.add('active');
+    window.scrollTo(0,0);
+  });
+});
+</script>
+
+</body>
+</html>

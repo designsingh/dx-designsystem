@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignX — Archetypes Product + Brand Boundaries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* DesignX dark */
+  --bg:#000;--bg2:#0A0A0F;--bg3:#111118;
+  --ink:rgba(255,255,255,1);--ink2:rgba(255,255,255,.7);--ink3:rgba(255,255,255,.4);--ink4:rgba(255,255,255,.18);
+  --rule:rgba(255,255,255,.06);
+  --violet:#A78BFA;--purple:#8B5CF6;--deepPurple:#6D28D9;
+  --neon:#AAFF00;--electric:#06B6D4;--coral:#F97316;--warm:#FCD34D;
+  /* DLS light */
+  --cream:#F0ECE3;--parchment:#EDE8DE;--stone:#D9D2C7;
+  /* Bauhaus */
+  --bRed:#DC2626;--bYellow:#FACC15;--bGreen:#4D7C0F;--bBlue:#2563EB;--bOrange:#EA580C;--bCoral:#E8927C;--bPurple:#6D28D9;--bViolet:#A78BFA;
+  /* Archetype */
+  --aAlly:#d4a843;--aArchitect:#0D9488;--aPathfinder:#2563EB;--aAnchor:#E8927C;--aCultivator:#65783E;
+  /* Product worlds */
+  --pSalary:#AAFF00;--pJobs:#06B6D4;--pCommunity:#FCD34D;
+  --sans:'DM Sans',sans-serif;--serif:'Instrument Serif',serif;--mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+.container{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+/* Tabs */
+.tabs{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--rule);padding:12px 0;overflow-x:auto;white-space:nowrap;}
+.tabs .container{display:flex;gap:6px;}
+.tab{font-family:var(--mono);font-size:10px;padding:6px 12px;border-radius:6px;background:transparent;color:var(--ink3);border:1px solid transparent;cursor:pointer;transition:all .2s;}
+.tab:hover{color:var(--ink2);border-color:var(--rule);}
+.tab.active{background:var(--deepPurple);color:white;border-color:var(--deepPurple);}
+
+/* Sections */
+.sec{display:none;padding:48px 0 80px;}
+.sec.active{display:block;}
+.sl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--purple);margin-bottom:8px;}
+.st{font-family:var(--sans);font-size:36px;font-weight:900;text-transform:uppercase;letter-spacing:-1px;line-height:1;margin-bottom:16px;}
+.sd{color:var(--ink2);max-width:680px;margin-bottom:32px;line-height:1.6;}
+.sub{font-family:var(--sans);font-weight:700;font-size:14px;color:var(--ink);margin:32px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule);}
+.sub-v{color:var(--violet);}
+.sub-n{color:var(--neon);}
+.sub-e{color:var(--electric);}
+
+/* Spec boxes */
+.specbox{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:16px;margin-bottom:16px;}
+.specrow{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--rule);gap:16px;}
+.specrow:last-child{border-bottom:none;}
+.sp{font-family:var(--mono);font-size:10px;color:var(--ink3);flex-shrink:0;}
+.sv{font-family:var(--sans);font-size:11px;color:var(--ink2);text-align:right;}
+
+/* Light spec box (for DLS context) */
+.lspecbox{background:var(--cream);border:1px solid var(--stone);border-radius:12px;padding:16px;margin-bottom:16px;}
+.lspecrow{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.08);gap:16px;}
+.lspecrow:last-child{border-bottom:none;}
+.lsp{font-family:var(--mono);font-size:10px;color:rgba(0,0,0,.45);flex-shrink:0;}
+.lsv{font-family:var(--sans);font-size:11px;color:rgba(0,0,0,.65);text-align:right;}
+
+/* Grids */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+@media(max-width:768px){.g2,.g3,.g4,.g5{grid-template-columns:1fr;}}
+
+/* Cards */
+.card{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;overflow:hidden;}
+.cb{padding:12px;}
+.cl{font-weight:700;font-size:12px;margin-bottom:2px;}
+.cd{font-size:11px;color:var(--ink3);line-height:1.4;}
+
+/* Archetype color cards */
+.acard{border-radius:12px;padding:20px;position:relative;overflow:hidden;}
+.acard::after{content:attr(data-name);position:absolute;font-family:var(--serif);font-style:italic;font-size:64px;opacity:.08;right:-10px;bottom:-10px;white-space:nowrap;}
+.acard .aname{font-family:var(--serif);font-style:italic;font-size:28px;color:white;margin-bottom:4px;}
+.acard .atag{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.7);margin-bottom:12px;}
+.acard .adesc{font-size:11px;color:rgba(255,255,255,.85);line-height:1.5;}
+
+/* Flow diagrams */
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.fstep{background:var(--bg2);border:1px solid var(--rule);border-radius:8px;padding:8px 14px;font-family:var(--mono);font-size:10px;color:var(--ink2);}
+.fstep.active{border-color:var(--purple);color:var(--purple);}
+.farrow{color:var(--ink4);font-size:16px;}
+
+/* Boundary map */
+.bmap{display:grid;grid-template-columns:200px 1fr 1fr 1fr;gap:1px;background:var(--rule);border-radius:12px;overflow:hidden;margin-bottom:24px;}
+.bmap-h{background:var(--bg3);padding:10px 14px;font-family:var(--mono);font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;}
+.bmap-r{background:var(--bg2);padding:10px 14px;font-size:11px;color:var(--ink2);}
+.bmap-r.label{color:var(--ink);font-weight:500;}
+.bmap-r.dls{background:rgba(245,240,232,.06);}
+.bmap-r.designx{background:rgba(139,92,246,.04);}
+.bmap-r.shared{background:rgba(170,255,0,.04);}
+
+/* Swatches */
+.swatch{width:100%;height:60px;border-radius:8px 8px 0 0;}
+
+/* Journey */
+.journey{display:flex;gap:2px;margin-bottom:16px;border-radius:12px;overflow:hidden;}
+.jstep{flex:1;padding:14px 12px;text-align:center;position:relative;}
+.jstep .jnum{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.5);margin-bottom:4px;}
+.jstep .jlabel{font-family:var(--sans);font-size:11px;font-weight:600;color:white;}
+.jstep .jmode{font-family:var(--mono);font-size:9px;margin-top:4px;opacity:.7;}
+
+/* Tag */
+.tag{display:inline-block;font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:4px;margin-right:4px;margin-bottom:4px;}
+.tag-dls{background:rgba(245,240,232,.12);color:var(--cream);}
+.tag-dx{background:rgba(139,92,246,.15);color:var(--violet);}
+.tag-shared{background:rgba(170,255,0,.12);color:var(--neon);}
+.tag-arch{background:rgba(212,168,67,.15);color:var(--aAlly);}
+</style>
+</head>
+<body>
+
+<div class="tabs"><div class="container">
+  <button class="tab active" data-t="overview">Overview</button>
+  <button class="tab" data-t="archetypes">Archetypes Product</button>
+  <button class="tab" data-t="assessment">Assessment Flow</button>
+  <button class="tab" data-t="profile">Profile Integration</button>
+  <button class="tab" data-t="darkmode">Dark Mode Treatment</button>
+  <button class="tab" data-t="boundaries">Brand Boundaries</button>
+  <button class="tab" data-t="talks">Talks Library</button>
+  <button class="tab" data-t="routing">Content Routing</button>
+</div></div>
+
+<!-- ═══════════════════════════════════ OVERVIEW ═══════════════════════════════════ -->
+<div id="overview" class="sec active"><div class="container">
+  <div class="sl">Strategic</div>
+  <h1 class="st">ARCHETYPES ×<br>BRAND MAP</h1>
+  <p class="sd">Two connected problems: (1) Archetypes need to graduate from DLS conference cards into a full DesignX platform product — like Salary or Job Board. (2) DLS and DesignX need clear rules for where they stay separate, where they merge, and how content flows between them.</p>
+
+  <div class="sub sub-v">The Two Deliverables</div>
+  <div class="g2">
+    <div class="specbox">
+      <div style="font-weight:700;font-size:12px;color:var(--violet);margin-bottom:8px;">① Archetypes as Product</div>
+      <div class="cd" style="color:var(--ink2);line-height:1.6;">
+        Currently: DLS conference lanyard cards with 5 types.<br><br>
+        Becomes: A full product in the DesignX tool stack. Assessment quiz → result reveal → profile badge → content recommendations → team matching. Lives alongside Salary and Job Board as a core platform tool.<br><br>
+        Gets its own color world in the DesignX system (gold/amber family), plus each archetype keeps its individual color for the light/editorial context.
+      </div>
+    </div>
+    <div class="specbox">
+      <div style="font-weight:700;font-size:12px;color:var(--neon);margin-bottom:8px;">② Brand Boundary Map</div>
+      <div class="cd" style="color:var(--ink2);line-height:1.6;">
+        Problem: DLS talks get recorded and live on app.designx. DesignX events also produce talks. Archetypes born at DLS now live on DesignX. Where does one brand end and the other begin?<br><br>
+        Solution: A systematic map of every content type — where it originates, where it lives, what brand it wears, and how it transitions when it crosses the boundary.
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">Product Stack After Integration</div>
+  <div class="g5">
+    <div class="card"><div class="swatch" style="background:linear-gradient(135deg,#2D1B69,#A78BFA);"></div><div class="cb"><div class="cl" style="color:var(--violet);">DLS / Events</div><div class="cd">Conference, speakers, tickets</div></div></div>
+    <div class="card"><div class="swatch" style="background:linear-gradient(135deg,#0A2E0A,#AAFF00);"></div><div class="cb"><div class="cl" style="color:var(--neon);">Salary</div><div class="cd">Compensation data</div></div></div>
+    <div class="card"><div class="swatch" style="background:linear-gradient(135deg,#1E3A5F,#06B6D4);"></div><div class="cb"><div class="cl" style="color:var(--electric);">Jobs</div><div class="cd">Board + applications</div></div></div>
+    <div class="card"><div class="swatch" style="background:linear-gradient(135deg,#78350F,#FCD34D);"></div><div class="cb"><div class="cl" style="color:var(--warm);">Community</div><div class="cd">Members, events, Slack</div></div></div>
+    <div class="card"><div class="swatch" style="background:linear-gradient(135deg,#5C3D10,#D4A843);"></div><div class="cb"><div class="cl" style="color:var(--aAlly);">Archetypes</div><div class="cd">Assessment + profile</div><div class="cd" style="color:var(--neon);font-size:10px;margin-top:4px;">← NEW</div></div></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ ARCHETYPES PRODUCT ═══════════════════════════════════ -->
+<div id="archetypes" class="sec"><div class="container">
+  <div class="sl">Product</div>
+  <h1 class="st">ARCHETYPES<br>AS PLATFORM</h1>
+  <p class="sd">Archetypes graduate from static DLS conference cards into a living product within the DesignX tool stack. A 6th product color world (gold/amber) joins the existing 5. The assessment becomes an onboarding hook, the result becomes a profile signal, and archetype data informs recommendations across the platform.</p>
+
+  <div class="sub sub-v">The 5 Archetypes — Now Platform-Level</div>
+  <div class="g5" style="margin-bottom:24px;">
+    <div class="acard" style="background:var(--aAlly);" data-name="Ally">
+      <div class="atag">Support · Enablement · Trust</div>
+      <div class="aname">Ally</div>
+      <div class="adesc">Amplifies others. Builds bridges. Creates psychological safety.</div>
+    </div>
+    <div class="acard" style="background:var(--aArchitect);" data-name="Architect">
+      <div class="atag">Systems · Orchestration · Leverage</div>
+      <div class="aname">Architect</div>
+      <div class="adesc">Designs systems. Sees connections. Scales through structure.</div>
+    </div>
+    <div class="acard" style="background:var(--aPathfinder);" data-name="Pathfinder">
+      <div class="atag">Exploration · Vision · First-Principles</div>
+      <div class="aname">Pathfinder</div>
+      <div class="adesc">Charts new territory. Questions assumptions. Leads through vision.</div>
+    </div>
+    <div class="acard" style="background:var(--aAnchor);" data-name="Anchor">
+      <div class="atag">Stability · Depth · Resilience</div>
+      <div class="aname">Anchor</div>
+      <div class="adesc">Holds the center. Absorbs uncertainty. Provides calm in chaos.</div>
+    </div>
+    <div class="acard" style="background:var(--aCultivator);" data-name="Cultivator">
+      <div class="atag">People · Culture · Growth</div>
+      <div class="aname">Cultivator</div>
+      <div class="adesc">Grows teams. Nurtures talent. Builds culture as competitive advantage.</div>
+    </div>
+  </div>
+
+  <div class="sub">Product Color World — Archetypes</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;color:var(--aAlly);margin-bottom:8px;">New: 6th Color World in DesignX System</div>
+    <div class="specrow"><span class="sp">Hero gradient</span><span class="sv" style="color:var(--aAlly);">#5C3D10 → #D4A843</span></div>
+    <div class="specrow"><span class="sp">Subtle gradient</span><span class="sv">rgba(212,168,67,.08) → rgba(212,168,67,.02)</span></div>
+    <div class="specrow"><span class="sp">Border</span><span class="sv">rgba(212,168,67,.2)</span></div>
+    <div class="specrow"><span class="sp">Glow</span><span class="sv">rgba(212,168,67,.15) radial</span></div>
+    <div class="specrow"><span class="sp">Text accent</span><span class="sv">#D4A843</span></div>
+    <div class="specrow"><span class="sp">Spot color</span><span class="sv">#F5D77A (lighter, for badges)</span></div>
+    <div class="specrow"><span class="sp">Usage</span><span class="sv">Assessment entry, result cards, profile badges, archetype content sections</span></div>
+    <div class="specrow"><span class="sp">Collision rule</span><span class="sv">Yields to DLS purple when both contexts present</span></div>
+  </div>
+
+  <div class="sub">Individual Archetype Colors (Within the Product)</div>
+  <p class="sd">Inside the Archetypes product, each type keeps its own color for differentiation. These are sub-colors within the gold world — they don't leak into other products.</p>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Ally</span><span class="sv" style="color:var(--aAlly);">Sand Gold #D4A843 — The product world color</span></div>
+    <div class="specrow"><span class="sp">Architect</span><span class="sv" style="color:var(--aArchitect);">Teal #0D9488 — Sub-color within product</span></div>
+    <div class="specrow"><span class="sp">Pathfinder</span><span class="sv" style="color:var(--aPathfinder);">Cobalt #2563EB — Sub-color within product</span></div>
+    <div class="specrow"><span class="sp">Anchor</span><span class="sv" style="color:var(--aAnchor);">Coral #E8927C — Sub-color within product</span></div>
+    <div class="specrow"><span class="sp">Cultivator</span><span class="sv" style="color:var(--aCultivator);">Olive #65783E — Sub-color within product</span></div>
+  </div>
+
+  <div class="sub">What the Product Includes</div>
+  <div class="g2">
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;margin-bottom:8px;">Core Features</div>
+      <div class="specrow"><span class="sp">Assessment quiz</span><span class="sv">~15 scenario-based questions</span></div>
+      <div class="specrow"><span class="sp">Result reveal</span><span class="sv">Animated result with full archetype detail</span></div>
+      <div class="specrow"><span class="sp">Profile badge</span><span class="sv">Archetype icon + name on DesignX profile</span></div>
+      <div class="specrow"><span class="sp">Shareable card</span><span class="sv">Social-ready image with archetype + name</span></div>
+      <div class="specrow"><span class="sp">Retake</span><span class="sv">Quarterly retake encouraged (leadership evolves)</span></div>
+    </div>
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;margin-bottom:8px;">Platform Integrations</div>
+      <div class="specrow"><span class="sp">Community matching</span><span class="sv">"Best partners with" → connect with complementary types</span></div>
+      <div class="specrow"><span class="sp">Talks recommendations</span><span class="sv">Tag talks by archetype relevance</span></div>
+      <div class="specrow"><span class="sp">Job board signal</span><span class="sv">Optional archetype match on listings</span></div>
+      <div class="specrow"><span class="sp">Onboarding hook</span><span class="sv">Part of new member flow (after signup, before feed)</span></div>
+      <div class="specrow"><span class="sp">DLS ticket upsell</span><span class="sv">"Your archetype thrives at DLS" → ticket CTA</span></div>
+    </div>
+  </div>
+
+  <div class="sub">Content Per Archetype (Expanded from Card Back)</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;margin-bottom:8px;">Each archetype profile page includes:</div>
+    <div class="specrow"><span class="sp">Superpowers</span><span class="sv">3-4 core strengths — from DLS card back</span></div>
+    <div class="specrow"><span class="sp">Watch-Outs</span><span class="sv">3-4 blind spots — from DLS card back</span></div>
+    <div class="specrow"><span class="sp">Growth Moves</span><span class="sv">Actionable development areas — from DLS card back</span></div>
+    <div class="specrow"><span class="sp">In the Crunch</span><span class="sv">Behavior under pressure — from DLS card back</span></div>
+    <div class="specrow"><span class="sp">Great Questions</span><span class="sv">Questions this type should ask more — from DLS card back</span></div>
+    <div class="specrow"><span class="sp">Best Partners With</span><span class="sv">Complementary archetypes — from DLS card front</span></div>
+    <div class="specrow"><span class="sp">Recommended Talks</span><span class="sv">Platform-curated talks tagged for this archetype</span></div>
+    <div class="specrow"><span class="sp">Community Members</span><span class="sv">"X% of DesignX members are Architects" — aggregate stat</span></div>
+    <div class="specrow"><span class="sp">Famous Examples</span><span class="sv">Design leaders who embody this archetype (editorial)</span></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ ASSESSMENT FLOW ═══════════════════════════════════ -->
+<div id="assessment" class="sec"><div class="container">
+  <div class="sl">Product</div>
+  <h1 class="st">ASSESSMENT<br>FLOW</h1>
+  <p class="sd">The assessment is both a standalone product and an onboarding hook. New DesignX members are prompted to take it after account creation, before hitting the feed. Existing members find it in the Tools nav alongside Salary and Job Board.</p>
+
+  <div class="sub sub-v">User Journey</div>
+  <div class="journey">
+    <div class="jstep" style="background:var(--bg3);"><div class="jnum">01</div><div class="jlabel">Entry</div><div class="jmode" style="color:var(--purple);">Dark</div></div>
+    <div class="jstep" style="background:rgba(212,168,67,.15);"><div class="jnum">02</div><div class="jlabel">Quiz</div><div class="jmode" style="color:var(--aAlly);">Light or Dark</div></div>
+    <div class="jstep" style="background:rgba(212,168,67,.25);"><div class="jnum">03</div><div class="jlabel">Processing</div><div class="jmode" style="color:var(--aAlly);">Transition</div></div>
+    <div class="jstep" style="background:rgba(212,168,67,.4);"><div class="jnum">04</div><div class="jlabel">Reveal</div><div class="jmode" style="color:white;">Archetype color</div></div>
+    <div class="jstep" style="background:rgba(212,168,67,.25);"><div class="jnum">05</div><div class="jlabel">Detail</div><div class="jmode" style="color:var(--aAlly);">Dark + arch color</div></div>
+    <div class="jstep" style="background:var(--bg3);"><div class="jnum">06</div><div class="jlabel">Share / Save</div><div class="jmode" style="color:var(--purple);">Dark</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;color:var(--aAlly);margin-bottom:8px;">① Entry Point</div>
+      <div class="specrow"><span class="sp">Location</span><span class="sv">Tools nav → "Archetypes" (alongside Salary, Jobs)</span></div>
+      <div class="specrow"><span class="sp">Also</span><span class="sv">Onboarding flow step 3 (for new members)</span></div>
+      <div class="specrow"><span class="sp">Also</span><span class="sv">Standalone URL: app.designx.community/archetypes</span></div>
+      <div class="specrow"><span class="sp">Visual</span><span class="sv">Gold gradient hero card on dark background</span></div>
+      <div class="specrow"><span class="sp">CTA</span><span class="sv">"Discover Your Leadership Archetype" — gold button</span></div>
+      <div class="specrow"><span class="sp">Social proof</span><span class="sv">"12,847 assessments taken" counter</span></div>
+    </div>
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;color:var(--aAlly);margin-bottom:8px;">② Quiz Experience</div>
+      <div class="specrow"><span class="sp">Format</span><span class="sv">~15 scenario-based questions, one at a time</span></div>
+      <div class="specrow"><span class="sp">Question type</span><span class="sv">"Your team disagrees. You..." → 4 response options</span></div>
+      <div class="specrow"><span class="sp">Progress</span><span class="sv">Minimal progress bar, gold fill</span></div>
+      <div class="specrow"><span class="sp">Aesthetic decision</span><span class="sv">Two options (see below)</span></div>
+      <div class="specrow"><span class="sp">Time</span><span class="sv">~3 minutes</span></div>
+    </div>
+  </div>
+
+  <div class="sub">Quiz Aesthetic: Two Valid Approaches</div>
+  <p class="sd">The quiz can live in DesignX dark or in its own DLS-inspired light context. This choice depends on where the user enters from.</p>
+  <div class="g2">
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;color:var(--purple);margin-bottom:8px;">Option A: Dark (Platform Context)</div>
+      <div class="cd" style="color:var(--ink2);margin-bottom:12px;">When entered from app.designx tools nav or onboarding. Feels like a DesignX feature — systematic, focused.</div>
+      <div class="specrow"><span class="sp">Background</span><span class="sv">#000 stage</span></div>
+      <div class="specrow"><span class="sp">Question card</span><span class="sv">#0A0A0F canvas, gold border accent</span></div>
+      <div class="specrow"><span class="sp">Options</span><span class="sv">Glass cards, gold hover highlight</span></div>
+      <div class="specrow"><span class="sp">Typography</span><span class="sv">DM Sans 700 for questions, 400 for options</span></div>
+    </div>
+    <div class="lspecbox">
+      <div style="font-weight:700;font-size:11px;color:var(--bPurple);margin-bottom:8px;">Option B: Light (Standalone / DLS Context)</div>
+      <div class="cd" style="color:rgba(0,0,0,.6);margin-bottom:12px;">When accessed via designleadership.io or shared link. Feels like a DLS editorial experience — warm, textured.</div>
+      <div class="lspecrow"><span class="lsp">Background</span><span class="lsv">Cream #F0ECE3 with paper grain</span></div>
+      <div class="lspecrow"><span class="lsp">Question card</span><span class="lsv">Warm white, thin border, slight Bauhaus accent blocks</span></div>
+      <div class="lspecrow"><span class="lsp">Options</span><span class="lsv">Parchment cards, archetype-tinted hover</span></div>
+      <div class="lspecrow"><span class="lsp">Typography</span><span class="lsv">Instrument Serif italic for questions, DM Sans for options</span></div>
+    </div>
+  </div>
+
+  <div class="sub">Reveal Moment</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;color:var(--aAlly);margin-bottom:8px;">The Big Payoff (same in both contexts)</div>
+    <div class="specrow"><span class="sp">Transition</span><span class="sv">Background floods with archetype color (full viewport)</span></div>
+    <div class="specrow"><span class="sp">Name</span><span class="sv">Instrument Serif italic, 48-72px, white, center screen</span></div>
+    <div class="specrow"><span class="sp">Tagline</span><span class="sv">DM Sans uppercase 10px, tracking wide, below name</span></div>
+    <div class="specrow"><span class="sp">Motion</span><span class="sv">Fade in from center → name slides up → content enters below</span></div>
+    <div class="specrow"><span class="sp">Sound</span><span class="sv">Optional subtle chime (like Wordle win)</span></div>
+    <div class="specrow"><span class="sp">Shareable card</span><span class="sv">Auto-generated image: archetype color bg + halftone user photo + name + type</span></div>
+  </div>
+
+  <div class="sub">Result Detail Page</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Layout</span><span class="sv">Scrollable page with archetype color hero → dark content below</span></div>
+    <div class="specrow"><span class="sp">Hero</span><span class="sv">Full-width archetype color band with Instrument Serif name</span></div>
+    <div class="specrow"><span class="sp">Sections</span><span class="sv">All card-back content (Superpowers, Watch-Outs, Growth Moves, etc.)</span></div>
+    <div class="specrow"><span class="sp">Partner section</span><span class="sv">"Best Partners With" → clickable links to other archetype pages</span></div>
+    <div class="specrow"><span class="sp">CTA: Share</span><span class="sv">Generate + download shareable image → LinkedIn/Twitter/Slack</span></div>
+    <div class="specrow"><span class="sp">CTA: Save</span><span class="sv">Adds archetype badge to DesignX profile</span></div>
+    <div class="specrow"><span class="sp">CTA: Explore</span><span class="sv">"Talks for Architects" → filtered talks library</span></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ PROFILE INTEGRATION ═══════════════════════════════════ -->
+<div id="profile" class="sec"><div class="container">
+  <div class="sl">Product</div>
+  <h1 class="st">PROFILE<br>INTEGRATION</h1>
+  <p class="sd">Once a member completes the assessment, their archetype becomes a persistent signal across the platform. It's visible on their profile, optionally on community interactions, and informs content recommendations.</p>
+
+  <div class="sub sub-v">Where Archetype Shows Up</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Profile card</span><span class="sv">Archetype badge below name (icon + "Architect" in archetype color)</span></div>
+    <div class="specrow"><span class="sp">Profile page</span><span class="sv">Dedicated archetype section with summary + link to full detail</span></div>
+    <div class="specrow"><span class="sp">Community directory</span><span class="sv">Filter by archetype ("Show me all Pathfinders")</span></div>
+    <div class="specrow"><span class="sp">Slack integration</span><span class="sv">Optional: archetype emoji next to name in DesignX Slack</span></div>
+    <div class="specrow"><span class="sp">Job applications</span><span class="sv">Optional: include archetype in cover signal</span></div>
+    <div class="specrow"><span class="sp">DLS conference badge</span><span class="sv">Physical lanyard includes archetype (light mode, Bauhaus card format)</span></div>
+  </div>
+
+  <div class="sub">Archetype Badge Design (Dark Mode — Platform)</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Container</span><span class="sv">Pill shape, archetype color border (1px), transparent fill</span></div>
+    <div class="specrow"><span class="sp">Icon</span><span class="sv">Small archetype icon (12×12px) in archetype color</span></div>
+    <div class="specrow"><span class="sp">Label</span><span class="sv">Archetype name, DM Sans 500, 11px, archetype color</span></div>
+    <div class="specrow"><span class="sp">Hover</span><span class="sv">Fill becomes archetype color at 10% opacity</span></div>
+    <div class="specrow"><span class="sp">Click</span><span class="sv">Opens archetype detail page</span></div>
+  </div>
+
+  <div class="sub">Aggregate Data (Anonymous, Platform-Level)</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Distribution chart</span><span class="sv">"X% Allies, Y% Architects..." — on Archetypes landing page</span></div>
+    <div class="specrow"><span class="sp">Community insights</span><span class="sv">"DesignX has 3× more Architects than industry average"</span></div>
+    <div class="specrow"><span class="sp">DLS-specific</span><span class="sv">"DLS 2025 attendees were mostly Pathfinders" — post-event content</span></div>
+    <div class="specrow"><span class="sp">Privacy</span><span class="sv">Individual results never shared without consent. Only aggregate stats public.</span></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ DARK MODE TREATMENT ═══════════════════════════════════ -->
+<div id="darkmode" class="sec"><div class="container">
+  <div class="sl">Design System</div>
+  <h1 class="st">ARCHETYPES<br>IN DARK MODE</h1>
+  <p class="sd">The DLS light cards (Bauhaus, paper grain, serif headlines, colored backgrounds) don't appear on the DesignX dark platform. Instead, archetypes follow the same design language as Salary and Jobs — dark cards with colored accents, glass elements, systematic grid.</p>
+
+  <div class="sub sub-v">Translation Rules: Light → Dark</div>
+  <div class="g2">
+    <div class="lspecbox">
+      <div style="font-weight:700;font-size:11px;color:var(--bPurple);margin-bottom:8px;">DLS Light (Conference/Editorial)</div>
+      <div class="lspecrow"><span class="lsp">Card bg</span><span class="lsv">Solid archetype color, full bleed</span></div>
+      <div class="lspecrow"><span class="lsp">Name</span><span class="lsv">Instrument Serif italic 28-36px</span></div>
+      <div class="lspecrow"><span class="lsp">Tagline</span><span class="lsv">DM Sans uppercase 10px</span></div>
+      <div class="lspecrow"><span class="lsp">Texture</span><span class="lsv">Paper grain 35-45%, watermark text</span></div>
+      <div class="lspecrow"><span class="lsp">Illustration</span><span class="lsv">Toronto landmark in archetype palette</span></div>
+      <div class="lspecrow"><span class="lsp">Format</span><span class="lsv">Lanyard badge, rendered clip + strap</span></div>
+      <div class="lspecrow"><span class="lsp">Blocks</span><span class="lsv">Bauhaus geometric elements</span></div>
+    </div>
+    <div class="specbox">
+      <div style="font-weight:700;font-size:11px;color:var(--purple);margin-bottom:8px;">DesignX Dark (Platform)</div>
+      <div class="specrow"><span class="sp">Card bg</span><span class="sv">#0A0A0F canvas with archetype color gradient border</span></div>
+      <div class="specrow"><span class="sp">Name</span><span class="sv">DM Sans 700, 16-20px (dark mode headline voice)</span></div>
+      <div class="specrow"><span class="sp">Tagline</span><span class="sv">JetBrains Mono 10px, archetype color at 60%</span></div>
+      <div class="specrow"><span class="sp">Texture</span><span class="sv">Subtle grain 15-20%, no watermark</span></div>
+      <div class="specrow"><span class="sp">Illustration</span><span class="sv">No illustration — replaced by archetype icon</span></div>
+      <div class="specrow"><span class="sp">Format</span><span class="sv">Standard DesignX card (same as Salary/Jobs cards)</span></div>
+      <div class="specrow"><span class="sp">Blocks</span><span class="sv">No Bauhaus blocks — archetype color glow instead</span></div>
+    </div>
+  </div>
+
+  <div class="sub">Archetype Card in DesignX Feed</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;margin-bottom:8px;">When archetype content appears in the platform feed or profile:</div>
+    <div class="specrow"><span class="sp">Card structure</span><span class="sv">Same as all DesignX cards: canvas bg, rule border, 12px radius</span></div>
+    <div class="specrow"><span class="sp">Color signal</span><span class="sv">Top border gradient: gold (product world) or specific archetype color</span></div>
+    <div class="specrow"><span class="sp">Badge</span><span class="sv">Pill with archetype icon + name, archetype-colored</span></div>
+    <div class="specrow"><span class="sp">Content sections</span><span class="sv">DM Sans for all text. Glass cards for Superpowers/Watch-Outs.</span></div>
+    <div class="specrow"><span class="sp">Serif exception</span><span class="sv">Archetype name in Instrument Serif italic on the hero/reveal moment ONLY</span></div>
+    <div class="specrow"><span class="sp">No Bauhaus elements</span><span class="sv">No colored blocks, no wallpaper text, no paper grain — that's DLS only</span></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ BRAND BOUNDARIES ═══════════════════════════════════ -->
+<div id="boundaries" class="sec"><div class="container">
+  <div class="sl">Strategic</div>
+  <h1 class="st">BRAND<br>BOUNDARY MAP</h1>
+  <p class="sd">DLS and DesignX are two brands under one roof. DLS is the premium editorial experience. DesignX is the platform utility. Some things stay separate. Some merge. Some cross-pollinate. Here's the systematic map.</p>
+
+  <div class="sub sub-n">The Three Zones</div>
+  <div class="g3" style="margin-bottom:32px;">
+    <div class="lspecbox">
+      <div style="font-weight:700;font-size:12px;color:var(--bPurple);margin-bottom:8px;">🌤 DLS Territory</div>
+      <div style="font-size:11px;color:rgba(0,0,0,.6);line-height:1.6;">
+        Owns: conference brand, speaker relationships, editorial voice, Bauhaus visual language, ticket sales, physical collateral, designleadership.io<br><br>
+        Brand: maximalist collage, Instrument Serif headlines, multi-color palette, paper grain, Bauhaus blocks
+      </div>
+    </div>
+    <div class="specbox" style="border-color:rgba(170,255,0,.2);">
+      <div style="font-weight:700;font-size:12px;color:var(--neon);margin-bottom:8px;">⚡ Shared Territory</div>
+      <div style="font-size:11px;color:var(--ink2);line-height:1.6;">
+        Both claim: talks library, archetype assessment, speaker profiles, community events, content recommendations<br><br>
+        Rule: content wears the brand of where it's displayed. A DLS talk on app.designx wears dark. The same talk on designleadership.io wears light.
+      </div>
+    </div>
+    <div class="specbox">
+      <div style="font-weight:700;font-size:12px;color:var(--purple);margin-bottom:8px;">🌙 DesignX Territory</div>
+      <div style="font-size:11px;color:var(--ink2);line-height:1.6;">
+        Owns: platform tools (Salary, Jobs, The Stack), community membership, user profiles, Slack, newsletter, app.designx.community<br><br>
+        Brand: minimal dark system, DM Sans headlines, purple gradient, glass effects, systematic grid
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">Content Ownership Map</div>
+  <div class="bmap">
+    <div class="bmap-h">Content Type</div>
+    <div class="bmap-h">Origin</div>
+    <div class="bmap-h">Lives On</div>
+    <div class="bmap-h">Brand It Wears</div>
+
+    <div class="bmap-r label">DLS Conference</div>
+    <div class="bmap-r dls">DLS</div>
+    <div class="bmap-r dls">designleadership.io</div>
+    <div class="bmap-r dls"><span class="tag tag-dls">DLS Light</span> always</div>
+
+    <div class="bmap-r label">DLS Talk Recordings</div>
+    <div class="bmap-r dls">DLS (origin)</div>
+    <div class="bmap-r shared">Both sites</div>
+    <div class="bmap-r shared"><span class="tag tag-dls">Light</span> on DLS site <span class="tag tag-dx">Dark</span> on app.designx</div>
+
+    <div class="bmap-r label">DesignX Event Talks</div>
+    <div class="bmap-r designx">DesignX</div>
+    <div class="bmap-r designx">app.designx</div>
+    <div class="bmap-r designx"><span class="tag tag-dx">Dark</span> always</div>
+
+    <div class="bmap-r label">Speaker Profiles</div>
+    <div class="bmap-r shared">Both (speakers do both)</div>
+    <div class="bmap-r shared">Both sites</div>
+    <div class="bmap-r shared"><span class="tag tag-dls">Light</span> on DLS <span class="tag tag-dx">Dark</span> on DesignX</div>
+
+    <div class="bmap-r label">Archetypes Assessment</div>
+    <div class="bmap-r dls">DLS (born here)</div>
+    <div class="bmap-r shared">Both (primary: DesignX)</div>
+    <div class="bmap-r shared"><span class="tag tag-dls">Light</span> standalone <span class="tag tag-dx">Dark</span> in platform</div>
+
+    <div class="bmap-r label">Archetype Profile Badge</div>
+    <div class="bmap-r designx">DesignX (platform feature)</div>
+    <div class="bmap-r designx">app.designx profiles</div>
+    <div class="bmap-r designx"><span class="tag tag-dx">Dark</span> always</div>
+
+    <div class="bmap-r label">DLS Conference Badge</div>
+    <div class="bmap-r dls">DLS (physical item)</div>
+    <div class="bmap-r dls">Physical + designleadership.io</div>
+    <div class="bmap-r dls"><span class="tag tag-dls">Light</span> always (Bauhaus card)</div>
+
+    <div class="bmap-r label">Salary Tool</div>
+    <div class="bmap-r designx">DesignX</div>
+    <div class="bmap-r designx">app.designx</div>
+    <div class="bmap-r designx"><span class="tag tag-dx">Dark</span> always</div>
+
+    <div class="bmap-r label">Job Board</div>
+    <div class="bmap-r designx">DesignX</div>
+    <div class="bmap-r designx">app.designx</div>
+    <div class="bmap-r designx"><span class="tag tag-dx">Dark</span> always</div>
+
+    <div class="bmap-r label">Newsletter</div>
+    <div class="bmap-r designx">DesignX</div>
+    <div class="bmap-r designx">Email</div>
+    <div class="bmap-r designx"><span class="tag tag-dx">Dark</span> (Season template)</div>
+
+    <div class="bmap-r label">Ticket Sales</div>
+    <div class="bmap-r dls">DLS</div>
+    <div class="bmap-r dls">designleadership.io</div>
+    <div class="bmap-r dls"><span class="tag tag-dls">Light</span> always</div>
+
+    <div class="bmap-r label">Social Promo (speaker card)</div>
+    <div class="bmap-r dls">DLS</div>
+    <div class="bmap-r dls">Instagram/LinkedIn/Twitter</div>
+    <div class="bmap-r dls"><span class="tag tag-dls">Light</span> (Bauhaus speaker card)</div>
+
+    <div class="bmap-r label">Social Promo (tool launch)</div>
+    <div class="bmap-r designx">DesignX</div>
+    <div class="bmap-r designx">Instagram/LinkedIn/Twitter</div>
+    <div class="bmap-r designx"><span class="tag tag-dx">Dark</span> (platform screenshot style)</div>
+
+    <div class="bmap-r label">Sponsor/Patron Cards</div>
+    <div class="bmap-r dls">DLS</div>
+    <div class="bmap-r dls">designleadership.io</div>
+    <div class="bmap-r dls"><span class="tag tag-dls">Light</span> (marquee border)</div>
+
+    <div class="bmap-r label">Community Slack</div>
+    <div class="bmap-r designx">DesignX</div>
+    <div class="bmap-r designx">Slack</div>
+    <div class="bmap-r designx"><span class="tag tag-dx">DesignX</span> brand</div>
+
+    <div class="bmap-r label">YouTube Thumbnails</div>
+    <div class="bmap-r shared">Both (DLS talks + DX events)</div>
+    <div class="bmap-r designx">YouTube</div>
+    <div class="bmap-r designx"><span class="tag tag-dx">Dark</span> (matches video player)</div>
+  </div>
+
+  <div class="sub">The Golden Rule</div>
+  <div class="specbox" style="border-color:rgba(170,255,0,.2);">
+    <div style="font-weight:700;font-size:14px;color:var(--neon);margin-bottom:8px;">Content wears the brand of where it's displayed.</div>
+    <div style="color:var(--ink2);line-height:1.7;font-size:12px;">
+      A DLS talk recording doesn't stay "DLS branded" forever. When it lives on designleadership.io, it wears light Bauhaus. When it lives on app.designx.community, it wears dark platform. The content is the same — the presentation layer changes.<br><br>
+      Think of it like water taking the shape of its container. The talk doesn't change. The brand wrapper does.<br><br>
+      <strong style="color:var(--ink);">Exception:</strong> DLS speaker announcement cards are ALWAYS light Bauhaus, even when shared on dark-mode platforms (YouTube, newsletter). The Bauhaus card IS the content — it's a visual asset, not a text post wearing a wrapper.
+    </div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ TALKS LIBRARY ═══════════════════════════════════ -->
+<div id="talks" class="sec"><div class="container">
+  <div class="sl">Product</div>
+  <h1 class="st">TALKS<br>LIBRARY</h1>
+  <p class="sd">The talks library is the clearest merger point. DLS produces talks. DesignX events produce talks. They all live in one unified library on app.designx. Here's how they coexist.</p>
+
+  <div class="sub sub-n">One Library, Two Origins</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;margin-bottom:12px;">The library at app.designx.community/talks contains ALL talks — regardless of origin.</div>
+    <div class="specrow"><span class="sp">URL</span><span class="sv">app.designx.community/talks</span></div>
+    <div class="specrow"><span class="sp">Visual mode</span><span class="sv">Dark (DesignX platform context)</span></div>
+    <div class="specrow"><span class="sp">DLS talks</span><span class="sv">Tagged with <span class="tag tag-dls">DLS 2025</span> or <span class="tag tag-dls">DLS Austin 2026</span></span></div>
+    <div class="specrow"><span class="sp">DesignX talks</span><span class="sv">Tagged with <span class="tag tag-dx">DesignX Meetup</span> or <span class="tag tag-dx">Community Event</span></span></div>
+    <div class="specrow"><span class="sp">Mixed OK</span><span class="sv">Same grid, same card format, different origin badges</span></div>
+  </div>
+
+  <div class="sub">Talk Card Anatomy (Dark Mode — Platform)</div>
+  <div class="specbox">
+    <div class="specrow"><span class="sp">Thumbnail</span><span class="sv">16:9 still from recording, purple duotone overlay</span></div>
+    <div class="specrow"><span class="sp">Origin badge</span><span class="sv">Top-left on thumbnail: "DLS 2025" or "DesignX Event"</span></div>
+    <div class="specrow"><span class="sp">Title</span><span class="sv">DM Sans 700, 14px, white</span></div>
+    <div class="specrow"><span class="sp">Speaker</span><span class="sv">DM Sans 400, 12px, ink2 + halftone avatar (24px circle)</span></div>
+    <div class="specrow"><span class="sp">Meta</span><span class="sv">JetBrains Mono 10px: duration, date, view count</span></div>
+    <div class="specrow"><span class="sp">Archetype tags</span><span class="sv">Optional: <span class="tag tag-arch">Architect</span> <span class="tag tag-arch">Pathfinder</span> (relevant archetypes)</span></div>
+    <div class="specrow"><span class="sp">Card bg</span><span class="sv">#0A0A0F canvas, rule border</span></div>
+  </div>
+
+  <div class="sub">The Same Talk on designleadership.io</div>
+  <div class="lspecbox">
+    <div style="font-weight:700;font-size:11px;color:var(--bPurple);margin-bottom:12px;">If a DLS talk also appears on designleadership.io, it gets the full light treatment:</div>
+    <div class="lspecrow"><span class="lsp">Thumbnail</span><span class="lsv">B&W halftone speaker photo (not purple duotone)</span></div>
+    <div class="lspecrow"><span class="lsp">Title</span><span class="lsv">Instrument Serif 24-36px (the DLS headline voice)</span></div>
+    <div class="lspecrow"><span class="lsp">Speaker</span><span class="lsv">Instrument Serif italic 16px + halftone portrait</span></div>
+    <div class="lspecrow"><span class="lsp">Session badge</span><span class="lsv">Serif italic in pill border ("Interactive Session")</span></div>
+    <div class="lspecrow"><span class="lsp">Background</span><span class="lsv">Cream + paper grain + Bauhaus accent blocks</span></div>
+    <div class="lspecrow"><span class="lsp">No DesignX talks here</span><span class="lsv">designleadership.io only shows DLS-origin talks</span></div>
+  </div>
+
+  <div class="sub">Filtering & Discovery</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;margin-bottom:8px;">Talk library filters (on app.designx):</div>
+    <div class="specrow"><span class="sp">By origin</span><span class="sv">All · DLS · DesignX Events</span></div>
+    <div class="specrow"><span class="sp">By event</span><span class="sv">DLS Toronto 2025 · DLS Austin 2026 · AI × Design Night · etc.</span></div>
+    <div class="specrow"><span class="sp">By archetype</span><span class="sv">Architect · Pathfinder · Ally · Anchor · Cultivator</span></div>
+    <div class="specrow"><span class="sp">By topic</span><span class="sv">AI, Leadership, Systems, Career, etc.</span></div>
+    <div class="specrow"><span class="sp">By duration</span><span class="sv">< 15 min · 15-30 min · 30+ min</span></div>
+    <div class="specrow"><span class="sp">Sort</span><span class="sv">Newest · Most Viewed · Recommended for You (archetype-informed)</span></div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════════════════════ CONTENT ROUTING ═══════════════════════════════════ -->
+<div id="routing" class="sec"><div class="container">
+  <div class="sl">System</div>
+  <h1 class="st">CONTENT<br>ROUTING</h1>
+  <p class="sd">Every piece of content follows a clear routing path: where it's born → where it lives → what brand it wears → what links back. This prevents brand confusion and ensures consistency.</p>
+
+  <div class="sub sub-n">Routing Flows</div>
+
+  <div style="font-weight:700;font-size:12px;color:var(--violet);margin-bottom:12px;">① DLS Speaker Announcement</div>
+  <div class="flow">
+    <div class="fstep active">Speaker confirmed</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Bauhaus card generated (Light)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Posted to social (Light card)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">designleadership.io speaker page (Light)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">app.designx speaker profile (Dark)</div>
+  </div>
+
+  <div style="font-weight:700;font-size:12px;color:var(--violet);margin-bottom:12px;">② DLS Talk Recording</div>
+  <div class="flow">
+    <div class="fstep active">Talk recorded at DLS</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Uploaded to YouTube (Dark thumb)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Added to app.designx/talks (Dark)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Also on designleadership.io (Light)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Tagged with archetypes</div>
+  </div>
+
+  <div style="font-weight:700;font-size:12px;color:var(--purple);margin-bottom:12px;">③ DesignX Community Event Talk</div>
+  <div class="flow">
+    <div class="fstep active">Talk at DesignX event</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Uploaded to YouTube (Dark thumb)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Added to app.designx/talks (Dark)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">NOT on designleadership.io</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Tagged with archetypes</div>
+  </div>
+
+  <div style="font-weight:700;font-size:12px;color:var(--aAlly);margin-bottom:12px;">④ Archetype Assessment</div>
+  <div class="flow">
+    <div class="fstep active">User signs up for DesignX</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Onboarding prompts assessment</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Takes quiz (Dark — platform context)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Result reveal (Archetype color flood)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Shares card (Archetype color — standalone)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Badge on profile (Dark)</div>
+  </div>
+
+  <div style="font-weight:700;font-size:12px;color:var(--aAlly);margin-bottom:12px;">⑤ Archetype Assessment (DLS Entry)</div>
+  <div class="flow">
+    <div class="fstep active">User visits designleadership.io</div>
+    <div class="farrow">→</div>
+    <div class="fstep">CTA: "Discover your archetype"</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Takes quiz (Light — DLS context)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Result reveal (Archetype color flood)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">Shares card (Archetype color — standalone)</div>
+    <div class="farrow">→</div>
+    <div class="fstep">CTA: "Join DesignX to save your result"</div>
+  </div>
+
+  <div class="sub">Cross-Linking Rules</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;margin-bottom:8px;">How the two brands reference each other:</div>
+    <div class="specrow"><span class="sp">DLS site → DesignX</span><span class="sv">"Watch all DLS talks on DesignX" — link to app.designx/talks filtered by DLS</span></div>
+    <div class="specrow"><span class="sp">DLS site → Archetypes</span><span class="sv">"Take the assessment" — can go to Light standalone or app.designx</span></div>
+    <div class="specrow"><span class="sp">DesignX → DLS</span><span class="sv">"This talk was recorded at DLS Toronto 2025" — origin badge + link</span></div>
+    <div class="specrow"><span class="sp">DesignX → DLS tickets</span><span class="sv">"Get tickets to DLS Austin 2026" — CTA in purple (DLS product world)</span></div>
+    <div class="specrow"><span class="sp">Newsletter → DLS</span><span class="sv">DLS section in newsletter uses purple (DLS product world), not light Bauhaus</span></div>
+    <div class="specrow"><span class="sp">Newsletter → Archetypes</span><span class="sv">"Have you taken the assessment?" — gold CTA (Archetype product world)</span></div>
+  </div>
+
+  <div class="sub">Brand Hierarchy When Contexts Collide</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;margin-bottom:8px;">When a DLS talk appears on the DesignX platform alongside Salary data and Job listings:</div>
+    <div class="specrow"><span class="sp">The container wins</span><span class="sv">Platform dark is the container → everything is dark</span></div>
+    <div class="specrow"><span class="sp">Origin is metadata</span><span class="sv">DLS origin shows as a small badge, not a visual mode switch</span></div>
+    <div class="specrow"><span class="sp">No light islands on dark</span><span class="sv">Never render a Bauhaus card inside the dark platform feed</span></div>
+    <div class="specrow"><span class="sp">No dark islands on light</span><span class="sv">Never render a dark platform card on designleadership.io</span></div>
+    <div class="specrow"><span class="sp">Color signals only</span><span class="sv">DLS purple accent, Salary neon accent, Jobs blue accent — coexist on dark</span></div>
+  </div>
+
+  <div class="sub">Archetype as Growth Engine</div>
+  <div class="specbox">
+    <div style="font-weight:700;font-size:11px;color:var(--aAlly);margin-bottom:8px;">How archetypes drive cross-brand growth:</div>
+    <div class="specrow"><span class="sp">DLS attendee</span><span class="sv">Gets physical archetype card at conference → scans QR → lands on DesignX → joins</span></div>
+    <div class="specrow"><span class="sp">DesignX member</span><span class="sv">Takes assessment → gets "Your archetype thrives at DLS" → buys DLS ticket</span></div>
+    <div class="specrow"><span class="sp">Social share</span><span class="sv">User shares archetype card on LinkedIn → friend takes assessment → joins DesignX</span></div>
+    <div class="specrow"><span class="sp">Retake</span><span class="sv">Quarterly email: "Your leadership has evolved. Retake?" → re-engagement</span></div>
+    <div class="specrow"><span class="sp">Team use</span><span class="sv">"Share with your team" → multiple signups → community grows</span></div>
+  </div>
+</div></div>
+
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.sec').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.t).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
