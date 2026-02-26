@@ -18,7 +18,7 @@ a { color: inherit; text-decoration: none; }
   --mono: 'JetBrains Mono', monospace;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Dark Mode (DesignX) */
+  /* Dark Mode (Tools) */
   --bg: #000000;
   --bg2: #0A0A0F;
   --bg3: #111118;
@@ -34,7 +34,7 @@ a { color: inherit; text-decoration: none; }
   --ink4: rgba(255,255,255,.18);
   --rule: rgba(255,255,255,.06);
 
-  /* Light Mode (DLS) */
+  /* Light Mode (DLS / Editorial) */
   --cream: #F0ECE3;
   --parchment: #EDE8DE;
   --stone: #D9D2C7;
