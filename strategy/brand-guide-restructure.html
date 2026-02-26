@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Identity Guide — Restructuring Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000;--bg2:#0A0A0F;--bg3:#111118;
+  --glass1:rgba(255,255,255,.03);--glass2:rgba(255,255,255,.05);--glass3:rgba(255,255,255,.08);--glass4:rgba(255,255,255,.12);
+  --ink:#fff;--ink2:rgba(255,255,255,.7);--ink3:rgba(255,255,255,.4);--ink4:rgba(255,255,255,.18);
+  --rule:rgba(255,255,255,.06);
+  --violet:#A78BFA;--purple:#8B5CF6;--deep:#6D28D9;
+  --neon:#AAFF00;--electric:#06B6D4;--cyan:#06B6D4;--coral:#F97316;--warm:#FCD34D;
+  --cream:#F0ECE3;--parchment:#EDE8DE;--stone:#D9D2C7;
+  --bRed:#DC2626;--bYellow:#FACC15;--bGreen:#4D7C0F;--bBlue:#2563EB;--bOrange:#EA580C;--bCoral:#E8927C;--bPurple:#6D28D9;
+  --sans:'DM Sans',sans-serif;--serif:'Instrument Serif',serif;--mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+::selection{background:rgba(167,139,250,.3);}
+a{color:var(--violet);text-decoration:none;}
+
+/* Nav */
+.topnav{position:sticky;top:0;z-index:200;background:rgba(0,0,0,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--rule);}
+.topnav-inner{max-width:1100px;margin:0 auto;padding:10px 28px;display:flex;justify-content:space-between;align-items:center;}
+.brand{font-weight:900;font-size:15px;letter-spacing:-.02em;}.brand span{color:var(--violet);}
+.tabs{display:flex;gap:0;overflow-x:auto;max-width:1100px;margin:0 auto;padding:0 28px;-webkit-overflow-scrolling:touch;}
+.tabs::-webkit-scrollbar{height:0;}
+.tab{background:none;border:none;border-bottom:2px solid transparent;padding:7px 14px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink4);cursor:pointer;white-space:nowrap;transition:all .15s;font-weight:500;}
+.tab:hover{color:var(--ink3);}.tab.active{color:var(--ink);border-bottom-color:var(--violet);font-weight:700;}
+
+/* Layout */
+.container{max-width:1100px;margin:0 auto;padding:0 28px;}
+.section{display:none;padding:36px 0 100px;}.section.active{display:block;}
+.sl{font-family:var(--mono);font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:.15em;font-weight:700;margin-bottom:6px;}
+.st{font-weight:900;font-size:40px;text-transform:uppercase;letter-spacing:-.04em;line-height:.92;margin-bottom:12px;}
+.sd{font-size:13px;color:var(--ink2);line-height:1.7;max-width:600px;margin-bottom:40px;}
+.sub{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin:36px 0 12px;}
+.sub-v{color:var(--violet);}.sub-n{color:var(--neon);}.sub-c{color:var(--coral);}.sub-e{color:var(--electric);}.sub-3{color:var(--ink3);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+@media(max-width:768px){.g2,.g3{grid-template-columns:1fr;}}
+
+/* Cards */
+.card{background:var(--bg2);border:1px solid var(--rule);border-radius:14px;overflow:hidden;}
+.cb{padding:14px 18px;}
+.cl{font-family:var(--mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.cd{font-size:11px;color:var(--ink3);line-height:1.5;}
+
+/* Spec rows */
+.specrow{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--rule);gap:16px;}
+.specrow:last-child{border-bottom:none;}
+.sp{font-family:var(--mono);font-size:10px;color:var(--ink3);flex-shrink:0;}
+.sv{font-size:11px;color:var(--ink2);text-align:right;}
+
+/* Callout */
+.callout{border-left:3px solid var(--purple);padding:16px 20px;background:rgba(139,92,246,.04);border-radius:0 10px 10px 0;margin-bottom:20px;}
+.callout.cn{border-color:var(--neon);background:rgba(170,255,0,.03);}
+.callout.cc{border-color:var(--coral);background:rgba(249,115,22,.04);}
+.callout.ce{border-color:var(--electric);background:rgba(6,182,212,.04);}
+.callout p{font-size:12px;color:var(--ink2);line-height:1.6;}
+.callout strong{color:var(--ink);}
+
+/* Page card - used in proposed structure */
+.page-card{background:var(--bg2);border:1px solid var(--rule);border-radius:14px;overflow:hidden;position:relative;}
+.page-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.page-card.pg-brand::before{background:linear-gradient(90deg,var(--violet),var(--purple));}
+.page-card.pg-visual::before{background:linear-gradient(90deg,var(--coral),var(--warm));}
+.page-card.pg-digital::before{background:linear-gradient(90deg,var(--electric),var(--neon));}
+.page-card.pg-expr::before{background:linear-gradient(90deg,var(--bRed),var(--bYellow),var(--bGreen),var(--bBlue));}
+.page-card.pg-arch::before{background:linear-gradient(90deg,#d4a843,#0D9488,#2563EB,#E8927C,#65783E);}
+.page-num{font-family:var(--mono);font-size:36px;font-weight:700;color:rgba(255,255,255,.06);position:absolute;top:12px;right:18px;}
+.page-title{font-weight:800;font-size:15px;letter-spacing:-.02em;margin-bottom:4px;}
+.page-action{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+.page-desc{font-size:11px;color:var(--ink3);line-height:1.5;}
+.page-sections{margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);}
+.page-sections li{font-size:11px;color:var(--ink2);padding:3px 0;list-style:none;display:flex;align-items:baseline;gap:8px;}
+.page-sections li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--ink4);flex-shrink:0;margin-top:5px;}
+
+/* Cut/Add items */
+.cut-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--rule);}
+.cut-item:last-child{border-bottom:none;}
+.cut-icon{font-family:var(--mono);font-size:10px;font-weight:700;flex-shrink:0;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.cut-icon.minus{background:rgba(220,38,38,.15);color:#DC2626;}
+.cut-icon.plus{background:rgba(170,255,0,.12);color:var(--neon);}
+.cut-text{font-size:12px;color:var(--ink2);line-height:1.5;}
+.cut-text strong{color:var(--ink);}
+
+/* Mindset comparison */
+.mindset-col{background:var(--bg2);border:1px solid var(--rule);border-radius:14px;padding:24px;position:relative;overflow:hidden;}
+.mindset-label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:16px;}
+.mindset-example{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink2);line-height:1.4;margin-bottom:16px;}
+.mindset-list{list-style:none;}
+.mindset-list li{font-size:11px;color:var(--ink3);padding:4px 0;display:flex;align-items:baseline;gap:8px;}
+.mindset-list li::before{content:'';width:3px;height:3px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+
+/* Grain overlay */
+.grain{position:absolute;inset:0;z-index:3;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");background-size:128px 128px;pointer-events:none;}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="topnav-inner"><div class="brand">DESIGN<span>X</span> + DLS</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink4);">BRAND GUIDE RESTRUCTURE &middot; FEB 2026</div></div>
+  <div class="tabs">
+    <button class="tab active" data-t="reframe">The Reframe</button>
+    <button class="tab" data-t="structure">Proposed Structure</button>
+    <button class="tab" data-t="cut">What to Cut</button>
+    <button class="tab" data-t="add">What to Add</button>
+    <button class="tab" data-t="mindset">Mindset Shift</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ 1. THE REFRAME ═══════════════════ -->
+<div id="reframe" class="section active"><div class="container">
+  <div class="sl">Section 01 &mdash; The Problem</div>
+  <h2 class="st">The Reframe</h2>
+  <p class="sd">A brand identity guide exists to answer three questions. The current site tries to answer those questions but also tries to be an engineering spec, a product walkthrough, and a content strategy deck. It needs to pick a lane.</p>
+
+  <div class="sub sub-v">Three Questions a Brand Guide Answers</div>
+  <div class="g3" style="margin-bottom:32px;">
+    <div class="card">
+      <div style="height:80px;background:linear-gradient(135deg,var(--deep),var(--purple));position:relative;display:flex;align-items:center;justify-content:center;">
+        <div class="grain"></div>
+        <div style="position:relative;z-index:4;font-weight:900;font-size:22px;letter-spacing:-.03em;">01</div>
+      </div>
+      <div class="cb">
+        <div class="cl" style="color:var(--violet);">Identity</div>
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Who are we?</div>
+        <div class="cd">Brand positioning, voice, personality, values. The story that every other decision hangs from.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="height:80px;background:linear-gradient(135deg,var(--purple),var(--violet));position:relative;display:flex;align-items:center;justify-content:center;">
+        <div class="grain"></div>
+        <div style="position:relative;z-index:4;font-weight:900;font-size:22px;letter-spacing:-.03em;">02</div>
+      </div>
+      <div class="cb">
+        <div class="cl" style="color:var(--violet);">Visual Language</div>
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px;">What do we look like?</div>
+        <div class="cd">Color, type, texture, imagery, layout. The visual toolkit expressed as principles, not code.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="height:80px;background:linear-gradient(135deg,var(--violet),var(--electric));position:relative;display:flex;align-items:center;justify-content:center;">
+        <div class="grain"></div>
+        <div style="position:relative;z-index:4;font-weight:900;font-size:22px;letter-spacing:-.03em;">03</div>
+      </div>
+      <div class="cb">
+        <div class="cl" style="color:var(--violet);">Application</div>
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px;">How do we apply it?</div>
+        <div class="cd">Patterns for real surfaces: cards, pages, social, print. Practical guidance for makers.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub sub-c">What the Current Site Conflates</div>
+  <p style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:16px;">The current brand guide tries to do too many jobs at once. Brand identity content is tangled with product design, engineering specs, and content strategy. The result is a document that architects love but designers and marketers struggle to use.</p>
+
+  <div class="card" style="margin-bottom:16px;">
+    <div class="cb">
+      <div class="specrow"><span class="sp" style="color:var(--violet);">Brand identity</span><span class="sv">Positioning, visual language, expression rules</span></div>
+      <div class="specrow"><span class="sp" style="color:var(--coral);">Product mockups</span><span class="sv">Full app pages for Jobs, Salary, Profile, DLS site</span></div>
+      <div class="specrow"><span class="sp" style="color:var(--coral);">Content routing</span><span class="sv">Brand boundary map, data-attribute flows</span></div>
+      <div class="specrow"><span class="sp" style="color:var(--coral);">Engineering specs</span><span class="sv">CSS feTurbulence params, easing functions, tokens</span></div>
+      <div class="specrow"><span class="sp" style="color:var(--coral);">UX flows</span><span class="sv">Archetype assessment, onboarding sequences</span></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>The fix is not to delete content.</strong> It is to separate brand identity (the guide) from product design (a different document). A brand guide should be usable by someone who will never write a line of CSS.</p>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 2. PROPOSED STRUCTURE ═══════════════════ -->
+<div id="structure" class="section"><div class="container">
+  <div class="sl">Section 02 &mdash; The Proposal</div>
+  <h2 class="st">Five Pages,<br>Clear Lanes</h2>
+  <p class="sd">The restructured guide follows a narrative arc: who we are, what we look like, how we apply it, how each expression works, and how archetypes personalize the experience.</p>
+
+  <!-- Page 1: Brand -->
+  <div class="page-card pg-brand" style="margin-bottom:16px;">
+    <div class="cb" style="padding:20px 24px;">
+      <div class="page-num">01</div>
+      <div class="page-action" style="color:var(--violet);">Keep &amp; Sharpen</div>
+      <div class="page-title">Brand</div>
+      <div class="page-desc">The conceptual foundation. Currently the strongest page, but missing key pieces: a clear positioning statement, voice and tone guidance, and the brand story as a narrative rather than a system diagram.</div>
+      <ul class="page-sections">
+        <li>Positioning statement and brand story</li>
+        <li>Voice and tone guidance with per-expression examples</li>
+        <li>Core principles (the "two brands, one system" thesis)</li>
+        <li>Brand architecture diagram (simplified)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Page 2: Visual Identity -->
+  <div class="page-card pg-visual" style="margin-bottom:16px;">
+    <div class="cb" style="padding:20px 24px;">
+      <div class="page-num">02</div>
+      <div class="page-action" style="color:var(--coral);">Replaces &ldquo;Foundations&rdquo;</div>
+      <div class="page-title">Visual Identity</div>
+      <div class="page-desc">Everything visual, organized by element rather than by technical implementation layer. A designer should be able to find "what colors do I use?" without understanding tokens and modes.</div>
+      <ul class="page-sections">
+        <li>Color &mdash; 6 worlds, dark/light palettes, usage rules</li>
+        <li>Typography &mdash; DM Sans, Instrument Serif, JetBrains Mono hierarchy</li>
+        <li>Texture &amp; Imagery &mdash; grain, duotone, halftone, Bauhaus blocks, photography direction</li>
+        <li>Spacing &amp; Layout &mdash; grid system, card anatomy, surface rules</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Page 3: Digital Application -->
+  <div class="page-card pg-digital" style="margin-bottom:16px;">
+    <div class="cb" style="padding:20px 24px;">
+      <div class="page-num">03</div>
+      <div class="page-action" style="color:var(--neon);">Replaces &ldquo;Components&rdquo;</div>
+      <div class="page-title">Digital Application</div>
+      <div class="page-desc">Not a component library. A style guide for digital surfaces: how the visual identity comes to life on actual screens. Focused on patterns and principles, not React props or CSS classes.</div>
+      <ul class="page-sections">
+        <li>Surface Modes in Practice &mdash; dark platform vs. light conference, when to use each</li>
+        <li>Interactive Patterns &mdash; hover states, transitions, micro-interactions (as visual guidance)</li>
+        <li>Cards &amp; Content Units &mdash; speaker cards, job cards, article cards (anatomy + rules)</li>
+        <li>Assets &amp; Templates &mdash; social graphics, OG images, email headers, print materials</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Page 4: Expression Playbooks -->
+  <div class="page-card pg-expr" style="margin-bottom:16px;">
+    <div class="cb" style="padding:20px 24px;">
+      <div class="page-num">04</div>
+      <div class="page-action" style="color:var(--warm);">Keep &amp; Make Parallel</div>
+      <div class="page-title">Expression Playbooks</div>
+      <div class="page-desc">Every expression gets the same structure, making it easy to compare and apply. No more hunting through different page layouts to find equivalent information. Merge Meetups into Community.</div>
+      <ul class="page-sections">
+        <li>Each expression follows identical sections: Identity, Visual Example, Do/Don't, Key Assets</li>
+        <li>DLS (purple) &mdash; the conference brand, Bauhaus maximalism</li>
+        <li>Salary (neon green), Jobs (blue), Community (coral), Stack (crimson)</li>
+        <li>Season '26 (multi) &mdash; annual thematic expression</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Page 5: Archetypes -->
+  <div class="page-card pg-arch" style="margin-bottom:16px;">
+    <div class="cb" style="padding:20px 24px;">
+      <div class="page-num">05</div>
+      <div class="page-action" style="color:#d4a843;">Radically Simplify</div>
+      <div class="page-title">Archetypes</div>
+      <div class="page-desc">Keep the five personality archetypes as a powerful personalization layer. Cut everything that belongs in a product spec: UX flows, assessment logic, content routing, and boundary maps.</div>
+      <ul class="page-sections">
+        <li>Five archetype cards: Ally (gold), Architect (teal), Pathfinder (blue), Anchor (coral), Cultivator (olive)</li>
+        <li>Personality descriptions and visual rules for each</li>
+        <li>Color palettes and gradient treatments</li>
+        <li>Usage guidelines: when and where archetypes appear</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout cn" style="margin-top:32px;">
+    <p><strong>Parallel structure is the key.</strong> Every expression playbook should feel interchangeable in layout. If someone learns how the DLS page works, they already know how to navigate Jobs or Community. Same sections, same order, same depth.</p>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 3. WHAT TO CUT ═══════════════════ -->
+<div id="cut" class="section"><div class="container">
+  <div class="sl">Section 03 &mdash; Subtraction</div>
+  <h2 class="st">What to Cut</h2>
+  <p class="sd">These items are not bad work. They are product design and engineering artifacts that belong in separate documents: a product spec, a front-end style guide, or an internal wiki. They dilute the brand guide.</p>
+
+  <div class="sub sub-c">Full App Mockups</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="cb">
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>Jobs pages</strong> &mdash; full job listing, job detail, search results UI. These are product screens, not brand identity.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>Salary pages</strong> &mdash; salary explorer, comparison tools, data visualizations. Belongs in product design specs.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>Profile pages</strong> &mdash; user profiles, settings, onboarding flows. UX territory, not brand territory.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub sub-c">Full DLS Website Mockups</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="cb">
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>DLS homepage layout</strong> &mdash; a full page mockup is a wireframe exercise, not a brand guide artifact.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>Speakers page</strong> &mdash; full speaker grid, filtering, detail views. Keep the speaker card design; cut the page layout.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>Schedule and talks archive</strong> &mdash; functional UI pages that belong in a product spec.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub sub-c">System Architecture Artifacts</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="cb">
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>Content routing flows</strong> &mdash; diagrams showing how content moves between expressions. Internal engineering concern.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>Brand boundary map</strong> &mdash; the decision tree for which brand applies where. Useful, but belongs in a separate operations doc.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>Archetype UX flows</strong> &mdash; assessment sequences, onboarding steps, quiz logic. Product design, not brand identity.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub sub-c">Technical Implementation Details</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="cb">
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>CSS feTurbulence parameters</strong> &mdash; specific SVG filter values. Belongs in a front-end style guide or codebase docs.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>Easing functions and transition specs</strong> &mdash; cubic-bezier values, animation durations. Engineering reference material.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon minus">&minus;</div>
+        <div class="cut-text"><strong>Token names and data-attributes</strong> &mdash; var(--color-world-dls), data-archetype="ally". Internal API, not brand guidance.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout cc">
+    <p><strong>Where does it go?</strong> None of this work is wasted. Product mockups move to Figma files. Technical specs move to the codebase README or a developer-facing style guide. Content routing moves to an internal operations wiki. The brand guide stays focused on brand.</p>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 4. WHAT TO ADD ═══════════════════ -->
+<div id="add" class="section"><div class="container">
+  <div class="sl">Section 04 &mdash; Addition</div>
+  <h2 class="st">What to Add</h2>
+  <p class="sd">The current guide is strong on visual systems but weak on brand foundations. These additions fill the gap between "here's what it looks like" and "here's why it looks that way."</p>
+
+  <div class="sub sub-n">Brand Foundations</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="cb">
+      <div class="cut-item">
+        <div class="cut-icon plus">+</div>
+        <div class="cut-text"><strong>Brand positioning and story</strong> &mdash; a concise narrative: what DesignX is, who it serves, why it exists, and how it differs from alternatives. The anchor for every design decision.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon plus">+</div>
+        <div class="cut-text"><strong>Voice and tone guidance</strong> &mdash; how DesignX sounds in writing. Formal vs. casual spectrum, vocabulary preferences, writing examples for each expression. A copywriter should be able to use this page alone.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub sub-n">Visual Direction</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="cb">
+      <div class="cut-item">
+        <div class="cut-icon plus">+</div>
+        <div class="cut-text"><strong>Photography and illustration direction</strong> &mdash; what kind of images to commission or select. Subject matter, mood, cropping rules, color treatment. Do/don't examples.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon plus">+</div>
+        <div class="cut-text"><strong>Logo usage guidelines</strong> &mdash; the DesignX and DLS logos with clear space, minimum size, acceptable and unacceptable variations, placement rules on dark and light backgrounds.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub sub-n">Practical Tools</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="cb">
+      <div class="cut-item">
+        <div class="cut-icon plus">+</div>
+        <div class="cut-text"><strong>One-page cheat sheet</strong> &mdash; a single printable page with colors, type hierarchy, key dos and don'ts, and the expression color worlds. The thing someone tapes to their monitor.</div>
+      </div>
+      <div class="cut-item">
+        <div class="cut-icon plus">+</div>
+        <div class="cut-text"><strong>Writing examples per expression</strong> &mdash; "Here's how DLS sounds. Here's how Salary sounds." Concrete copy samples, not abstract tone descriptors.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-top:32px;">
+    <div class="callout">
+      <p><strong>The positioning statement is the single most important addition.</strong> Every visual decision in the system flows from brand positioning. Without it, the guide is a collection of aesthetic choices without a thesis.</p>
+    </div>
+    <div class="callout cn">
+      <p><strong>Voice and tone fills the biggest gap.</strong> The current guide can tell you what hex color to use for Community, but not what a Community blog post should sound like. That makes it half a brand guide.</p>
+    </div>
+  </div>
+</div></div>
+
+
+<!-- ═══════════════════ 5. THE MINDSET SHIFT ═══════════════════ -->
+<div id="mindset" class="section"><div class="container">
+  <div class="sl">Section 05 &mdash; The Philosophy</div>
+  <h2 class="st">The Mindset<br>Shift</h2>
+  <p class="sd">The restructuring is not just organizational. It requires a change in perspective: from documenting how the system is built to guiding what someone should do when they are making something.</p>
+
+  <div class="g2" style="margin-bottom:32px;">
+    <div class="mindset-col" style="border-color:rgba(220,38,38,.2);">
+      <div class="mindset-label" style="color:rgba(220,38,38,.6);">Current: Architecture</div>
+      <div class="mindset-example">"Here's how the system works."</div>
+      <ul class="mindset-list">
+        <li style="--dot-color:rgba(220,38,38,.4);"><span style="display:inline;">Tokens, modes, and data-attributes</span></li>
+        <li style="--dot-color:rgba(220,38,38,.4);"><span style="display:inline;">Implementation-first organization</span></li>
+        <li style="--dot-color:rgba(220,38,38,.4);"><span style="display:inline;">Full-page product mockups</span></li>
+        <li style="--dot-color:rgba(220,38,38,.4);"><span style="display:inline;">Audience: engineers and system architects</span></li>
+        <li style="--dot-color:rgba(220,38,38,.4);"><span style="display:inline;">Answers: "What did we build?"</span></li>
+      </ul>
+    </div>
+    <div class="mindset-col" style="border-color:rgba(170,255,0,.2);">
+      <div class="mindset-label" style="color:var(--neon);">Proposed: Application</div>
+      <div class="mindset-example">"Here's what to do when you're making something."</div>
+      <ul class="mindset-list">
+        <li><span style="display:inline;">Decisions, principles, and examples</span></li>
+        <li><span style="display:inline;">Task-first organization</span></li>
+        <li><span style="display:inline;">Card-level patterns, not page-level mockups</span></li>
+        <li><span style="display:inline;">Audience: designers, marketers, content creators</span></li>
+        <li><span style="display:inline;">Answers: "What should I do?"</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub sub-v">The Litmus Test</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div style="padding:24px;background:linear-gradient(135deg,rgba(109,40,217,.08),rgba(139,92,246,.04));border-bottom:1px solid var(--rule);">
+      <div style="font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink2);line-height:1.4;max-width:600px;">"I'm designing a social post for DLS &mdash; what do I do?"</div>
+    </div>
+    <div class="cb">
+      <div class="specrow"><span class="sp" style="color:var(--coral);">Current guide</span><span class="sv">Navigate tokens, find DLS mode, cross-reference Bauhaus block specs, check boundary rules</span></div>
+      <div class="specrow"><span class="sp" style="color:var(--neon);">Restructured guide</span><span class="sv">Open Expression Playbooks &rarr; DLS &rarr; Key Assets &rarr; social post template and rules</span></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px;">
+    <div style="padding:24px;background:linear-gradient(135deg,rgba(6,182,212,.08),rgba(6,182,212,.04));border-bottom:1px solid var(--rule);">
+      <div style="font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink2);line-height:1.4;max-width:600px;">"What colors should I use for a Community email header?"</div>
+    </div>
+    <div class="cb">
+      <div class="specrow"><span class="sp" style="color:var(--coral);">Current guide</span><span class="sv">Find color worlds section, locate Community, decode hex values, check dark/light rules</span></div>
+      <div class="specrow"><span class="sp" style="color:var(--neon);">Restructured guide</span><span class="sv">Open Expression Playbooks &rarr; Community &rarr; Visual Example &rarr; coral palette with do/don't</span></div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:32px;">
+    <p><strong>The goal is not to dumb it down.</strong> The system architecture still exists, and engineers still need it. But it moves to a separate, technical reference document. The brand guide becomes what a brand guide is supposed to be: a tool for people who make things with the brand.</p>
+  </div>
+
+  <div class="sub sub-3" style="margin-top:48px;">Summary</div>
+  <div class="card">
+    <div class="cb">
+      <div class="specrow"><span class="sp">Pages</span><span class="sv">5 (down from ~8 + sub-pages)</span></div>
+      <div class="specrow"><span class="sp">Organization</span><span class="sv">By task ("what do I need?"), not by layer ("how is it built?")</span></div>
+      <div class="specrow"><span class="sp">Audience</span><span class="sv">Designers, marketers, content creators, agencies</span></div>
+      <div class="specrow"><span class="sp">Added</span><span class="sv">Positioning, voice/tone, photography, logo, cheat sheet</span></div>
+      <div class="specrow"><span class="sp">Moved out</span><span class="sv">Product mockups, CSS specs, routing flows, UX sequences</span></div>
+      <div class="specrow"><span class="sp">Preserved</span><span class="sv">All visual identity work, color worlds, archetype personalities</span></div>
+    </div>
+  </div>
+</div></div>
+
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.t).classList.add('active');
+    window.scrollTo(0,0);
+  });
+});
+</script>
+
+</body>
+</html>
