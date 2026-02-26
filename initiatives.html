@@ -44,80 +44,80 @@
 /* ── Gradient Identity Variants ────────────────────────────────── */
 .gvar { aspect-ratio: 16/7; border-radius: 14px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 16px 20px; }
 .gvar-label { position: relative; z-index: 10; }
-.gvar-name { font-weight: 700; font-size: 13px; color: white; }
-.gvar-desc { font-family: var(--mono); font-size: 9px; color: rgba(255,255,255,.5); margin-top: 2px; }
+.gvar-name { font-weight: 700; font-size: 13px; color: var(--ink-dark); }
+.gvar-desc { font-family: var(--mono); font-size: 9px; color: var(--ink-dark3); margin-top: 2px; }
 
-/* Shared mesh base — standard intensity */
+/* Shared mesh base — soft / airy on white */
 .mesh-base {
   background:
-    radial-gradient(ellipse at 8% 25%, rgba(220,38,38,0.8) 0%, transparent 50%),
-    radial-gradient(ellipse at 30% 75%, rgba(245,158,11,0.7) 0%, transparent 45%),
-    radial-gradient(ellipse at 52% 15%, rgba(233,69,96,0.7) 0%, transparent 42%),
-    radial-gradient(ellipse at 68% 80%, rgba(255,179,193,0.55) 0%, transparent 48%),
-    radial-gradient(ellipse at 82% 30%, rgba(59,130,246,0.8) 0%, transparent 45%),
-    radial-gradient(ellipse at 96% 60%, rgba(6,182,212,0.6) 0%, transparent 42%),
-    #0a0a0f;
+    radial-gradient(ellipse 80% 70% at 5% 15%, rgba(255,140,50,0.55) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 80% at 15% 85%, rgba(120,190,255,0.6) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 65% at 55% 20%, rgba(255,90,60,0.5) 0%, transparent 100%),
+    radial-gradient(ellipse 75% 70% at 85% 25%, rgba(255,70,80,0.45) 0%, transparent 100%),
+    radial-gradient(ellipse 65% 75% at 80% 80%, rgba(255,120,170,0.5) 0%, transparent 100%),
+    radial-gradient(ellipse 50% 60% at 40% 60%, rgba(255,180,200,0.3) 0%, transparent 100%),
+    #ffffff;
 }
 
-/* Bright mesh base — pumped saturation + wider spread */
+/* Vivid mesh — saturated pools on white */
 .mesh-bright {
   background:
-    radial-gradient(ellipse at 5% 20%, rgba(255,50,50,0.9) 0%, transparent 55%),
-    radial-gradient(ellipse at 28% 80%, rgba(255,180,20,0.85) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 10%, rgba(255,80,110,0.85) 0%, transparent 48%),
-    radial-gradient(ellipse at 65% 85%, rgba(255,190,205,0.7) 0%, transparent 52%),
-    radial-gradient(ellipse at 80% 25%, rgba(80,150,255,0.9) 0%, transparent 50%),
-    radial-gradient(ellipse at 97% 55%, rgba(20,210,240,0.75) 0%, transparent 48%),
-    #050508;
+    radial-gradient(ellipse 85% 75% at 5% 10%, rgba(255,160,40,0.7) 0%, transparent 100%),
+    radial-gradient(ellipse 75% 85% at 12% 90%, rgba(80,170,255,0.75) 0%, transparent 100%),
+    radial-gradient(ellipse 65% 70% at 50% 15%, rgba(255,60,40,0.65) 0%, transparent 100%),
+    radial-gradient(ellipse 80% 75% at 88% 20%, rgba(255,50,70,0.6) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 80% at 82% 85%, rgba(255,80,150,0.65) 0%, transparent 100%),
+    radial-gradient(ellipse 55% 65% at 42% 55%, rgba(255,200,210,0.4) 0%, transparent 100%),
+    #ffffff;
 }
 
 /* 1. Mesh Clean — no effects */
 
-/* 2. Mesh + Grain */
+/* 2. Mesh + Grain — paper texture feel */
 .gvar-grain::after {
   content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px; opacity: 0.2; mix-blend-mode: overlay;
+  background-size: 200px 200px; opacity: 0.12; mix-blend-mode: multiply;
 }
 
-/* 3. Mesh + Halftone */
+/* 3. Mesh + Halftone — dot screen print */
 .gvar-halftone::after {
   content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.14) 1px, transparent 1px);
-  background-size: 5px 5px; mix-blend-mode: overlay;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
+  background-size: 5px 5px; mix-blend-mode: multiply;
 }
 
-/* 4. Mesh + Stipple Dither */
+/* 4. Mesh + Stipple Dither — risograph feel */
 .gvar-dither::after {
   content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
   background-image:
-    radial-gradient(circle, rgba(255,255,255,0.18) 0.5px, transparent 0.5px),
-    radial-gradient(circle, rgba(0,0,0,0.22) 0.5px, transparent 0.5px);
+    radial-gradient(circle, rgba(0,0,0,0.1) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(0,0,0,0.06) 0.5px, transparent 0.5px);
   background-size: 3px 3px, 5px 5px;
   background-position: 0 0, 1.5px 1.5px;
-  mix-blend-mode: overlay; opacity: 0.85;
+  mix-blend-mode: multiply; opacity: 0.9;
 }
 
-/* 5. Mesh + Frosted Glass */
+/* 5. Mesh + Frosted Glass — diffused aurora */
 .gvar-glass::before {
   content: ''; position: absolute; inset: 0; z-index: 2;
-  backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
 }
 .gvar-glass::after {
   content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06); border-radius: 14px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(0,0,0,0.04); border-radius: 14px;
 }
 
-/* 6. Mesh + Scanlines */
+/* 6. Mesh + Scanlines — CRT on light */
 .gvar-scan::after {
   content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
   background-image: repeating-linear-gradient(
     0deg,
     transparent 0px,
     transparent 2px,
-    rgba(0,0,0,0.15) 2px,
-    rgba(0,0,0,0.15) 3px
+    rgba(0,0,0,0.06) 2px,
+    rgba(0,0,0,0.06) 3px
   );
   mix-blend-mode: multiply;
 }
@@ -161,82 +161,82 @@
   <!-- ══════════════════════════════════════════════════════════════════ -->
 
   <div class="sub-header" style="color:var(--ink3);">Gradient Identity — Mesh Variants</div>
-  <div style="font-size:12px;color:var(--ink2);margin-bottom:24px;line-height:1.6;">All 6 color worlds rendered as mesh gradients (layered radials) with different texture treatments. Top row: standard intensity for ambient use. Bottom row: bright/saturated for hero moments.</div>
+  <div style="font-size:12px;color:var(--ink2);margin-bottom:24px;line-height:1.6;">All 6 color worlds rendered as soft mesh gradients on white — diffused radial pools that blend into each other like watercolor. Top row: soft/airy for ambient use. Bottom row: vivid/saturated for hero moments.</div>
 
-  <!-- Row 1: Standard mesh — 3 variants -->
-  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Standard Intensity</div>
+  <!-- Row 1: Soft mesh — 3 variants -->
+  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Soft / Airy</div>
   <div class="g3 mb-16" style="gap:16px;">
 
     <!-- 1. Mesh Clean -->
     <div>
       <div class="gvar mesh-base">
         <div class="gvar-label">
-          <div class="gvar-name">Mesh — Clean</div>
+          <div class="gvar-name">Soft — Clean</div>
           <div class="gvar-desc">6 radial layers · no texture overlay</div>
         </div>
       </div>
-      <div class="init-rule" style="margin-top:6px;">Pure mesh. Soft organic color pools on black. Loading states, ambient backgrounds, section separators.</div>
+      <div class="init-rule" style="margin-top:6px;">Pure pastel mesh on white. Soft organic color pools. Section backgrounds, loading states, ambient surfaces.</div>
     </div>
 
     <!-- 2. Mesh + Grain -->
     <div>
       <div class="gvar mesh-base gvar-grain">
         <div class="gvar-label">
-          <div class="gvar-name">Mesh — Film Grain</div>
-          <div class="gvar-desc">feTurbulence noise · 20% overlay</div>
+          <div class="gvar-name">Soft — Paper Grain</div>
+          <div class="gvar-desc">feTurbulence noise · multiply blend</div>
         </div>
       </div>
-      <div class="init-rule" style="margin-top:6px;">Fractal noise softens the digital mesh. Organic, editorial warmth. Brand stories, about pages, dark backgrounds.</div>
+      <div class="init-rule" style="margin-top:6px;">Fractal noise adds paper texture over soft mesh. Organic, editorial warmth. Brand stories, about pages, print feel.</div>
     </div>
 
     <!-- 3. Mesh + Halftone -->
     <div>
       <div class="gvar mesh-base gvar-halftone">
         <div class="gvar-label">
-          <div class="gvar-name">Mesh — Halftone</div>
-          <div class="gvar-desc">5px dot grid · overlay blend</div>
+          <div class="gvar-name">Soft — Halftone</div>
+          <div class="gvar-desc">5px dot grid · multiply blend</div>
         </div>
       </div>
-      <div class="init-rule" style="margin-top:6px;">Print-inspired dots over mesh. Retro-editorial texture. Newsletter headers, conference posters, social art.</div>
+      <div class="init-rule" style="margin-top:6px;">Screen-print dots over pastel mesh. Risograph aesthetic. Newsletter headers, conference posters, social art.</div>
     </div>
 
   </div>
 
-  <!-- Row 2: Bright mesh — 3 variants -->
-  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Bright / Saturated</div>
+  <!-- Row 2: Vivid mesh — 3 variants -->
+  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Vivid / Saturated</div>
   <div class="g3 mb-32" style="gap:16px;">
 
-    <!-- 4. Bright Mesh + Dither -->
+    <!-- 4. Vivid Mesh + Dither -->
     <div>
       <div class="gvar mesh-bright gvar-dither">
         <div class="gvar-label">
-          <div class="gvar-name">Bright — Stipple</div>
-          <div class="gvar-desc">High sat mesh · dual micro-dot dither</div>
+          <div class="gvar-name">Vivid — Stipple</div>
+          <div class="gvar-desc">Saturated mesh · dual micro-dot dither</div>
         </div>
       </div>
-      <div class="init-rule" style="margin-top:6px;">Pumped saturation with fine stipple texture. Lo-fi meets high-energy. Hero banners, email headers, data viz overlays.</div>
+      <div class="init-rule" style="margin-top:6px;">Saturated pools with fine stipple texture. Lo-fi warmth meets bold color. Hero banners, email headers, data viz backgrounds.</div>
     </div>
 
-    <!-- 5. Bright Mesh + Glass -->
+    <!-- 5. Vivid Mesh + Glass -->
     <div>
       <div class="gvar mesh-bright gvar-glass">
         <div class="gvar-label" style="z-index:10;">
-          <div class="gvar-name">Bright — Frosted</div>
-          <div class="gvar-desc">High sat mesh · backdrop-filter blur(40px)</div>
+          <div class="gvar-name">Vivid — Frosted</div>
+          <div class="gvar-desc">Saturated mesh · backdrop-filter blur(50px)</div>
         </div>
       </div>
-      <div class="init-rule" style="margin-top:6px;">Bright color pools diffused through glass blur. Premium aurora glow. Splash screens, feature drops, modal overlays.</div>
+      <div class="init-rule" style="margin-top:6px;">Vivid color pools softened through glass blur. Dreamy aurora glow. Splash screens, feature drops, modal overlays.</div>
     </div>
 
-    <!-- 6. Bright Mesh + Scanlines -->
+    <!-- 6. Vivid Mesh + Scanlines -->
     <div>
       <div class="gvar mesh-bright gvar-scan">
         <div class="gvar-label">
-          <div class="gvar-name">Bright — Scanline</div>
-          <div class="gvar-desc">High sat mesh · 3px horizontal scan</div>
+          <div class="gvar-name">Vivid — Scanline</div>
+          <div class="gvar-desc">Saturated mesh · 3px horizontal scan</div>
         </div>
       </div>
-      <div class="init-rule" style="margin-top:6px;">CRT-inspired scanlines over saturated mesh. Digital artifact energy. Social cards, announcement heroes, video thumbnails.</div>
+      <div class="init-rule" style="margin-top:6px;">Fine scanlines over saturated mesh. Subtle digital artifact energy. Social cards, announcement heroes, video thumbnails.</div>
     </div>
 
   </div>
@@ -244,14 +244,14 @@
   <!-- Specbox: Usage guide -->
   <div class="specbox mb-48" style="border-color:rgba(245,158,11,.15);">
     <div style="font-weight:700;font-size:11px;margin-bottom:10px;color:var(--ink);">When to use which</div>
-    <div class="specrow"><span class="sp">Standard</span><span class="sv" style="color:var(--ink2);">Ambient, supporting contexts — backgrounds, loading, section dividers</span></div>
-    <div class="specrow"><span class="sp">Bright</span><span class="sv" style="color:var(--ink2);">Hero, primary contexts — announcements, headers, splash screens</span></div>
+    <div class="specrow"><span class="sp">Soft</span><span class="sv" style="color:var(--ink2);">Ambient, supporting contexts — backgrounds, loading, section dividers</span></div>
+    <div class="specrow"><span class="sp">Vivid</span><span class="sv" style="color:var(--ink2);">Hero, primary contexts — announcements, headers, splash screens</span></div>
     <div class="specrow"><span class="sp">Clean</span><span class="sv" style="color:var(--ink2);">Maximum color clarity. No texture competing with content on top.</span></div>
-    <div class="specrow"><span class="sp">Grain</span><span class="sv" style="color:var(--ink2);">Organic warmth. Best for large surfaces where you want softness.</span></div>
-    <div class="specrow"><span class="sp">Halftone</span><span class="sv" style="color:var(--ink2);">Print energy. Works best at medium sizes — cards, headers.</span></div>
-    <div class="specrow"><span class="sp">Stipple</span><span class="sv" style="color:var(--ink2);">Digital texture. Fine enough to not distract from overlaid text.</span></div>
-    <div class="specrow"><span class="sp">Frosted</span><span class="sv" style="color:var(--ink2);">Premium diffusion. Best for overlays where you need depth + legibility.</span></div>
-    <div class="specrow"><span class="sp">Scanline</span><span class="sv" style="color:var(--ink2);">Maximum energy. Digital artifact vibe. Social-first moments.</span></div>
+    <div class="specrow"><span class="sp">Grain</span><span class="sv" style="color:var(--ink2);">Paper warmth. Best for large surfaces where you want organic softness.</span></div>
+    <div class="specrow"><span class="sp">Halftone</span><span class="sv" style="color:var(--ink2);">Print energy. Risograph aesthetic at medium sizes — cards, headers.</span></div>
+    <div class="specrow"><span class="sp">Stipple</span><span class="sv" style="color:var(--ink2);">Tactile texture. Fine enough to not distract from overlaid text.</span></div>
+    <div class="specrow"><span class="sp">Frosted</span><span class="sv" style="color:var(--ink2);">Premium diffusion. Dreamiest option — best where you need depth + legibility.</span></div>
+    <div class="specrow"><span class="sp">Scanline</span><span class="sv" style="color:var(--ink2);">Subtle digital edge. Pairs well with vivid saturation for social-first moments.</span></div>
   </div>
 
 
