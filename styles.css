@@ -1,5 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   DesignX + DLS — Shared Design System Stylesheet
+   DesignX — One Brand, Four Expressions
+   Design System Stylesheet
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ── Reset ─────────────────────────────────────────────────────────── */
@@ -107,6 +108,173 @@ a { color: inherit; text-decoration: none; }
   --bgAmber: #C27D3A;
   --bgForest: #3E5F2A;
   --bgTeal: #0D9488;
+
+  /* Spacing Scale (8px grid) */
+  --sp1: 4px;  --sp2: 8px;  --sp3: 12px; --sp4: 16px;
+  --sp5: 24px; --sp6: 32px; --sp7: 48px; --sp8: 64px;
+
+  /* Radius Scale */
+  --r1: 4px; --r2: 8px; --r3: 12px; --r4: 16px; --r5: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DATA-MODE — Context Surfaces (dark · warm · light)
+   5-level surface hierarchy + text + border + glass per mode
+   ═══════════════════════════════════════════════════════════════════════ */
+
+[data-mode="dark"] {
+  --surface-0: #000000;
+  --surface-1: #0A0A0F;
+  --surface-2: #111118;
+  --surface-3: #1a1a24;
+  --surface-4: #242430;
+
+  --text-1: #ffffff;
+  --text-2: rgba(255,255,255,0.70);
+  --text-3: rgba(255,255,255,0.40);
+  --text-4: rgba(255,255,255,0.18);
+
+  --border: rgba(255,255,255,0.06);
+  --border-subtle: rgba(255,255,255,0.03);
+  --border-hover: rgba(255,255,255,0.12);
+
+  --glass-1: rgba(255,255,255,0.03);
+  --glass-2: rgba(255,255,255,0.05);
+  --glass-3: rgba(255,255,255,0.08);
+  --glass-4: rgba(255,255,255,0.12);
+
+  /* Map to legacy tokens for backward compat */
+  --bg: var(--surface-0);
+  --bg2: var(--surface-1);
+  --bg3: var(--surface-2);
+  --canvas: var(--surface-1);
+  --raised: var(--surface-2);
+  --ink: var(--text-1);
+  --ink2: var(--text-2);
+  --ink3: var(--text-3);
+  --ink4: var(--text-4);
+  --rule: var(--border);
+  --glass1: var(--glass-1);
+  --glass2: var(--glass-2);
+  --glass3: var(--glass-3);
+  --glass4: var(--glass-4);
+}
+
+[data-mode="warm"] {
+  --surface-0: #faf6f1;
+  --surface-1: #f5f0eb;
+  --surface-2: #ede7e0;
+  --surface-3: #e5dfd8;
+  --surface-4: #ddd7cf;
+
+  --text-1: #1a1a1a;
+  --text-2: rgba(26,26,26,0.72);
+  --text-3: rgba(26,26,26,0.48);
+  --text-4: rgba(26,26,26,0.28);
+
+  --border: rgba(26,26,26,0.10);
+  --border-subtle: rgba(26,26,26,0.05);
+  --border-hover: rgba(26,26,26,0.18);
+
+  --glass-1: rgba(26,26,26,0.03);
+  --glass-2: rgba(26,26,26,0.05);
+  --glass-3: rgba(26,26,26,0.08);
+  --glass-4: rgba(26,26,26,0.12);
+
+  /* Map to legacy tokens */
+  --bg: var(--surface-0);
+  --bg2: var(--surface-1);
+  --bg3: var(--surface-2);
+  --canvas: var(--surface-1);
+  --raised: var(--surface-2);
+  --ink: var(--text-1);
+  --ink2: var(--text-2);
+  --ink3: var(--text-3);
+  --ink4: var(--text-4);
+  --rule: var(--border);
+  --cream: var(--surface-0);
+  --parchment: var(--surface-1);
+  --stone: var(--surface-3);
+  --ink-dark: var(--text-1);
+  --ink-dark2: var(--text-2);
+  --ink-dark3: var(--text-3);
+  --ink-dark4: var(--text-4);
+  --rule-light: var(--border);
+  --glass1: var(--glass-1);
+  --glass2: var(--glass-2);
+  --glass3: var(--glass-3);
+  --glass4: var(--glass-4);
+}
+
+[data-mode="light"] {
+  --surface-0: #ffffff;
+  --surface-1: #faf8f5;
+  --surface-2: #f2efe9;
+  --surface-3: #eae6df;
+  --surface-4: #e0dcd5;
+
+  --text-1: #1a1118;
+  --text-2: rgba(26,17,24,0.70);
+  --text-3: rgba(26,17,24,0.40);
+  --text-4: rgba(26,17,24,0.18);
+
+  --border: rgba(26,17,24,0.08);
+  --border-subtle: rgba(26,17,24,0.04);
+  --border-hover: rgba(26,17,24,0.16);
+
+  --glass-1: rgba(26,17,24,0.03);
+  --glass-2: rgba(26,17,24,0.05);
+  --glass-3: rgba(26,17,24,0.08);
+  --glass-4: rgba(26,17,24,0.12);
+
+  /* Map to legacy tokens */
+  --bg: var(--surface-0);
+  --bg2: var(--surface-1);
+  --bg3: var(--surface-2);
+  --canvas: var(--surface-1);
+  --raised: var(--surface-2);
+  --ink: var(--text-1);
+  --ink2: var(--text-2);
+  --ink3: var(--text-3);
+  --ink4: var(--text-4);
+  --rule: var(--border);
+  --cream: var(--surface-0);
+  --parchment: var(--surface-1);
+  --stone: var(--surface-3);
+  --ink-dark: var(--text-1);
+  --ink-dark2: var(--text-2);
+  --ink-dark3: var(--text-3);
+  --ink-dark4: var(--text-4);
+  --rule-light: var(--border);
+  --glass1: var(--glass-1);
+  --glass2: var(--glass-2);
+  --glass3: var(--glass-3);
+  --glass4: var(--glass-4);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DATA-EXPRESSION — Product Expression Overrides
+   ═══════════════════════════════════════════════════════════════════════ */
+
+[data-expression="community"] {
+  --accent: var(--coral);
+  --accent-secondary: var(--warm);
+  --accent-glow: rgba(232,146,124,0.15);
+}
+[data-expression="tools"] {
+  --accent: var(--dx);
+  --accent-secondary: var(--electric);
+  --accent-glow: rgba(45,212,122,0.15);
+}
+[data-expression="meetups"] {
+  --accent: var(--coral);
+  --accent-secondary: var(--dx-warm);
+  --accent-glow: rgba(255,107,53,0.15);
+}
+[data-expression="dls"] {
+  --accent: var(--purple);
+  --accent-secondary: var(--violet);
+  --accent-glow: rgba(139,92,246,0.15);
 }
 
 /* ── Grain Overlay ─────────────────────────────────────────────────── */
@@ -166,10 +334,27 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ── Cards ─────────────────────────────────────────────────────────── */
-.card { background: var(--bg2); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; position: relative; transition: transform 300ms var(--ease-out); }
-.card:hover { transform: translateY(-2px); }
-.lcard { background: var(--cream); border: 1px solid var(--rule-light); border-radius: 14px; overflow: hidden; position: relative; color: var(--ink-dark); transition: transform 300ms var(--ease-out); }
-.lcard:hover { transform: translateY(-2px); }
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-hover, rgba(255,255,255,0.12));
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.card:active { transform: translateY(0); }
+.card:focus-visible { outline: 2px solid var(--dx); outline-offset: 2px; }
+.card[disabled], .card.disabled { opacity: 0.4; pointer-events: none; }
+
+.lcard { background: var(--cream); border: 1px solid var(--rule-light); border-radius: 14px; overflow: hidden; position: relative; color: var(--ink-dark); transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+.lcard:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.lcard:active { transform: translateY(0); }
+.lcard:focus-visible { outline: 2px solid var(--dx); outline-offset: 2px; }
 
 /* Gradient Border Card */
 .gbc { position: relative; border-radius: 14px; padding: 1px; overflow: hidden; }
@@ -511,14 +696,20 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--sans);
   cursor: pointer;
   border: none;
-  transition: all 200ms var(--ease-out);
+  transition: transform 150ms ease, background 150ms ease, box-shadow 150ms ease, filter 150ms ease;
 }
-.btn:hover { transform: translateY(-1px); }
+.btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+.btn:active { transform: translateY(0); filter: brightness(0.95); }
+.btn:focus-visible { outline: 2px solid var(--dx); outline-offset: 2px; }
+.btn:disabled, .btn.disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
 .btn-primary { background: white; color: black; font-weight: 700; }
+.btn-primary:hover { box-shadow: 0 4px 16px rgba(255,255,255,0.15); }
 .btn-secondary { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); font-weight: 600; color: var(--ink); backdrop-filter: blur(8px); }
+.btn-secondary:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); }
 .btn-accent { background: rgba(45,212,122,0.12); border: 1px solid rgba(45,212,122,0.25); color: var(--dx); font-weight: 700; box-shadow: 0 0 24px rgba(45,212,122,0.08); }
 .btn-accent:hover { background: rgba(45,212,122,0.18); border-color: rgba(45,212,122,0.4); box-shadow: 0 0 32px rgba(45,212,122,0.12); }
 .btn-ghost { background: transparent; border: 1px solid var(--rule); color: var(--ink3); font-weight: 500; }
+.btn-ghost:hover { border-color: var(--border-hover, rgba(255,255,255,0.12)); color: var(--ink2, rgba(255,255,255,0.7)); }
 
 /* ── Badges ────────────────────────────────────────────────────────── */
 .badge-season {
@@ -879,6 +1070,132 @@ a { color: inherit; text-decoration: none; }
 /* Initiative divider between sections */
 .init-divider { height: 1px; background: var(--rule); margin: 64px 0; }
 
+/* ── Browser Frame Mockups ────────────────────────────────────────── */
+.frame { border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; margin-bottom: 32px; }
+.frame-light { border-color: var(--rule-light); }
+
+.chrome { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--bg3); border-bottom: 1px solid var(--rule); }
+.chrome-light { background: var(--stone); border-bottom-color: var(--rule-light); }
+.chrome-dot { width: 8px; height: 8px; border-radius: 50%; }
+.chrome-url { flex: 1; background: var(--glass2); border-radius: 4px; padding: 3px 10px; font-family: var(--mono); font-size: 9px; color: var(--ink3); }
+.chrome-url-light { background: rgba(26,17,24,0.06); color: var(--ink-dark3); }
+
+.app-sidebar { width: 220px; background: var(--bg2); border-right: 1px solid var(--rule); flex-shrink: 0; padding: 16px 0; }
+.sidebar-item { display: flex; align-items: center; gap: 8px; padding: 7px 18px; font-size: 12px; color: var(--ink3); cursor: pointer; transition: all 0.15s; }
+.sidebar-item:hover { color: var(--ink); background: var(--glass1); }
+.sidebar-item.active { color: var(--ink); background: var(--glass2); border-left: 2px solid var(--dx); }
+.sidebar-item .si-icon { width: 16px; text-align: center; font-size: 11px; }
+.sidebar-section { font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink4); padding: 16px 18px 6px; }
+
+.app-page { flex: 1; padding: 24px 28px; background: var(--bg); min-height: 400px; overflow: hidden; }
+.page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.page-title { font-weight: 800; font-size: 22px; text-transform: uppercase; letter-spacing: -0.02em; }
+
+/* DLS site nav */
+.dls-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 28px; background: var(--cream); border-bottom: 1px solid var(--rule-light); }
+.dls-nav-brand { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink-dark); }
+.dls-nav-link { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dark3); cursor: pointer; }
+.dls-nav-link:hover { color: var(--ink-dark); }
+
+/* Schedule row */
+.sched-row { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule-light); align-items: flex-start; }
+.sched-time { font-family: var(--mono); font-size: 11px; color: var(--ink-dark3); flex-shrink: 0; width: 60px; padding-top: 2px; }
+.sched-talk { flex: 1; }
+.sched-title { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--ink-dark); line-height: 1.25; }
+.sched-speaker { font-size: 11px; color: var(--ink-dark2); margin-top: 2px; }
+.sched-tag { display: inline-block; font-family: var(--mono); font-size: 8px; padding: 2px 6px; border-radius: 3px; background: rgba(26,17,24,0.06); color: var(--ink-dark3); margin-top: 4px; }
+
+/* Ticket CTA */
+.ticket-cta { background: var(--ink-dark); border-radius: 14px; padding: 40px; display: flex; align-items: center; justify-content: space-between; }
+.ticket-btn { display: inline-flex; align-items: center; padding: 12px 28px; border-radius: 999px; background: var(--cream); color: var(--ink-dark); font-weight: 700; font-size: 13px; cursor: pointer; }
+
+/* Profile module */
+.profile-card { display: flex; gap: 20px; align-items: center; padding: 20px; background: var(--canvas); border: 1px solid var(--rule); border-radius: 14px; margin-bottom: 16px; }
+.profile-avatar { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.profile-name { font-weight: 800; font-size: 18px; }
+.profile-meta { font-family: var(--mono); font-size: 10px; color: var(--ink3); margin-top: 2px; }
+
+/* Stat row */
+.stat-row { display: flex; gap: 12px; margin-bottom: 16px; }
+.stat-box { flex: 1; background: var(--canvas); border: 1px solid var(--rule); border-radius: 10px; padding: 14px; }
+.stat-val { font-family: var(--mono); font-weight: 800; font-size: 20px; }
+.stat-label { font-family: var(--mono); font-size: 9px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+/* DLS speaker grid item */
+.speaker-grid-item { display: flex; gap: 14px; align-items: center; padding: 12px; border-radius: 10px; cursor: pointer; transition: background 0.15s; }
+.speaker-grid-item:hover { background: rgba(26,17,24,0.03); }
+.speaker-thumb { width: 56px; height: 56px; border-radius: 10px; flex-shrink: 0; position: relative; overflow: hidden; }
+.speaker-info-name { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--ink-dark); }
+.speaker-info-role { font-size: 11px; color: var(--ink-dark2); }
+.speaker-info-topic { font-family: var(--mono); font-size: 9px; color: var(--ink-dark3); margin-top: 3px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   INTERACTIVE STATE SYSTEM
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Inputs ───────────────────────────────────────────────────────── */
+.input {
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border, var(--rule));
+  background: var(--surface-1, var(--bg2));
+  color: var(--text-1, var(--ink));
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  width: 100%;
+}
+.input::placeholder { color: var(--text-4, var(--ink4)); }
+.input:hover { border-color: var(--border-hover, rgba(255,255,255,0.12)); }
+.input:focus { border-color: var(--dx); box-shadow: 0 0 0 3px rgba(45,212,122,0.15); }
+.input:disabled { opacity: 0.4; cursor: not-allowed; }
+.input[aria-invalid="true"], .input.error { border-color: var(--crimson); }
+.input[aria-invalid="true"]:focus, .input.error:focus { box-shadow: 0 0 0 3px rgba(233,69,96,0.15); }
+
+/* Search input variant */
+.input-search {
+  padding-left: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+}
+
+/* ── Links (interactive) ──────────────────────────────────────────── */
+a.link { transition: color 150ms ease, opacity 150ms ease; }
+a.link:hover { opacity: 0.8; }
+a.link:focus-visible { outline: 2px solid var(--dx); outline-offset: 2px; border-radius: 2px; }
+
+/* ── Toggle / Mode Switcher ───────────────────────────────────────── */
+.mode-toggle {
+  display: inline-flex;
+  gap: 0;
+  background: var(--surface-2, var(--bg3));
+  border-radius: 999px;
+  padding: 3px;
+  border: 1px solid var(--border, var(--rule));
+}
+.mode-toggle-btn {
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-3, var(--ink3));
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+.mode-toggle-btn:hover { color: var(--text-1, var(--ink)); }
+.mode-toggle-btn.active {
+  background: var(--surface-0, var(--bg));
+  color: var(--text-1, var(--ink));
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
 /* ── Utility ───────────────────────────────────────────────────────── */
 .flex { display: flex; }
 .flex-wrap { flex-wrap: wrap; }
@@ -1013,4 +1330,86 @@ a { color: inherit; text-decoration: none; }
 .mesh-dark .mesh-scanline::after,
 .mesh-dark-vivid .mesh-scanline::after {
   background-image: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 3px);
+}
+
+/* ── Expression-Specific Meshes ───────────────────────────────────── */
+
+/* Community — warm cream base, coral/gold/amber pools */
+.mesh-community {
+  background:
+    radial-gradient(ellipse 75% 65% at 8% 25%, rgba(232,146,124,0.35) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 70% at 22% 80%, rgba(252,211,77,0.3) 0%, transparent 100%),
+    radial-gradient(ellipse 65% 60% at 55% 15%, rgba(255,107,53,0.25) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 65% at 78% 72%, rgba(232,146,124,0.2) 0%, transparent 100%),
+    radial-gradient(ellipse 55% 60% at 90% 30%, rgba(245,158,11,0.22) 0%, transparent 100%),
+    #faf6f1;
+}
+.mesh-community-vivid {
+  background:
+    radial-gradient(ellipse 80% 70% at 5% 20%, rgba(232,146,124,0.55) 0%, transparent 100%),
+    radial-gradient(ellipse 65% 75% at 20% 85%, rgba(252,211,77,0.5) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 65% at 52% 10%, rgba(255,107,53,0.45) 0%, transparent 100%),
+    radial-gradient(ellipse 75% 70% at 80% 75%, rgba(232,146,124,0.38) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 65% at 92% 25%, rgba(245,158,11,0.4) 0%, transparent 100%),
+    #f5f0eb;
+}
+
+/* Tools — dark base, subtle functional accent glows */
+.mesh-tools {
+  background:
+    radial-gradient(ellipse 70% 60% at 10% 20%, rgba(45,212,122,0.2) 0%, transparent 100%),
+    radial-gradient(ellipse 55% 65% at 30% 80%, rgba(59,130,246,0.18) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 55% at 50% 15%, rgba(170,255,0,0.12) 0%, transparent 100%),
+    radial-gradient(ellipse 65% 60% at 75% 70%, rgba(6,182,212,0.15) 0%, transparent 100%),
+    radial-gradient(ellipse 50% 55% at 90% 30%, rgba(233,69,96,0.1) 0%, transparent 100%),
+    #0a0a0f;
+}
+.mesh-tools-vivid {
+  background:
+    radial-gradient(ellipse 75% 65% at 8% 18%, rgba(45,212,122,0.4) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 70% at 28% 82%, rgba(59,130,246,0.35) 0%, transparent 100%),
+    radial-gradient(ellipse 65% 60% at 48% 12%, rgba(170,255,0,0.25) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 65% at 78% 72%, rgba(6,182,212,0.3) 0%, transparent 100%),
+    radial-gradient(ellipse 55% 60% at 92% 28%, rgba(233,69,96,0.2) 0%, transparent 100%),
+    #08080c;
+}
+
+/* Meetups — mid warm base, organic coral/seasonal pools */
+.mesh-meetups {
+  background:
+    radial-gradient(ellipse 75% 65% at 10% 25%, rgba(255,107,53,0.3) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 70% at 25% 80%, rgba(232,146,124,0.28) 0%, transparent 100%),
+    radial-gradient(ellipse 65% 60% at 55% 18%, rgba(252,211,77,0.22) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 65% at 80% 70%, rgba(245,158,11,0.25) 0%, transparent 100%),
+    radial-gradient(ellipse 55% 60% at 88% 30%, rgba(45,212,122,0.15) 0%, transparent 100%),
+    #f5f0eb;
+}
+.mesh-meetups-vivid {
+  background:
+    radial-gradient(ellipse 80% 70% at 8% 20%, rgba(255,107,53,0.5) 0%, transparent 100%),
+    radial-gradient(ellipse 65% 75% at 22% 82%, rgba(232,146,124,0.45) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 65% at 52% 12%, rgba(252,211,77,0.38) 0%, transparent 100%),
+    radial-gradient(ellipse 75% 70% at 82% 72%, rgba(245,158,11,0.42) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 65% at 90% 25%, rgba(45,212,122,0.28) 0%, transparent 100%),
+    #f0ebe5;
+}
+
+/* DLS — light refined base, lavender/rose/cream pools */
+.mesh-dls {
+  background:
+    radial-gradient(ellipse 75% 65% at 8% 20%, rgba(139,92,246,0.25) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 70% at 20% 82%, rgba(167,139,250,0.2) 0%, transparent 100%),
+    radial-gradient(ellipse 65% 60% at 55% 15%, rgba(232,146,124,0.18) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 65% at 80% 72%, rgba(250,204,21,0.15) 0%, transparent 100%),
+    radial-gradient(ellipse 55% 60% at 90% 30%, rgba(220,38,38,0.12) 0%, transparent 100%),
+    #faf8f5;
+}
+.mesh-dls-vivid {
+  background:
+    radial-gradient(ellipse 80% 70% at 5% 15%, rgba(139,92,246,0.45) 0%, transparent 100%),
+    radial-gradient(ellipse 65% 75% at 18% 85%, rgba(167,139,250,0.38) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 65% at 52% 10%, rgba(232,146,124,0.32) 0%, transparent 100%),
+    radial-gradient(ellipse 75% 70% at 82% 75%, rgba(250,204,21,0.28) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 65% at 92% 25%, rgba(220,38,38,0.22) 0%, transparent 100%),
+    #f5f2ed;
 }

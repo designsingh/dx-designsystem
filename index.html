@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesignX + DLS — Design System</title>
+<title>DesignX — Design System</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -14,13 +14,11 @@
   <div class="container topnav-inner">
     <div class="nav-brand">Design<span>X</span> System</div>
     <div class="nav-links">
-      <a class="nav-link active" href="index.html">Positioning</a>
-      <a class="nav-link" href="designx.html">DesignX Dark</a>
-      <a class="nav-link" href="dls.html">DLS Light</a>
+      <a class="nav-link active" href="index.html">Brand</a>
+      <a class="nav-link" href="foundations.html">Foundations</a>
       <a class="nav-link" href="components.html">Components</a>
-      <a class="nav-link" href="initiatives.html">Initiatives</a>
+      <a class="nav-link" href="expressions.html">Expressions</a>
       <a class="nav-link" href="archetypes.html">Archetypes</a>
-      <a class="nav-link" href="spectrum.html">Spectrum</a>
     </div>
   </div>
 </nav>
@@ -30,45 +28,98 @@
 <!-- ════════════════════════════════════════════════════════════════════ -->
 <div class="section section-dark" style="padding-top:80px;padding-bottom:48px;">
 <div class="container">
-  <div class="sec-label" style="color:var(--ink3);">Design System v2 &middot; Feb 2026</div>
-  <div style="font-weight:900;font-size:56px;text-transform:uppercase;letter-spacing:-0.05em;line-height:0.88;margin-bottom:20px;">Two Brands<br><span class="grad-text-spectrum">One System</span></div>
-  <div class="sec-desc" style="color:var(--ink2);max-width:640px;">DesignX is the platform — dark, systematic, tool-oriented. DLS is the conference — light, maximalist, editorial. They share DNA but express it completely differently.</div>
+  <div class="sec-label" style="color:var(--ink3);">Design System v3 &middot; Feb 2026</div>
+  <div style="font-weight:900;font-size:56px;text-transform:uppercase;letter-spacing:-0.05em;line-height:0.88;margin-bottom:20px;">One Brand<br><span class="grad-text-spectrum">Four Expressions</span></div>
+  <div class="sec-desc" style="color:var(--ink2);max-width:640px;">DesignX is the corporation — the shared DNA that connects everything. Under it sit four product expressions: Community, Tools, Meetups, and DLS. They share typography, spacing, and green accent — but express it through distinct personalities.</div>
   <div class="flex gap-16 flex-wrap mb-48">
-    <div class="btn btn-primary">Explore System</div>
+    <a class="btn btn-primary" href="foundations.html">Explore Foundations</a>
     <a class="btn btn-secondary" href="components.html">View Components</a>
   </div>
 </div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════════════ -->
-<!-- POSITIONING                                                         -->
+<!-- BRAND ARCHITECTURE                                                  -->
 <!-- ════════════════════════════════════════════════════════════════════ -->
 <div class="section section-dark" style="padding-top:0;">
 <div class="container">
 
-  <div class="sub-header" style="color:var(--ink3);">Brand Positioning</div>
+  <div class="sub-header" style="color:var(--ink3);">Brand Architecture</div>
 
-  <div class="g2 mb-48">
-    <div>
-      <div style="font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:-0.03em;margin-bottom:12px;">DesignX Platform</div>
-      <div style="font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:16px;">The professional platform for design leaders. Dark mode, systematic UI, data-driven tools. Home to Jobs, Salary insights, The Stack (AI tools), Community events, and the Newsletter.</div>
-      <div class="flex gap-8 flex-wrap">
-        <span class="tag tag-dx">Dark Mode</span>
-        <span class="tag tag-dx">DM Sans Display</span>
-        <span class="tag tag-dx">JetBrains Mono Data</span>
-        <span class="tag tag-dx">Glass + Grain</span>
+  <!-- Architecture Diagram -->
+  <div class="card mb-48" style="padding:32px;overflow:hidden;">
+    <!-- Master Brand -->
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="font-weight:900;font-size:28px;text-transform:uppercase;letter-spacing:-0.03em;">DESIGN<span class="grad-text">X</span></div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:0.12em;margin-top:4px;">Corporation · Master Brand</div>
+    </div>
+    <!-- Connecting line -->
+    <div style="width:2px;height:24px;background:var(--rule);margin:0 auto 24px;"></div>
+    <!-- 4 Expressions -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;">
+      <div style="background:var(--canvas);border:1px solid var(--rule);border-radius:12px;padding:16px;text-align:center;">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--coral);margin:0 auto 8px;"></div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;">Community</div>
+        <div style="font-family:var(--mono);font-size:8px;color:var(--ink3);line-height:1.5;">Slack workspace<br>Web presence<br>Member spotlights</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--coral);margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">Warm · Approachable</div>
+      </div>
+      <div style="background:var(--canvas);border:1px solid var(--rule);border-radius:12px;padding:16px;text-align:center;">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--dx);margin:0 auto 8px;"></div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;">Tools</div>
+        <div style="font-family:var(--mono);font-size:8px;color:var(--ink3);line-height:1.5;">Salary Repo<br>Job Board<br>Tool Stack · Archetypes</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--dx);margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">Dark · Data-Forward</div>
+      </div>
+      <div style="background:var(--canvas);border:1px solid var(--rule);border-radius:12px;padding:16px;text-align:center;">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--warm);margin:0 auto 8px;"></div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;">Meetups</div>
+        <div style="font-family:var(--mono);font-size:8px;color:var(--ink3);line-height:1.5;">Design dinners<br>Casual events<br>Local gatherings</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--warm);margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">Warm · Casual</div>
+      </div>
+      <div style="background:var(--canvas);border:1px solid var(--rule);border-radius:12px;padding:16px;text-align:center;">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--purple);margin:0 auto 8px;"></div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;">DLS</div>
+        <div style="font-family:var(--mono);font-size:8px;color:var(--ink3);line-height:1.5;">Annual conference<br>Premium editorial<br>Bauhaus · Maximalist</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--purple);margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">Light · Editorial</div>
       </div>
     </div>
-    <div>
-      <div style="font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:-0.03em;margin-bottom:12px;">DLS Conference</div>
-      <div style="font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:16px;">Design Leadership Summit — the annual conference in Toronto. Light mode, Bauhaus geometry, editorial typography, risograph print aesthetic. Speaker cards, talk titles, patron/sponsor materials.</div>
-      <div class="flex gap-8 flex-wrap">
-        <span class="tag tag-dls">Light / Cream</span>
-        <span class="tag tag-dls">Instrument Serif</span>
-        <span class="tag tag-dls">Bauhaus Blocks</span>
-        <span class="tag tag-dls">Paper Grain</span>
+  </div>
+
+  <!-- Shared DNA -->
+  <div class="sub-header" style="color:var(--dx);">Shared DNA</div>
+  <div style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:20px;max-width:560px;">Every expression shares these core brand elements. They're the thread that makes everything feel like DesignX, even when the surface personality changes.</div>
+
+  <div class="g4 mb-48">
+    <div class="card"><div class="cb">
+      <div class="cl" style="color:var(--dx);">Typography</div>
+      <div style="font-weight:900;font-size:18px;text-transform:uppercase;letter-spacing:-0.02em;margin:8px 0 4px;">DM Sans</div>
+      <div style="font-family:var(--serif);font-style:italic;font-size:18px;margin-bottom:4px;">Instrument Serif</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--ink3);">IBM Plex Mono</div>
+    </div></div>
+    <div class="card"><div class="cb">
+      <div class="cl" style="color:var(--dx);">Platform Green</div>
+      <div style="display:flex;gap:6px;margin:8px 0;">
+        <div style="width:28px;height:28px;border-radius:6px;background:var(--dx);"></div>
+        <div style="width:28px;height:28px;border-radius:6px;background:var(--dx2);"></div>
+        <div style="width:28px;height:28px;border-radius:6px;background:var(--dx-muted);"></div>
       </div>
-    </div>
+      <div class="cd">Light, not paint. Glows, ambient luminance, subtle borders.</div>
+    </div></div>
+    <div class="card"><div class="cb">
+      <div class="cl" style="color:var(--dx);">8px Grid</div>
+      <div style="display:flex;gap:4px;align-items:flex-end;margin:8px 0;">
+        <div style="width:12px;height:4px;background:var(--glass4);border-radius:2px;"></div>
+        <div style="width:12px;height:8px;background:var(--glass4);border-radius:2px;"></div>
+        <div style="width:12px;height:16px;background:var(--glass4);border-radius:2px;"></div>
+        <div style="width:12px;height:24px;background:var(--glass4);border-radius:2px;"></div>
+        <div style="width:12px;height:32px;background:var(--glass4);border-radius:2px;"></div>
+      </div>
+      <div class="cd">4 · 8 · 12 · 16 · 24 · 32 · 48 · 64</div>
+    </div></div>
+    <div class="card"><div class="cb">
+      <div class="cl" style="color:var(--dx);">Mesh Gradient</div>
+      <div style="height:48px;border-radius:8px;margin:8px 0;overflow:hidden;" class="mesh-dark-vivid"></div>
+      <div class="cd">Shared gradient DNA across dark, warm, and light modes.</div>
+    </div></div>
   </div>
 
   <!-- Golden Rule -->
@@ -82,46 +133,82 @@
     </div>
   </div>
 
-  <!-- Platform Accent — above color worlds -->
-  <div class="sub-header" style="color:var(--dx);">Platform Accent</div>
-  <div style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:16px;max-width:560px;">The DesignX platform accent is green — it signals "you're on DesignX." It sits above the 6 color worlds, which signal content type. Green appears as <strong style="color:var(--ink);">light, not paint</strong>: glows, ambient luminance, subtle borders. Never flat fills on large surfaces.</div>
-  <div class="g5 mb-32">
-    <div class="card dx-glow"><div class="swatch" style="background:var(--dx-deep);"><div><div class="swatch-label" style="color:var(--dx);">Deep Forest</div><div class="swatch-hex" style="color:rgba(45,212,122,.5);">#0A2E1C</div></div></div><div class="cb"><div class="cl" style="color:var(--dx-muted);">Foundation</div><div class="cd">Backgrounds, deep anchoring</div></div></div>
-    <div class="card dx-glow"><div class="swatch" style="background:var(--dx-muted);"><div><div class="swatch-label" style="color:white;">Muted Green</div><div class="swatch-hex" style="color:rgba(255,255,255,.6);">#3A7D5C</div></div></div><div class="cb"><div class="cl" style="color:var(--dx);">Secondary</div><div class="cd">Borders, subtle accents</div></div></div>
-    <div class="card dx-glow"><div class="swatch" style="background:linear-gradient(135deg, var(--dx-deep), var(--dx));"><div><div class="swatch-label" style="color:white;">Signature Mint</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#2DD47A</div></div></div><div class="cb"><div class="cl" style="color:var(--dx);">Primary</div><div class="cd">Brand mark, active states, glows</div></div></div>
-    <div class="card dx-glow"><div class="swatch" style="background:linear-gradient(135deg, var(--dx), var(--dx2));"><div><div class="swatch-label" style="color:#000;">Bright Lime</div><div class="swatch-hex" style="color:rgba(0,0,0,.5);">#B8F26D</div></div></div><div class="cb"><div class="cl" style="color:var(--dx2);">Highlight</div><div class="cd">Data viz, emphasis moments</div></div></div>
-    <div class="card"><div class="swatch" style="background:var(--bg2);border:1px solid rgba(45,212,122,0.15);box-shadow:0 0 40px rgba(45,212,122,0.08);"><div><div class="swatch-label" style="color:var(--dx);">Glow</div><div class="swatch-hex" style="color:rgba(45,212,122,.4);">15-30% opacity</div></div></div><div class="cb"><div class="cl" style="color:var(--dx);">Ambient</div><div class="cd">Box shadows, radial gradients</div></div></div>
+  <!-- Key Design Principles -->
+  <div class="sub-header" style="color:var(--ink3);">Key Principles</div>
+  <div class="g3 mb-48">
+    <div class="specbox" style="border-color:rgba(232,146,124,.15);">
+      <div style="font-weight:700;font-size:11px;margin-bottom:8px;color:var(--coral);">Meetups ≠ Mini-DLS</div>
+      <div style="font-size:11px;color:var(--ink2);line-height:1.7;">Meetups are casual, community-vibe events — design dinners, local gatherings. They're NOT smaller versions of the conference. Warm, approachable, informal.</div>
+    </div>
+    <div class="specbox" style="border-color:rgba(139,92,246,.15);">
+      <div style="font-weight:700;font-size:11px;margin-bottom:8px;color:var(--purple);">No Bauhaus on Dark</div>
+      <div style="font-size:11px;color:var(--ink2);line-height:1.7;">Bauhaus geometry only appears on light/cream surfaces. Dark platform uses glass, grain, and gradients. Instrument Serif on dark is for reveal moments and salary figures only.</div>
+    </div>
+    <div class="specbox" style="border-color:rgba(45,212,122,.15);">
+      <div style="font-weight:700;font-size:11px;margin-bottom:8px;color:var(--dx);">Color Worlds = Content Signatures</div>
+      <div style="font-size:11px;color:var(--ink2);line-height:1.7;">Purple doesn't mean "DLS brand." It means "conference content on the dark platform." Color worlds are how DesignX categorises content — not brand identities.</div>
+    </div>
   </div>
 
-  <!-- Salary vs Platform green distinction -->
-  <div class="specbox mb-48" style="border-color:rgba(45,212,122,.15);">
-    <div style="font-weight:700;font-size:11px;margin-bottom:12px;color:var(--ink);">Platform Green vs. Salary Green</div>
-    <div class="specrow"><span class="sp">Platform Mint</span><span class="sv" style="color:var(--dx);">#2DD47A — cool, cyan-shifted. Ambient glows, UI chrome.</span></div>
-    <div class="specrow"><span class="sp">Salary Neon</span><span class="sv" style="color:var(--neon);">#AAFF00 — warm, yellow-shifted. Data visualisation, salary figures.</span></div>
-    <div style="font-size:10px;color:var(--ink3);margin-top:8px;">They coexist because they serve different roles. Platform green is the shell; Salary green is the content. One is UI chrome, the other is data.</div>
+  <!-- Context Modes -->
+  <div class="sub-header" style="color:var(--ink3);">Three Context Modes</div>
+  <div style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:20px;max-width:560px;">Every component adapts across three surface modes via <code style="font-family:var(--mono);font-size:10px;color:var(--dx);background:var(--glass2);padding:2px 6px;border-radius:4px;">data-mode</code>. Dark for the platform, warm for community/meetups, light for DLS and neutral contexts.</div>
+
+  <div class="g3 mb-48">
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="padding:20px;background:#000000;">
+        <div style="font-weight:700;font-size:13px;color:#ffffff;margin-bottom:4px;">Dark</div>
+        <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.4);">Tools · Platform · Data</div>
+        <div style="display:flex;gap:4px;margin-top:10px;">
+          <div style="flex:1;height:20px;background:#000000;border:1px solid rgba(255,255,255,0.06);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#0A0A0F;border:1px solid rgba(255,255,255,0.06);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#111118;border:1px solid rgba(255,255,255,0.06);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#1a1a24;border:1px solid rgba(255,255,255,0.06);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#242430;border:1px solid rgba(255,255,255,0.06);border-radius:4px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="padding:20px;background:#faf6f1;">
+        <div style="font-weight:700;font-size:13px;color:#1a1a1a;margin-bottom:4px;">Warm</div>
+        <div style="font-family:var(--mono);font-size:9px;color:rgba(26,26,26,0.4);">Community · Meetups</div>
+        <div style="display:flex;gap:4px;margin-top:10px;">
+          <div style="flex:1;height:20px;background:#faf6f1;border:1px solid rgba(26,26,26,0.1);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#f5f0eb;border:1px solid rgba(26,26,26,0.1);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#ede7e0;border:1px solid rgba(26,26,26,0.1);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#e5dfd8;border:1px solid rgba(26,26,26,0.1);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#ddd7cf;border:1px solid rgba(26,26,26,0.1);border-radius:4px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="padding:20px;background:#ffffff;">
+        <div style="font-weight:700;font-size:13px;color:#1a1a1a;margin-bottom:4px;">Light</div>
+        <div style="font-family:var(--mono);font-size:9px;color:rgba(26,26,26,0.4);">DLS · Neutral · Editorial</div>
+        <div style="display:flex;gap:4px;margin-top:10px;">
+          <div style="flex:1;height:20px;background:#ffffff;border:1px solid rgba(26,26,26,0.08);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#faf8f5;border:1px solid rgba(26,26,26,0.08);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#f2efe9;border:1px solid rgba(26,26,26,0.08);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#eae6df;border:1px solid rgba(26,26,26,0.08);border-radius:4px;"></div>
+          <div style="flex:1;height:20px;background:#e0dcd5;border:1px solid rgba(26,26,26,0.08);border-radius:4px;"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 6 Color Worlds -->
   <div class="sub-header" style="color:var(--ink3);">6 Color Worlds</div>
+  <div style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:16px;max-width:560px;">Color worlds are content signatures — how the dark platform categorises content by type. They are NOT brand identities.</div>
   <div class="g6 mb-32">
-    <div class="card"><div class="swatch" style="background:var(--gDLS);"><div><div class="swatch-label" style="color:white;">Conference</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#8B5CF6</div></div></div><div class="cb"><div class="cl" style="color:var(--purple);">Purple</div><div class="cd">DLS talks, speakers on dark platform</div></div></div>
-    <div class="card"><div class="swatch" style="background:var(--gSalary);"><div><div class="swatch-label" style="color:white;">Salary / Data</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#AAFF00</div></div></div><div class="cb"><div class="cl" style="color:var(--neon);">Neon Green</div><div class="cd">Compensation data, salary reports</div></div></div>
-    <div class="card"><div class="swatch" style="background:var(--gJobs);"><div><div class="swatch-label" style="color:white;">Jobs / Hiring</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#3B82F6</div></div></div><div class="cb"><div class="cl" style="color:var(--electric);">Blue-Cyan</div><div class="cd">Job board, hiring, careers</div></div></div>
-    <div class="card"><div class="swatch" style="background:var(--gCommunity);"><div><div class="swatch-label" style="color:white;">Community</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#E8927C</div></div></div><div class="cb"><div class="cl" style="color:var(--coral);">Coral-Gold</div><div class="cd">Events, dinners, spotlights</div></div></div>
-    <div class="card"><div class="swatch" style="background:var(--gStack);"><div><div class="swatch-label" style="color:white;">The Stack</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#e94560</div></div></div><div class="cb"><div class="cl" style="color:var(--crimson);">Crimson-Pink</div><div class="cd">AI tool reviews, tech content</div></div></div>
-    <div class="card"><div class="swatch mesh-light" style="position:relative;"><div><div class="swatch-label" style="color:var(--ink-dark);">Season '26</div><div class="swatch-hex" style="color:var(--ink-dark3);">Mesh</div></div></div><div class="cb"><div class="cl" style="color:var(--ink2);">Multi-Mesh</div><div class="cd">Yearly overarching identity</div></div></div>
+    <div class="card"><div class="swatch" style="background:var(--gDLS);"><div><div class="swatch-label" style="color:white;">Conference</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#8B5CF6</div></div></div><div class="cb"><div class="cl" style="color:var(--purple);">Purple</div><div class="cd">DLS talks, speakers</div></div></div>
+    <div class="card"><div class="swatch" style="background:var(--gSalary);"><div><div class="swatch-label" style="color:white;">Salary</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#AAFF00</div></div></div><div class="cb"><div class="cl" style="color:var(--neon);">Neon Green</div><div class="cd">Compensation data</div></div></div>
+    <div class="card"><div class="swatch" style="background:var(--gJobs);"><div><div class="swatch-label" style="color:white;">Jobs</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#3B82F6</div></div></div><div class="cb"><div class="cl" style="color:var(--electric);">Blue-Cyan</div><div class="cd">Job board, hiring</div></div></div>
+    <div class="card"><div class="swatch" style="background:var(--gCommunity);"><div><div class="swatch-label" style="color:white;">Community</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#E8927C</div></div></div><div class="cb"><div class="cl" style="color:var(--coral);">Coral-Gold</div><div class="cd">Events, spotlights</div></div></div>
+    <div class="card"><div class="swatch" style="background:var(--gStack);"><div><div class="swatch-label" style="color:white;">Stack</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#e94560</div></div></div><div class="cb"><div class="cl" style="color:var(--crimson);">Crimson</div><div class="cd">AI tools, tech</div></div></div>
+    <div class="card"><div class="swatch mesh-light" style="position:relative;"><div><div class="swatch-label" style="color:var(--ink-dark);">Season '26</div><div class="swatch-hex" style="color:var(--ink-dark3);">Mesh</div></div></div><div class="cb"><div class="cl" style="color:var(--ink2);">Multi</div><div class="cd">Yearly identity</div></div></div>
   </div>
 
-  <!-- Color World ≠ Brand Identity -->
-  <div class="specbox mb-48" style="border-color:rgba(139,92,246,.2);">
-    <div style="font-weight:700;font-size:11px;margin-bottom:12px;color:var(--ink);">Color Worlds ≠ Brand Identity</div>
-    <div style="font-size:11px;color:var(--ink2);line-height:1.7;margin-bottom:10px;">Color worlds are how the <strong style="color:var(--ink);">DesignX dark platform</strong> categorises content. They are NOT the brand identity of the content itself.</div>
-    <div class="specrow"><span class="sp">DLS on designleadership.io</span><span class="sv" style="color:var(--ink2);">Cream / Bauhaus / Serif — DLS's own brand. No purple.</span></div>
-    <div class="specrow"><span class="sp">DLS content on app.designx</span><span class="sv" style="color:var(--purple);">Purple glow/gradient — the platform's category signal for conference content.</span></div>
-    <div style="font-size:10px;color:var(--ink3);margin-top:8px;">The purple isn't DLS's identity. It's the DesignX platform saying "this content is conference-related." Same logic applies to all 6 worlds — Salary Neon isn't the Salary tool's brand, it's how salary content is categorised on the dark platform.</div>
-  </div>
-
-  <!-- 5 Archetypes -->
+  <!-- 5 Archetypes Preview -->
   <div class="sub-header" style="color:var(--aAlly);">5 Leadership Archetypes</div>
   <div class="g5 mb-32">
     <div class="acard" style="background:var(--aAlly);" data-name="Ally">
@@ -151,86 +238,12 @@
     </div>
   </div>
 
-  <!-- Typography -->
-  <div class="sub-header" style="color:var(--ink3);">Typography</div>
-  <div class="g3 mb-32">
-    <div class="card"><div class="cb"><div class="cl">Display — DM Sans</div><div style="font-family:var(--sans);font-weight:900;font-size:32px;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.95;margin:10px 0;">Design<br>Leadership</div><div class="cd">Weight 900 &middot; Uppercase &middot; Tight tracking<br>Primary display face on dark</div></div></div>
-    <div class="card"><div class="cb"><div class="cl">Accent — Instrument Serif</div><div style="font-family:var(--serif);font-style:italic;font-size:32px;line-height:1.1;margin:10px 0;">The Architect</div><div class="cd">Italic only &middot; DLS headlines &middot; Archetype reveals<br>Salary figures &middot; Pull quotes</div></div></div>
-    <div class="card"><div class="cb"><div class="cl">Data — JetBrains Mono</div><div style="font-family:var(--mono);font-size:14px;font-weight:800;color:var(--neon);margin:10px 0;">$185,000<br><span style="font-size:9px;color:var(--ink3);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">TOP 10% EARNER</span></div><div class="cd">Weight 700-800 &middot; Labels, data, badges<br>Timestamps, meta, navigation</div></div></div>
-  </div>
-
-  <!-- Textures -->
-  <div class="sub-header" style="color:var(--ink3);">Textures</div>
-  <div class="g4 mb-32">
-    <div class="card"><div style="aspect-ratio:1.5/1;background:var(--bg3);position:relative;" class="grain"><div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl">Film Grain 15%</div><div class="cd">Dark mode default</div></div></div></div>
-    <div class="card"><div style="aspect-ratio:1.5/1;background:var(--bg3);position:relative;" class="grain grain-heavy"><div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl">Film Grain 38%</div><div class="cd">DLS / Light mode</div></div></div></div>
-    <div class="card"><div style="aspect-ratio:1.5/1;background:var(--gStack);position:relative;" class="htd"><div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl" style="color:white;">Halftone Dots</div><div class="cd" style="color:rgba(255,255,255,.6);">4px grid &middot; multiply blend</div></div></div></div>
-    <div class="card"><div style="aspect-ratio:1.5/1;background:var(--cream);position:relative;" class="grain grain-heavy paper"><div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl" style="color:var(--ink-dark);">Paper + Grain</div><div class="cd" style="color:var(--ink-dark3);">Risograph print feel</div></div></div></div>
-  </div>
-
-  <!-- Dark Surfaces -->
-  <div class="sub-header" style="color:var(--ink3);">Dark Surfaces</div>
-  <div class="g6 mb-32">
-    <div style="aspect-ratio:1/1;background:var(--bg);border:1px solid var(--rule);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl">Stage</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink4);">#000000</div></div></div>
-    <div style="aspect-ratio:1/1;background:var(--bg2);border:1px solid var(--rule);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl">Canvas</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink4);">#0A0A0F</div></div></div>
-    <div style="aspect-ratio:1/1;background:var(--bg3);border:1px solid var(--rule);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl">Raised</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink4);">#111118</div></div></div>
-    <div style="aspect-ratio:1/1;background:var(--glass2);border:1px solid var(--rule);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl">Glass 2</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink4);">5% white</div></div></div>
-    <div style="aspect-ratio:1/1;background:var(--glass3);border:1px solid var(--rule);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl">Glass 3</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink4);">8% white</div></div></div>
-    <div style="aspect-ratio:1/1;background:var(--glass4);border:1px solid var(--rule);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl">Glass 4</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink4);">12% white</div></div></div>
-  </div>
-
-  <!-- Light Surfaces -->
-  <div class="sub-header" style="color:var(--ink3);">Light Surfaces</div>
-  <div class="g4 mb-32">
-    <div style="aspect-ratio:1.5/1;background:var(--cream);border:1px solid var(--rule-light);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--ink-dark);">Cream</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink-dark3);">#F0ECE3</div></div></div>
-    <div style="aspect-ratio:1.5/1;background:var(--parchment);border:1px solid var(--rule-light);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--ink-dark);">Parchment</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink-dark3);">#EDE8DE</div></div></div>
-    <div style="aspect-ratio:1.5/1;background:var(--stone);border:1px solid var(--rule-light);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--ink-dark);">Stone</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink-dark3);">#D9D2C7</div></div></div>
-    <div style="aspect-ratio:1.5/1;background:var(--ink-dark);border:1px solid var(--rule-light);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Ink Dark</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.5);">#1a1118</div></div></div>
-  </div>
-
-  <!-- Buttons & Badges -->
-  <div class="sub-header" style="color:var(--ink3);">Buttons</div>
-  <div class="flex gap-16 flex-wrap items-center mb-32">
-    <div class="btn btn-primary">Primary CTA</div>
-    <div class="btn btn-secondary">Secondary</div>
-    <div class="btn btn-accent">Brand Accent</div>
-    <div class="btn btn-ghost">Ghost</div>
-  </div>
-
-  <div class="sub-header" style="color:var(--ink3);">Badges & Tags</div>
-  <div class="flex gap-8 flex-wrap items-center mb-32">
-    <span class="badge-season">&#10022; Season '26</span>
-    <span class="badge-glass">NEW</span>
-    <span class="badge-glass">45 MIN</span>
-    <span class="hot">HOT</span>
-    <span class="jtag">AI</span>
-    <span class="jtag">Staff+</span>
-    <span class="jtag">Design Systems</span>
-    <span class="pill" style="color:var(--violet);border:1px solid rgba(139,92,246,0.3);">DLS 2026</span>
-    <span class="pill" style="color:var(--neon);border:1px solid rgba(170,255,0,0.3);">Top 10%</span>
-    <span class="tag tag-dls">DLS Light</span>
-    <span class="tag tag-dx">DesignX Dark</span>
-    <span class="tag tag-shared">Shared</span>
-    <span class="tag tag-arch">Archetype</span>
-  </div>
-
-  <!-- Bauhaus Palette -->
-  <div class="sub-header" style="color:var(--bRed);">Bauhaus Palette</div>
-  <div class="g6 mb-32">
-    <div style="aspect-ratio:1/1;background:var(--bRed);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Red</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#DC2626</div></div></div>
-    <div style="aspect-ratio:1/1;background:var(--bYellow);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--ink-dark);">Yellow</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink-dark3);">#FACC15</div></div></div>
-    <div style="aspect-ratio:1/1;background:var(--bGreen);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Green</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#4D7C0F</div></div></div>
-    <div style="aspect-ratio:1/1;background:var(--bBlue);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Blue</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#2563EB</div></div></div>
-    <div style="aspect-ratio:1/1;background:var(--bOrange);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Orange</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#EA580C</div></div></div>
-    <div style="aspect-ratio:1/1;background:var(--bPurple);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Purple</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#6D28D9</div></div></div>
-  </div>
-
 </div>
 </div>
 
 <!-- Footer -->
 <div style="padding:32px 0;text-align:center;">
-  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;">DesignX + DLS Design System &middot; v2.0 &middot; Feb 2026</div>
+  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;">DesignX Design System &middot; v3.0 &middot; Feb 2026</div>
 </div>
 
 </body>

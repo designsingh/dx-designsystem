@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundations — DesignX Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-mode="dark">
+
+<!-- ── Navigation ──────────────────────────────────────────────────── -->
+<nav class="topnav">
+  <div class="container topnav-inner">
+    <div class="nav-brand">Design<span>X</span> System</div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Brand</a>
+      <a class="nav-link active" href="foundations.html">Foundations</a>
+      <a class="nav-link" href="components.html">Components</a>
+      <a class="nav-link" href="expressions.html">Expressions</a>
+      <a class="nav-link" href="archetypes.html">Archetypes</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!-- HERO                                                                -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="section section-dark" style="padding-top:80px;padding-bottom:48px;">
+<div class="container">
+  <div class="sec-label" style="color:var(--ink3);">Foundations</div>
+  <div class="sec-title">Tokens &<br><span class="grad-text-spectrum">Primitives</span></div>
+  <div class="sec-desc" style="color:var(--ink2);">The building blocks of the design system. Colors, typography, surfaces, states, textures, and mesh gradients &mdash; everything that makes the four expressions feel like one brand.</div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!-- DATA-MODE: 3-MODE SURFACE SYSTEM                                    -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="section section-dark" style="padding-top:0;">
+<div class="container">
+
+  <div class="sub-header" style="color:var(--dx);">Context Modes</div>
+  <div style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:24px;max-width:560px;">Three surface modes give every component a context-aware identity. Applied via <code style="font-family:var(--mono);font-size:11px;background:var(--glass2);padding:2px 6px;border-radius:4px;">data-mode</code> attribute. Each mode provides 5 surface levels, 4 text levels, borders, and glass tokens.</div>
+
+  <!-- Mode comparison: same card in 3 modes -->
+  <div class="g3 mb-48">
+    <!-- Dark Mode -->
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin-bottom:10px;">Dark Mode</div>
+      <div data-mode="dark" style="background:var(--surface-0);border-radius:14px;padding:20px;border:1px solid var(--border);">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--text-4);margin-bottom:12px;">data-mode="dark"</div>
+        <div style="background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;">
+          <div style="font-weight:700;font-size:13px;color:var(--text-1);margin-bottom:4px;">Card Title</div>
+          <div style="font-size:11px;color:var(--text-2);margin-bottom:10px;">Body text on surface-1</div>
+          <div style="display:flex;gap:8px;">
+            <div style="background:var(--dx);color:#000;font-family:var(--sans);font-weight:700;font-size:11px;padding:6px 14px;border-radius:999px;">Primary</div>
+            <div style="background:var(--glass-3);color:var(--text-2);font-family:var(--sans);font-size:11px;padding:6px 14px;border-radius:999px;border:1px solid var(--border);">Ghost</div>
+          </div>
+        </div>
+        <div style="background:var(--surface-2);border-radius:8px;padding:10px 12px;font-family:var(--mono);font-size:10px;color:var(--text-3);">Surface-2 metadata</div>
+      </div>
+    </div>
+    <!-- Warm Mode -->
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin-bottom:10px;">Warm Mode</div>
+      <div data-mode="warm" style="background:var(--surface-0);border-radius:14px;padding:20px;border:1px solid var(--border);">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--text-4);margin-bottom:12px;">data-mode="warm"</div>
+        <div style="background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;">
+          <div style="font-weight:700;font-size:13px;color:var(--text-1);margin-bottom:4px;">Card Title</div>
+          <div style="font-size:11px;color:var(--text-2);margin-bottom:10px;">Body text on surface-1</div>
+          <div style="display:flex;gap:8px;">
+            <div style="background:var(--dx);color:#000;font-family:var(--sans);font-weight:700;font-size:11px;padding:6px 14px;border-radius:999px;">Primary</div>
+            <div style="background:var(--glass-3);color:var(--text-2);font-family:var(--sans);font-size:11px;padding:6px 14px;border-radius:999px;border:1px solid var(--border);">Ghost</div>
+          </div>
+        </div>
+        <div style="background:var(--surface-2);border-radius:8px;padding:10px 12px;font-family:var(--mono);font-size:10px;color:var(--text-3);">Surface-2 metadata</div>
+      </div>
+    </div>
+    <!-- Light Mode -->
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin-bottom:10px;">Light Mode</div>
+      <div data-mode="light" style="background:var(--surface-0);border-radius:14px;padding:20px;border:1px solid var(--border);">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--text-4);margin-bottom:12px;">data-mode="light"</div>
+        <div style="background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;">
+          <div style="font-weight:700;font-size:13px;color:var(--text-1);margin-bottom:4px;">Card Title</div>
+          <div style="font-size:11px;color:var(--text-2);margin-bottom:10px;">Body text on surface-1</div>
+          <div style="display:flex;gap:8px;">
+            <div style="background:var(--dx);color:#000;font-family:var(--sans);font-weight:700;font-size:11px;padding:6px 14px;border-radius:999px;">Primary</div>
+            <div style="background:var(--glass-3);color:var(--text-2);font-family:var(--sans);font-size:11px;padding:6px 14px;border-radius:999px;border:1px solid var(--border);">Ghost</div>
+          </div>
+        </div>
+        <div style="background:var(--surface-2);border-radius:8px;padding:10px 12px;font-family:var(--mono);font-size:10px;color:var(--text-3);">Surface-2 metadata</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5-Level Surface System ────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">5-Level Surface System</div>
+
+  <!-- Dark Surfaces -->
+  <div style="font-weight:700;font-size:12px;margin-bottom:12px;">Dark Surfaces</div>
+  <div data-mode="dark" class="g5 mb-24">
+    <div style="aspect-ratio:1/1;background:var(--surface-0);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 0</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#000000</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-1);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 1</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#0A0A0F</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 2</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#111118</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-3);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 3</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#1a1a24</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-4);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 4</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#242430</div></div></div>
+  </div>
+
+  <!-- Warm Surfaces -->
+  <div style="font-weight:700;font-size:12px;margin-bottom:12px;">Warm Surfaces</div>
+  <div data-mode="warm" class="g5 mb-24">
+    <div style="aspect-ratio:1/1;background:var(--surface-0);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 0</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#faf6f1</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-1);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 1</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#f5f0eb</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 2</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#ede7e0</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-3);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 3</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#e5dfd8</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-4);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 4</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#ddd7cf</div></div></div>
+  </div>
+
+  <!-- Light Surfaces -->
+  <div style="font-weight:700;font-size:12px;margin-bottom:12px;">Light Surfaces</div>
+  <div data-mode="light" class="g5 mb-48">
+    <div style="aspect-ratio:1/1;background:var(--surface-0);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 0</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#ffffff</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-1);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 1</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#faf8f5</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 2</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#f2efe9</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-3);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 3</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#eae6df</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--surface-4);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--text-3);">Surface 4</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-4);">#e0dcd5</div></div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- TYPOGRAPHY                                                      -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <div class="sub-header" style="color:var(--ink3);">Typography</div>
+  <div class="g3 mb-32">
+    <div class="card"><div class="cb"><div class="cl">Display &mdash; DM Sans</div><div style="font-family:var(--sans);font-weight:900;font-size:32px;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.95;margin:10px 0;">Design<br>Leadership</div><div class="cd">Weight 900 &middot; Uppercase &middot; Tight tracking<br>Primary display face across all expressions</div></div></div>
+    <div class="card"><div class="cb"><div class="cl">Accent &mdash; Instrument Serif</div><div style="font-family:var(--serif);font-style:italic;font-size:32px;line-height:1.1;margin:10px 0;">The Architect</div><div class="cd">Italic only &middot; Reveal moments<br>Salary figures &middot; Pull quotes</div></div></div>
+    <div class="card"><div class="cb"><div class="cl">Data &mdash; JetBrains Mono</div><div style="font-family:var(--mono);font-size:14px;font-weight:800;color:var(--neon);margin:10px 0;">$185,000<br><span style="font-size:9px;color:var(--ink3);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">TOP 10% EARNER</span></div><div class="cd">Weight 700-800 &middot; Labels, data, badges<br>Timestamps, meta, navigation</div></div></div>
+  </div>
+
+  <!-- Type Scale -->
+  <div style="font-weight:700;font-size:12px;margin-bottom:16px;">Type Scale</div>
+  <div class="specbox mb-48">
+    <div class="specrow"><span class="sp">Hero</span><span class="sv"><span style="font-weight:900;font-size:18px;text-transform:uppercase;letter-spacing:-0.04em;">56px / 900 / -0.05em</span></span></div>
+    <div class="specrow"><span class="sp">Section Title</span><span class="sv"><span style="font-weight:900;font-size:16px;text-transform:uppercase;letter-spacing:-0.04em;">42px / 900 / -0.04em</span></span></div>
+    <div class="specrow"><span class="sp">Subsection</span><span class="sv"><span style="font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:-0.03em;">24px / 900 / -0.03em</span></span></div>
+    <div class="specrow"><span class="sp">Body</span><span class="sv">14px / 400 / 1.7 line-height</span></div>
+    <div class="specrow"><span class="sp">Label (mono)</span><span class="sv"><span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.08em;">10px / 700 / 0.08em</span></span></div>
+    <div class="specrow"><span class="sp">Micro (mono)</span><span class="sv"><span style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.06em;">9px / 700 / 0.06em</span></span></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- COLORS                                                          -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+
+  <!-- Platform Accent -->
+  <div class="sub-header" style="color:var(--dx);">Platform Accent</div>
+  <div style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:16px;max-width:560px;">The DesignX corporate accent. Green signals "you're on DesignX." Appears as <strong style="color:var(--ink);">light, not paint</strong>: glows, ambient luminance, subtle borders. Never flat fills on large surfaces.</div>
+  <div class="g5 mb-32">
+    <div class="card dx-glow"><div class="swatch" style="background:var(--dx-deep);"><div><div class="swatch-label" style="color:var(--dx);">Deep Forest</div><div class="swatch-hex" style="color:rgba(45,212,122,.5);">#0A2E1C</div></div></div><div class="cb"><div class="cl" style="color:var(--dx-muted);">Foundation</div><div class="cd">Backgrounds, anchoring</div></div></div>
+    <div class="card dx-glow"><div class="swatch" style="background:var(--dx-muted);"><div><div class="swatch-label" style="color:white;">Muted</div><div class="swatch-hex" style="color:rgba(255,255,255,.6);">#3A7D5C</div></div></div><div class="cb"><div class="cl" style="color:var(--dx);">Secondary</div><div class="cd">Borders, accents</div></div></div>
+    <div class="card dx-glow"><div class="swatch" style="background:linear-gradient(135deg, var(--dx-deep), var(--dx));"><div><div class="swatch-label" style="color:white;">Signature Mint</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#2DD47A</div></div></div><div class="cb"><div class="cl" style="color:var(--dx);">Primary</div><div class="cd">Brand mark, active states</div></div></div>
+    <div class="card dx-glow"><div class="swatch" style="background:linear-gradient(135deg, var(--dx), var(--dx2));"><div><div class="swatch-label" style="color:#000;">Bright Lime</div><div class="swatch-hex" style="color:rgba(0,0,0,.5);">#B8F26D</div></div></div><div class="cb"><div class="cl" style="color:var(--dx2);">Highlight</div><div class="cd">Data viz, emphasis</div></div></div>
+    <div class="card"><div class="swatch" style="background:var(--bg2);border:1px solid rgba(45,212,122,0.15);box-shadow:0 0 40px rgba(45,212,122,0.08);"><div><div class="swatch-label" style="color:var(--dx);">Glow</div><div class="swatch-hex" style="color:rgba(45,212,122,.4);">15-30% opacity</div></div></div><div class="cb"><div class="cl" style="color:var(--dx);">Ambient</div><div class="cd">Shadows, radial glow</div></div></div>
+  </div>
+
+  <!-- 6 Color Worlds -->
+  <div class="sub-header" style="color:var(--ink3);">6 Color Worlds (Content Signatures)</div>
+  <div class="g6 mb-32">
+    <div class="card"><div class="swatch" style="background:var(--gDLS);"><div><div class="swatch-label" style="color:white;">Conference</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#8B5CF6</div></div></div><div class="cb"><div class="cl" style="color:var(--purple);">Purple</div><div class="cd">DLS talks, speakers</div></div></div>
+    <div class="card"><div class="swatch" style="background:var(--gSalary);"><div><div class="swatch-label" style="color:white;">Salary</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#AAFF00</div></div></div><div class="cb"><div class="cl" style="color:var(--neon);">Neon Green</div><div class="cd">Compensation data</div></div></div>
+    <div class="card"><div class="swatch" style="background:var(--gJobs);"><div><div class="swatch-label" style="color:white;">Jobs</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#3B82F6</div></div></div><div class="cb"><div class="cl" style="color:var(--electric);">Blue-Cyan</div><div class="cd">Job board, hiring</div></div></div>
+    <div class="card"><div class="swatch" style="background:var(--gCommunity);"><div><div class="swatch-label" style="color:white;">Community</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#E8927C</div></div></div><div class="cb"><div class="cl" style="color:var(--coral);">Coral-Gold</div><div class="cd">Events, dinners</div></div></div>
+    <div class="card"><div class="swatch" style="background:var(--gStack);"><div><div class="swatch-label" style="color:white;">The Stack</div><div class="swatch-hex" style="color:rgba(255,255,255,.7);">#e94560</div></div></div><div class="cb"><div class="cl" style="color:var(--crimson);">Crimson-Pink</div><div class="cd">Tool reviews, tech</div></div></div>
+    <div class="card"><div class="swatch mesh-light" style="position:relative;"><div><div class="swatch-label" style="color:var(--ink-dark);">Season '26</div><div class="swatch-hex" style="color:var(--ink-dark3);">Mesh</div></div></div><div class="cb"><div class="cl" style="color:var(--ink2);">Multi-Mesh</div><div class="cd">Yearly identity</div></div></div>
+  </div>
+
+  <!-- Bauhaus Palette -->
+  <div class="sub-header" style="color:var(--bRed);">Bauhaus Palette (DLS only)</div>
+  <div class="g6 mb-48">
+    <div style="aspect-ratio:1/1;background:var(--bRed);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Red</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#DC2626</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--bYellow);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--ink-dark);">Yellow</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink-dark3);">#FACC15</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--bGreen);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Green</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#4D7C0F</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--bBlue);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Blue</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#2563EB</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--bOrange);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Orange</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#EA580C</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--bPurple);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Purple</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#6D28D9</div></div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- MESH GRADIENTS                                                  -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <div class="sub-header" style="color:var(--ink3);">Expression Mesh Gradients</div>
+  <div style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:20px;max-width:560px;">Each expression has its own mesh gradient personality. Same layered radial-gradient technique, different color pools and base tones.</div>
+
+  <div class="g4 mb-32">
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-community" style="aspect-ratio:16/10;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:var(--ink-dark);">Community</div><div class="cd" style="color:var(--ink-dark3);">Warm cream, coral/gold</div></div>
+      </div>
+    </div>
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-tools" style="aspect-ratio:16/10;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:rgba(255,255,255,.8);">Tools</div><div class="cd" style="color:rgba(255,255,255,.4);">Dark base, subtle accents</div></div>
+      </div>
+    </div>
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-meetups" style="aspect-ratio:16/10;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:var(--ink-dark);">Meetups</div><div class="cd" style="color:var(--ink-dark3);">Warm mid, organic coral</div></div>
+      </div>
+    </div>
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-dls" style="aspect-ratio:16/10;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:var(--ink-dark);">DLS</div><div class="cd" style="color:var(--ink-dark3);">Light refined, lavender</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vivid Variants -->
+  <div style="font-weight:700;font-size:12px;margin-bottom:12px;">Vivid Variants (heroes, launches)</div>
+  <div class="g4 mb-32">
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-community-vivid" style="aspect-ratio:16/10;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:var(--ink-dark);">Community Vivid</div></div>
+      </div>
+    </div>
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-tools-vivid" style="aspect-ratio:16/10;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:rgba(255,255,255,.9);">Tools Vivid</div></div>
+      </div>
+    </div>
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-meetups-vivid" style="aspect-ratio:16/10;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:var(--ink-dark);">Meetups Vivid</div></div>
+      </div>
+    </div>
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-dls-vivid" style="aspect-ratio:16/10;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:var(--ink-dark);">DLS Vivid</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Generic 3-Tier Mesh -->
+  <div style="font-weight:700;font-size:12px;margin-bottom:12px;">Generic 3-Tier Mesh (utility)</div>
+  <div class="g3 mb-48">
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-dark" style="aspect-ratio:16/8;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:rgba(255,255,255,.8);">Dark</div><div class="cd" style="color:rgba(255,255,255,.4);">Platform, app contexts</div></div>
+      </div>
+    </div>
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-mid" style="aspect-ratio:16/8;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:var(--ink-dark);">Mid</div><div class="cd" style="color:var(--ink-dark3);">Emails, shared contexts</div></div>
+      </div>
+    </div>
+    <div class="card" style="overflow:hidden;">
+      <div class="mesh-light" style="aspect-ratio:16/8;border-radius:0;position:relative;display:flex;align-items:flex-end;padding:12px;">
+        <div><div class="cl" style="color:var(--ink-dark);">Light</div><div class="cd" style="color:var(--ink-dark3);">Conference, events</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- TEXTURES                                                        -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <div class="sub-header" style="color:var(--ink3);">Textures</div>
+  <div class="g4 mb-32">
+    <div class="card"><div style="aspect-ratio:1.5/1;background:var(--bg3);position:relative;" class="grain"><div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl">Film Grain 15%</div><div class="cd">Dark mode default</div></div></div></div>
+    <div class="card"><div style="aspect-ratio:1.5/1;background:var(--bg3);position:relative;" class="grain grain-heavy"><div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl">Film Grain 38%</div><div class="cd">DLS / Light mode</div></div></div></div>
+    <div class="card"><div style="aspect-ratio:1.5/1;background:var(--gStack);position:relative;" class="htd"><div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl" style="color:white;">Halftone Dots</div><div class="cd" style="color:rgba(255,255,255,.6);">4px grid &middot; multiply</div></div></div></div>
+    <div class="card"><div style="aspect-ratio:1.5/1;background:var(--cream);position:relative;" class="grain grain-heavy paper"><div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl" style="color:var(--ink-dark);">Paper + Grain</div><div class="cd" style="color:var(--ink-dark3);">Risograph feel</div></div></div></div>
+  </div>
+
+  <!-- CSS Technique Reference -->
+  <div class="specbox mb-48">
+    <div style="font-weight:700;font-size:11px;margin-bottom:8px;color:var(--ink);">CSS Technique Reference</div>
+    <div class="specrow"><span class="sp">Film grain</span><span class="sv">SVG feTurbulence, baseFrequency 0.9, 4 octaves</span></div>
+    <div class="specrow"><span class="sp">Halftone dots</span><span class="sv">radial-gradient(circle, #000 1.5px, transparent 1.5px) 4px 4px</span></div>
+    <div class="specrow"><span class="sp">Photo pipeline</span><span class="sv">grayscale(1) contrast(1.4) brightness(1.1) + multiply</span></div>
+    <div class="specrow"><span class="sp">Glow</span><span class="sv">border-radius:50% + filter:blur(60px) + opacity:0.15</span></div>
+    <div class="specrow"><span class="sp">Glass</span><span class="sv">rgba(0,0,0,.92) + backdrop-filter:blur(24px)</span></div>
+    <div class="specrow"><span class="sp">Paper</span><span class="sv">repeating-linear-gradient 2px lines + opacity:0.04</span></div>
+    <div class="specrow"><span class="sp">Bauhaus blocks</span><span class="sv">Absolute positioned, axis-aligned, 0.6-0.95 opacity</span></div>
+    <div class="specrow"><span class="sp">Easing</span><span class="sv">cubic-bezier(0.16, 1, 0.3, 1)</span></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- INTERACTIVE STATES                                              -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <div class="sub-header" style="color:var(--dx);">Interactive States</div>
+  <div style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:24px;max-width:560px;">Every interactive component has 5 states: default, hover, active, focus-visible, and disabled. States work identically across all three modes.</div>
+
+  <!-- Buttons -->
+  <div style="font-weight:700;font-size:12px;margin-bottom:16px;">Buttons</div>
+  <div class="flex gap-16 flex-wrap items-center mb-16">
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-accent">Accent</button>
+    <button class="btn btn-ghost">Ghost</button>
+  </div>
+  <div class="flex gap-16 flex-wrap items-center mb-32">
+    <button class="btn btn-primary" disabled>Primary (disabled)</button>
+    <button class="btn btn-secondary" disabled>Secondary (disabled)</button>
+    <button class="btn btn-accent" disabled>Accent (disabled)</button>
+    <button class="btn btn-ghost" disabled>Ghost (disabled)</button>
+  </div>
+
+  <!-- Inputs -->
+  <div style="font-weight:700;font-size:12px;margin-bottom:16px;">Inputs</div>
+  <div class="g3 mb-32">
+    <div>
+      <div class="cl" style="margin-bottom:6px;">Default</div>
+      <input type="text" class="input" placeholder="Type something..." disabled style="pointer-events:none;">
+    </div>
+    <div>
+      <div class="cl" style="margin-bottom:6px;">Search</div>
+      <input type="text" class="input input-search" placeholder="Search..." disabled style="pointer-events:none;">
+    </div>
+    <div>
+      <div class="cl" style="margin-bottom:6px;">Error</div>
+      <input type="text" class="input error" value="Invalid entry" disabled style="pointer-events:none;">
+    </div>
+  </div>
+
+  <!-- Badges & Tags -->
+  <div style="font-weight:700;font-size:12px;margin-bottom:16px;">Badges & Tags</div>
+  <div class="flex gap-8 flex-wrap items-center mb-32">
+    <span class="badge-season">&#10022; Season '26</span>
+    <span class="badge-glass">NEW</span>
+    <span class="badge-glass">45 MIN</span>
+    <span class="hot">HOT</span>
+    <span class="jtag">AI</span>
+    <span class="jtag">Staff+</span>
+    <span class="pill" style="color:var(--violet);border:1px solid rgba(139,92,246,0.3);">DLS 2026</span>
+    <span class="pill" style="color:var(--neon);border:1px solid rgba(170,255,0,0.3);">Top 10%</span>
+    <span class="tag tag-dls">DLS</span>
+    <span class="tag tag-dx">DesignX</span>
+  </div>
+
+  <!-- Mode Toggle -->
+  <div style="font-weight:700;font-size:12px;margin-bottom:16px;">Mode Toggle</div>
+  <div class="mb-32">
+    <div class="mode-toggle">
+      <button class="mode-toggle-btn active">Dark</button>
+      <button class="mode-toggle-btn">Warm</button>
+      <button class="mode-toggle-btn">Light</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- SPACING & RADIUS                                                -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <div class="sub-header" style="color:var(--ink3);">Spacing Scale (8px grid)</div>
+  <div class="specbox mb-32">
+    <div class="specrow"><span class="sp">--sp1</span><span class="sv">4px</span></div>
+    <div class="specrow"><span class="sp">--sp2</span><span class="sv">8px</span></div>
+    <div class="specrow"><span class="sp">--sp3</span><span class="sv">12px</span></div>
+    <div class="specrow"><span class="sp">--sp4</span><span class="sv">16px</span></div>
+    <div class="specrow"><span class="sp">--sp5</span><span class="sv">24px</span></div>
+    <div class="specrow"><span class="sp">--sp6</span><span class="sv">32px</span></div>
+    <div class="specrow"><span class="sp">--sp7</span><span class="sv">48px</span></div>
+    <div class="specrow"><span class="sp">--sp8</span><span class="sv">64px</span></div>
+  </div>
+
+  <div class="sub-header" style="color:var(--ink3);">Border Radius Scale</div>
+  <div class="flex gap-16 items-center mb-48">
+    <div style="width:48px;height:48px;background:var(--glass3);border:1px solid var(--rule);border-radius:var(--r1);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:var(--ink3);">4</div>
+    <div style="width:48px;height:48px;background:var(--glass3);border:1px solid var(--rule);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:var(--ink3);">8</div>
+    <div style="width:48px;height:48px;background:var(--glass3);border:1px solid var(--rule);border-radius:var(--r3);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:var(--ink3);">12</div>
+    <div style="width:48px;height:48px;background:var(--glass3);border:1px solid var(--rule);border-radius:var(--r4);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:var(--ink3);">16</div>
+    <div style="width:48px;height:48px;background:var(--glass3);border:1px solid var(--rule);border-radius:var(--r5);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:var(--ink3);">20</div>
+    <div style="width:48px;height:48px;background:var(--glass3);border:1px solid var(--rule);border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:var(--ink3);">pill</div>
+  </div>
+
+</div>
+</div>
+
+<!-- Footer -->
+<div style="padding:32px 0;text-align:center;">
+  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;">DesignX Design System &middot; Foundations &middot; v3.0</div>
+</div>
+
+</body>
+</html>

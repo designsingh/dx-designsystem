@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expressions — DesignX Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────────────── -->
+<nav class="topnav">
+  <div class="container topnav-inner">
+    <div class="nav-brand">Design<span>X</span> System</div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Brand</a>
+      <a class="nav-link" href="foundations.html">Foundations</a>
+      <a class="nav-link" href="components.html">Components</a>
+      <a class="nav-link active" href="expressions.html">Expressions</a>
+      <a class="nav-link" href="archetypes.html">Archetypes</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!-- INTRO                                                                -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="section section-dark">
+<div class="container">
+
+  <div class="sec-label" style="color:var(--ink3);">One Brand, Four Expressions</div>
+  <div class="sec-title">Expression<br>Playbooks</div>
+  <div class="sec-desc" style="color:var(--ink2);">How each product expression looks in practice — personality, surface mode, accent colors, mesh gradient, and design rules. Everything someone needs to design for a specific expression.</div>
+
+  <div class="specbox mb-48" style="border-color:rgba(45,212,122,.15);">
+    <div style="font-weight:700;font-size:11px;margin-bottom:8px;color:var(--ink);">How to use this page</div>
+    <div style="font-size:11px;color:var(--ink2);line-height:1.7;">Each expression section shows: <strong style="color:var(--ink);">Identity</strong> (mood, surface mode, accent colors, mesh variant), <strong style="color:var(--ink);">Sample Layout</strong> (how a page looks), <strong style="color:var(--ink);">Marketing Assets</strong> (social cards, hero sections), and <strong style="color:var(--ink);">Design Rules</strong> (what's allowed, what's prohibited).</div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- 1. COMMUNITY — Warm, Approachable                                 -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+
+  <div class="init-divider"></div>
+
+  <div class="init-bar" style="background:var(--gCommunity);"></div>
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+    <div style="width:10px;height:10px;border-radius:50%;background:var(--coral);"></div>
+    <div style="font-weight:900;font-size:28px;text-transform:uppercase;letter-spacing:-0.03em;">Community</div>
+  </div>
+  <div style="font-size:13px;color:var(--ink2);margin-bottom:32px;">Slack workspace, web presence, member spotlights, event listings. Warm, approachable, casual — the connective tissue of DesignX.</div>
+
+  <!-- Identity -->
+  <div class="sub-header" style="color:var(--coral);">Identity</div>
+  <div class="init-id">
+    <div>
+      <div class="init-swatch" style="background:#faf6f1;display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-dark3);">data-mode="warm"</div>
+      </div>
+      <div class="init-rule">Surface: Warm cream mode</div>
+    </div>
+    <div>
+      <div class="init-swatch" style="background:var(--bg2);display:flex;gap:8px;align-items:center;justify-content:center;">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--coral);"></div>
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--warm);"></div>
+      </div>
+      <div class="init-rule">Accent: Coral #E8927C + Gold #F59E0B</div>
+    </div>
+    <div>
+      <div class="init-swatch mesh-community" style="border-radius:10px;"></div>
+      <div class="init-rule">Mesh: .mesh-community (warm pools)</div>
+    </div>
+  </div>
+
+  <!-- Sample Layout -->
+  <div class="sub-header" style="color:var(--coral);">Sample Layout — Community Landing</div>
+  <div class="frame" style="border-color:rgba(232,146,124,0.2);">
+    <div class="chrome" style="background:var(--bg3);">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-url">designx.community</div>
+    </div>
+    <div data-mode="warm" style="background:#faf6f1;padding:32px;min-height:300px;">
+      <!-- Warm nav -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;">
+        <div style="font-weight:900;font-size:14px;color:#1a1a1a;">DESIGN<span style="color:var(--dx);">X</span> Community</div>
+        <div style="display:flex;gap:16px;font-size:11px;color:rgba(26,26,26,0.48);">
+          <span>Events</span><span>Members</span><span>Slack</span>
+        </div>
+      </div>
+      <!-- Hero -->
+      <div style="margin-bottom:24px;">
+        <div style="font-weight:900;font-size:28px;text-transform:uppercase;letter-spacing:-0.03em;color:#1a1a1a;line-height:0.95;margin-bottom:8px;">8,000+ Design<br>Leaders</div>
+        <div style="font-size:12px;color:rgba(26,26,26,0.72);margin-bottom:16px;">Join the largest design leadership community. Slack channels, local meetups, shared resources.</div>
+        <div style="display:flex;gap:8px;">
+          <span style="padding:8px 16px;border-radius:999px;background:var(--coral);color:white;font-weight:700;font-size:11px;">Join Slack</span>
+          <span style="padding:8px 16px;border-radius:999px;border:1px solid rgba(26,26,26,0.18);color:#1a1a1a;font-size:11px;">Upcoming Events</span>
+        </div>
+      </div>
+      <!-- Event cards -->
+      <div style="display:flex;gap:12px;">
+        <div style="flex:1;background:#f5f0eb;border:1px solid rgba(26,26,26,0.1);border-radius:10px;padding:14px;">
+          <div style="font-family:var(--mono);font-size:8px;color:rgba(26,26,26,0.4);text-transform:uppercase;letter-spacing:0.1em;">Next Event</div>
+          <div style="font-weight:700;font-size:12px;color:#1a1a1a;margin-top:4px;">Design Dinner — Toronto</div>
+          <div style="font-size:10px;color:rgba(26,26,26,0.48);margin-top:2px;">Mar 15 · 18 spots left</div>
+        </div>
+        <div style="flex:1;background:#f5f0eb;border:1px solid rgba(26,26,26,0.1);border-radius:10px;padding:14px;">
+          <div style="font-family:var(--mono);font-size:8px;color:rgba(26,26,26,0.4);text-transform:uppercase;letter-spacing:0.1em;">Member Spotlight</div>
+          <div style="font-weight:700;font-size:12px;color:#1a1a1a;margin-top:4px;">Sarah Chen — The Architect</div>
+          <div style="font-size:10px;color:rgba(26,26,26,0.48);margin-top:2px;">VP Design · Stripe</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marketing Assets -->
+  <div class="sub-header" style="color:var(--coral);">Marketing Assets</div>
+  <div class="g3 mb-32">
+    <div class="card"><div class="dx-social grain">
+      <div class="glow" style="width:300px;height:300px;background:var(--coral);top:50%;left:30%;transform:translate(-50%,-50%);"></div>
+      <div class="headline">Design<br>Community</div>
+      <div class="subline" style="color:var(--warm);">8,000+ designers</div>
+    </div></div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div class="mesh-community-vivid" style="aspect-ratio:1.91/1;display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;position:relative;z-index:1;">
+          <div style="font-weight:900;font-size:18px;color:#1a1a1a;text-transform:uppercase;letter-spacing:-0.02em;">Join the Community</div>
+          <div style="font-family:var(--mono);font-size:9px;color:rgba(26,26,26,0.5);margin-top:4px;">designx.community</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div class="mesh-community" style="aspect-ratio:1.91/1;display:flex;align-items:flex-end;padding:16px;">
+        <div style="position:relative;z-index:1;">
+          <div style="font-family:var(--mono);font-size:8px;color:rgba(26,26,26,0.4);text-transform:uppercase;letter-spacing:0.12em;">This Week</div>
+          <div style="font-weight:700;font-size:14px;color:#1a1a1a;margin-top:4px;">Design Dinner — NYC</div>
+          <div style="font-size:10px;color:rgba(26,26,26,0.6);margin-top:2px;">March 22 · 24 designers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Rules -->
+  <div class="sub-header" style="color:var(--coral);">Design Rules</div>
+  <div class="specbox mb-48" style="border-color:rgba(232,146,124,.2);">
+    <div class="specrow"><span class="sp">Surface</span><span class="sv" style="color:var(--ink2);">Warm mode (data-mode="warm"). Cream backgrounds, warm accents.</span></div>
+    <div class="specrow"><span class="sp">Accent</span><span class="sv" style="color:var(--coral);">Coral #E8927C primary. Gold #F59E0B secondary.</span></div>
+    <div class="specrow"><span class="sp">Mesh</span><span class="sv" style="color:var(--ink2);">.mesh-community — warm cream base, coral/gold/amber pools</span></div>
+    <div class="specrow"><span class="sp">Tone</span><span class="sv" style="color:var(--ink2);">Welcoming, conversational, warm. Never corporate or cold.</span></div>
+    <div class="specrow"><span class="sp">Headlines</span><span class="sv" style="color:var(--ink2);">DM Sans 700-900, sentence or title case. Less uppercase than Tools.</span></div>
+    <div class="specrow"><span class="sp">Prohibited</span><span class="sv" style="color:var(--crimson);">No Bauhaus blocks. No dark-only layouts. No data-heavy tables.</span></div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- 2. TOOLS — Dark, Data-Forward                                     -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+
+  <div class="init-divider"></div>
+
+  <div class="init-bar" style="background:linear-gradient(90deg, var(--gJobs), var(--gSalary), var(--gStack));"></div>
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+    <div style="width:10px;height:10px;border-radius:50%;background:var(--dx);"></div>
+    <div style="font-weight:900;font-size:28px;text-transform:uppercase;letter-spacing:-0.03em;">Tools</div>
+  </div>
+  <div style="font-size:13px;color:var(--ink2);margin-bottom:32px;">Salary Repo, Job Board, Tool Stack, Archetypes — the data-driven products. Dark platform, systematic UI, per-tool color worlds.</div>
+
+  <!-- Identity -->
+  <div class="sub-header" style="color:var(--dx);">Identity</div>
+  <div class="init-id">
+    <div>
+      <div class="init-swatch" style="background:#000000;display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.4);">data-mode="dark"</div>
+      </div>
+      <div class="init-rule">Surface: Dark mode (pure black)</div>
+    </div>
+    <div>
+      <div class="init-swatch" style="background:var(--bg2);display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap;">
+        <div style="width:24px;height:24px;border-radius:6px;background:var(--electric);"></div>
+        <div style="width:24px;height:24px;border-radius:6px;background:var(--neon);"></div>
+        <div style="width:24px;height:24px;border-radius:6px;background:var(--crimson);"></div>
+        <div style="width:24px;height:24px;border-radius:6px;background:var(--dx);"></div>
+      </div>
+      <div class="init-rule">Per-tool color worlds (blue/green/crimson)</div>
+    </div>
+    <div>
+      <div class="init-swatch mesh-tools" style="border-radius:10px;"></div>
+      <div class="init-rule">Mesh: .mesh-tools (dark, subtle)</div>
+    </div>
+  </div>
+
+  <!-- Per-Tool Color Worlds -->
+  <div class="sub-header" style="color:var(--dx);">Per-Tool Color Worlds</div>
+  <div class="g4 mb-32">
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="height:4px;background:var(--gJobs);"></div>
+      <div class="cb">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--electric);"></div>
+          <div class="cl" style="color:var(--electric);">Job Board</div>
+        </div>
+        <div class="cd">Blue-cyan world. Data rows, salary figures, filter pills.</div>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="height:4px;background:var(--gSalary);"></div>
+      <div class="cb">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--neon);"></div>
+          <div class="cl" style="color:var(--neon);">Salary Repo</div>
+        </div>
+        <div class="cd">Neon green world. Instrument Serif for figures. Data-heavy.</div>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="height:4px;background:var(--gStack);"></div>
+      <div class="cb">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--crimson);"></div>
+          <div class="cl" style="color:var(--crimson);">Tool Stack</div>
+        </div>
+        <div class="cd">Crimson-pink world. AI tool reviews, tech content.</div>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="height:4px;background:linear-gradient(90deg, var(--aAlly), var(--aArch), var(--aPath), var(--aAnch), var(--aCult));"></div>
+      <div class="cb">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--aArch);"></div>
+          <div class="cl" style="color:var(--aArch);">Archetypes</div>
+        </div>
+        <div class="cd">5 archetype colors. Quiz results, profile badges.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Rules -->
+  <div class="sub-header" style="color:var(--dx);">Design Rules</div>
+  <div class="specbox mb-48" style="border-color:rgba(45,212,122,.15);">
+    <div class="specrow"><span class="sp">Surface</span><span class="sv" style="color:var(--ink2);">Dark mode (data-mode="dark"). Pure black base, 5-level surfaces.</span></div>
+    <div class="specrow"><span class="sp">Accent</span><span class="sv" style="color:var(--dx);">Platform green #2DD47A as default. Per-tool color worlds override.</span></div>
+    <div class="specrow"><span class="sp">Mesh</span><span class="sv" style="color:var(--ink2);">.mesh-tools — dark base, subtle accent glows per tool</span></div>
+    <div class="specrow"><span class="sp">Headlines</span><span class="sv" style="color:var(--ink2);">DM Sans 900, uppercase, tight tracking</span></div>
+    <div class="specrow"><span class="sp">Data</span><span class="sv" style="color:var(--neon);">JetBrains Mono 700-800 for figures. Instrument Serif for salary reveals.</span></div>
+    <div class="specrow"><span class="sp">Prohibited</span><span class="sv" style="color:var(--crimson);">No Bauhaus blocks. No light backgrounds. No serif in headlines.</span></div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- 3. MEETUPS — Warm, Casual                                         -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+
+  <div class="init-divider"></div>
+
+  <div class="init-bar" style="background:linear-gradient(90deg, var(--coral), var(--warm), var(--dx-warm));"></div>
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+    <div style="width:10px;height:10px;border-radius:50%;background:var(--warm);"></div>
+    <div style="font-weight:900;font-size:28px;text-transform:uppercase;letter-spacing:-0.03em;">Meetups</div>
+  </div>
+  <div style="font-size:13px;color:var(--ink2);margin-bottom:32px;">Regular casual community events — design dinners, local gatherings, informal workshops. Warm, friendly, approachable. NOT mini-DLS.</div>
+
+  <!-- Identity -->
+  <div class="sub-header" style="color:var(--warm);">Identity</div>
+  <div class="init-id">
+    <div>
+      <div class="init-swatch" style="background:#faf6f1;display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-dark3);">data-mode="warm"</div>
+      </div>
+      <div class="init-rule">Surface: Warm mode (shared with Community)</div>
+    </div>
+    <div>
+      <div class="init-swatch" style="background:var(--bg2);display:flex;gap:8px;align-items:center;justify-content:center;">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--coral);"></div>
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--dx-warm);"></div>
+      </div>
+      <div class="init-rule">Accent: Coral + seasonal warm accents</div>
+    </div>
+    <div>
+      <div class="init-swatch mesh-meetups" style="border-radius:10px;"></div>
+      <div class="init-rule">Mesh: .mesh-meetups (mid, organic)</div>
+    </div>
+  </div>
+
+  <!-- Sample Layout -->
+  <div class="sub-header" style="color:var(--warm);">Sample — Event Invite</div>
+  <div class="g2 mb-32">
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div class="mesh-meetups-vivid" style="aspect-ratio:1.91/1;display:flex;align-items:flex-end;padding:20px;">
+        <div style="position:relative;z-index:1;">
+          <div style="font-family:var(--mono);font-size:8px;color:rgba(26,26,26,0.4);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;">DesignX Meetup</div>
+          <div style="font-weight:900;font-size:22px;color:#1a1a1a;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95;">Design Dinner<br>Toronto</div>
+          <div style="font-size:10px;color:rgba(26,26,26,0.6);margin-top:6px;">March 15, 2026 · 7:00 PM · 24 spots</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div class="mesh-meetups" style="aspect-ratio:1.91/1;display:flex;align-items:flex-end;padding:20px;">
+        <div style="position:relative;z-index:1;">
+          <div style="font-family:var(--mono);font-size:8px;color:rgba(26,26,26,0.4);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;">DesignX Meetup</div>
+          <div style="font-weight:900;font-size:22px;color:#1a1a1a;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95;">Portfolio<br>Workshop</div>
+          <div style="font-size:10px;color:rgba(26,26,26,0.6);margin-top:6px;">April 2, 2026 · 6:30 PM · Virtual</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Rules -->
+  <div class="sub-header" style="color:var(--warm);">Design Rules</div>
+  <div class="specbox mb-48" style="border-color:rgba(245,158,11,.2);">
+    <div class="specrow"><span class="sp">Surface</span><span class="sv" style="color:var(--ink2);">Warm mode. Shares base with Community but distinct in application.</span></div>
+    <div class="specrow"><span class="sp">Accent</span><span class="sv" style="color:var(--coral);">Community coral + seasonal warm accents. Never conference purple.</span></div>
+    <div class="specrow"><span class="sp">Mesh</span><span class="sv" style="color:var(--ink2);">.mesh-meetups — mid warm base, organic pools</span></div>
+    <div class="specrow"><span class="sp">Tone</span><span class="sv" style="color:var(--ink2);">Casual, friendly, informal. Like a dinner invite, not a keynote announcement.</span></div>
+    <div class="specrow"><span class="sp">NOT Mini-DLS</span><span class="sv" style="color:var(--warm);">No Bauhaus geometry. No editorial serif headlines. No premium/exclusive tone.</span></div>
+    <div class="specrow"><span class="sp">Prohibited</span><span class="sv" style="color:var(--crimson);">No Bauhaus blocks. No dark mode. No conference branding. No Instrument Serif headlines.</span></div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- 4. DLS — Premium, Editorial                                       -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+
+  <div class="init-divider"></div>
+
+  <div class="init-bar" style="background:var(--gDLS);"></div>
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+    <div style="width:10px;height:10px;border-radius:50%;background:var(--purple);"></div>
+    <div style="font-weight:900;font-size:28px;text-transform:uppercase;letter-spacing:-0.03em;">DLS</div>
+  </div>
+  <div style="font-size:13px;color:var(--ink2);margin-bottom:32px;">Design Leadership Summit — the annual premium conference in Toronto. Bauhaus geometry, editorial typography, maximalist print aesthetic. Dual identity: purple on the DesignX platform, Bauhaus on its own site.</div>
+
+  <!-- Identity -->
+  <div class="sub-header" style="color:var(--purple);">Identity</div>
+  <div class="init-id">
+    <div>
+      <div class="init-swatch" style="background:var(--cream);display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-dark3);">data-mode="light"</div>
+      </div>
+      <div class="init-rule">Own site: Light/cream (Bauhaus)</div>
+    </div>
+    <div>
+      <div class="init-swatch" style="background:var(--bg2);display:flex;gap:8px;align-items:center;justify-content:center;">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--purple);"></div>
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--violet);"></div>
+      </div>
+      <div class="init-rule">Platform signal: Purple #8B5CF6</div>
+    </div>
+    <div>
+      <div class="init-swatch mesh-dls" style="border-radius:10px;"></div>
+      <div class="init-rule">Mesh: .mesh-dls (light, refined)</div>
+    </div>
+  </div>
+
+  <!-- Dual Identity -->
+  <div class="sub-header" style="color:var(--purple);">Dual Identity</div>
+  <div class="g2 mb-32">
+    <div class="specbox" style="border-color:rgba(139,92,246,.2);">
+      <div style="font-weight:700;font-size:11px;color:var(--purple);margin-bottom:8px;">On DesignX Platform</div>
+      <div style="font-size:11px;color:var(--ink2);line-height:1.7;">Purple gradient glows, dark surfaces. DLS content wears the platform brand. Talk cards, schedule references, speaker mentions all use purple as category signal.</div>
+    </div>
+    <div class="specbox" style="border-color:rgba(26,17,24,.15);background:var(--parchment);">
+      <div style="font-weight:700;font-size:11px;color:var(--ink-dark);margin-bottom:8px;">On Own Site (designleadership.io)</div>
+      <div style="font-size:11px;color:var(--ink-dark2);line-height:1.7;">Cream parchment, Bauhaus geometry, Instrument Serif headlines, paper grain, halftone dots. No purple. The conference's own editorial identity.</div>
+    </div>
+  </div>
+
+  <!-- DLS Sample: Speaker Card -->
+  <div class="sub-header" style="color:var(--purple);">Speaker Card (Always Light)</div>
+  <div class="g3 mb-32">
+    <div class="asset-wrap">
+      <div class="dls-speaker grain grain-heavy" style="background:var(--bgOlive);">
+        <div class="watermark">Speaker Speaker Speaker Speaker Speaker Speaker</div>
+        <div class="bauhaus-block" style="width:55px;height:55px;background:var(--bRed);top:12px;right:18px;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:35px;height:35px;background:var(--bYellow);top:50px;left:12px;border-radius:50%;opacity:0.9;"></div>
+        <div class="bauhaus-block" style="width:45px;height:28px;background:var(--bBlue);bottom:80px;right:30px;opacity:0.8;"></div>
+        <div class="bauhaus-block" style="width:30px;height:42px;background:var(--bOrange);top:20px;left:40%;opacity:0.75;"></div>
+        <div class="speaker-content">
+          <div class="speaker-label">Speaker</div>
+          <div class="speaker-name">Sarah Chen</div>
+          <div class="speaker-role">VP Design &middot; Stripe</div>
+        </div>
+      </div>
+      <div class="asset-label">Always light — even on dark</div>
+    </div>
+    <div class="asset-wrap">
+      <div class="dls-speaker grain grain-heavy" style="background:var(--bgCoral);">
+        <div class="watermark">Speaker Speaker Speaker Speaker Speaker Speaker</div>
+        <div class="bauhaus-block" style="width:50px;height:40px;background:var(--bBlue);top:15px;left:15px;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:40px;height:40px;background:var(--bYellow);top:10px;right:25px;border-radius:50%;opacity:0.9;"></div>
+        <div class="bauhaus-block" style="width:35px;height:50px;background:var(--bGreen);bottom:90px;right:15px;opacity:0.8;"></div>
+        <div class="bauhaus-block" style="width:45px;height:25px;background:var(--bRed);bottom:50px;left:30px;opacity:0.85;"></div>
+        <div class="speaker-content">
+          <div class="speaker-label">Speaker</div>
+          <div class="speaker-name">Marcus Rivera</div>
+          <div class="speaker-role">Director of Design &middot; Shopify</div>
+        </div>
+      </div>
+      <div class="asset-label">The card IS the content</div>
+    </div>
+    <div class="asset-wrap">
+      <div class="dls-talk grain grain-heavy paper">
+        <div style="position:absolute;width:32px;height:32px;background:var(--bYellow);top:16px;left:18px;z-index:2;opacity:0.85;"></div>
+        <div style="position:absolute;width:22px;height:22px;background:var(--bGreen);bottom:18px;right:20px;border-radius:50%;z-index:2;opacity:0.8;"></div>
+        <div style="position:absolute;width:28px;height:18px;background:var(--bRed);top:20px;right:30px;z-index:2;opacity:0.75;"></div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:12px;border:1px solid var(--rule-light);padding:5px 12px;border-radius:20px;color:var(--ink-dark);margin-bottom:16px;position:relative;z-index:6;">Interactive Session</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:28px;color:var(--ink-dark);position:relative;z-index:6;line-height:1.15;">The Art of<br>Letting Go</div>
+      </div>
+      <div class="asset-label">dls-talk-title</div>
+    </div>
+  </div>
+
+  <!-- Design Rules -->
+  <div class="sub-header" style="color:var(--purple);">Design Rules</div>
+  <div class="specbox mb-48" style="border-color:rgba(139,92,246,.2);">
+    <div class="specrow"><span class="sp">Own site</span><span class="sv" style="color:var(--ink2);">Light mode. Cream/parchment surfaces. Bauhaus geometry. Paper grain.</span></div>
+    <div class="specrow"><span class="sp">On platform</span><span class="sv" style="color:var(--purple);">Purple gradient glow (--gDLS). Dark surfaces. No Bauhaus.</span></div>
+    <div class="specrow"><span class="sp">Headlines</span><span class="sv" style="color:var(--ink2);">Instrument Serif italic on own site. DM Sans 900 on platform.</span></div>
+    <div class="specrow"><span class="sp">Speaker cards</span><span class="sv" style="color:var(--ink2);">ALWAYS light Bauhaus — 6-12 blocks, axis-aligned, 0.6-0.95 opacity, 30-50% overlap.</span></div>
+    <div class="specrow"><span class="sp">Grain</span><span class="sv" style="color:var(--ink2);">35-45% on light (grain-heavy). Halftone dots for portraits.</span></div>
+    <div class="specrow"><span class="sp">Prohibited</span><span class="sv" style="color:var(--crimson);">No Bauhaus on dark. No rotated blocks. No full opacity blocks. No purple on own site.</span></div>
+  </div>
+
+  <!-- Bauhaus Quick Reference -->
+  <div class="sub-header" style="color:var(--bRed);">Bauhaus Quick Reference</div>
+  <div class="g6 mb-32">
+    <div style="aspect-ratio:1/1;background:var(--bRed);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Red</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#DC2626</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--bYellow);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:var(--ink-dark);">Yellow</div><div style="font-family:var(--mono);font-size:8px;color:var(--ink-dark3);">#FACC15</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--bGreen);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Green</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#4D7C0F</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--bBlue);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Blue</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#2563EB</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--bOrange);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Orange</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#EA580C</div></div></div>
+    <div style="aspect-ratio:1/1;background:var(--bPurple);border-radius:10px;display:flex;align-items:flex-end;padding:8px;"><div><div class="cl" style="color:white;">Purple</div><div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.6);">#6D28D9</div></div></div>
+  </div>
+
+</div>
+</div>
+
+<!-- Footer -->
+<div style="padding:32px 0;text-align:center;">
+  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;">Expressions · One Brand, Four Expressions · v3.0</div>
+</div>
+
+</body>
+</html>

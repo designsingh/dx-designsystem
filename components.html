@@ -3,72 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Components — Website & App UI</title>
+<title>Components — DesignX Design System</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<style>
-/* ── Page-specific: Website Frames ────────────────────────────── */
-.frame { border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; margin-bottom: 32px; }
-.frame-light { border-color: var(--rule-light); }
-
-/* Browser chrome bar */
-.chrome { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--bg3); border-bottom: 1px solid var(--rule); }
-.chrome-light { background: var(--stone); border-bottom-color: var(--rule-light); }
-.chrome-dot { width: 8px; height: 8px; border-radius: 50%; }
-.chrome-url { flex: 1; background: var(--glass2); border-radius: 4px; padding: 3px 10px; font-family: var(--mono); font-size: 9px; color: var(--ink3); }
-.chrome-url-light { background: rgba(26,17,24,0.06); color: var(--ink-dark3); }
-
-/* App sidebar */
-.app-sidebar { width: 220px; background: var(--bg2); border-right: 1px solid var(--rule); flex-shrink: 0; padding: 16px 0; }
-.sidebar-item { display: flex; align-items: center; gap: 8px; padding: 7px 18px; font-size: 12px; color: var(--ink3); cursor: pointer; transition: all 0.15s; }
-.sidebar-item:hover { color: var(--ink); background: var(--glass1); }
-.sidebar-item.active { color: var(--ink); background: var(--glass2); border-left: 2px solid var(--dx); }
-.sidebar-item .si-icon { width: 16px; text-align: center; font-size: 11px; }
-.sidebar-section { font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink4); padding: 16px 18px 6px; }
-
-/* DLS site nav */
-.dls-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 28px; background: var(--cream); border-bottom: 1px solid var(--rule-light); }
-.dls-nav-brand { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink-dark); }
-.dls-nav-link { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dark3); cursor: pointer; }
-.dls-nav-link:hover { color: var(--ink-dark); }
-
-/* DLS schedule row */
-.sched-row { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule-light); align-items: flex-start; }
-.sched-time { font-family: var(--mono); font-size: 11px; color: var(--ink-dark3); flex-shrink: 0; width: 60px; padding-top: 2px; }
-.sched-talk { flex: 1; }
-.sched-title { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--ink-dark); line-height: 1.25; }
-.sched-speaker { font-size: 11px; color: var(--ink-dark2); margin-top: 2px; }
-.sched-tag { display: inline-block; font-family: var(--mono); font-size: 8px; padding: 2px 6px; border-radius: 3px; background: rgba(26,17,24,0.06); color: var(--ink-dark3); margin-top: 4px; }
-
-/* Ticket CTA */
-.ticket-cta { background: var(--ink-dark); border-radius: 14px; padding: 40px; display: flex; align-items: center; justify-content: space-between; }
-.ticket-btn { display: inline-flex; align-items: center; padding: 12px 28px; border-radius: 999px; background: var(--cream); color: var(--ink-dark); font-weight: 700; font-size: 13px; cursor: pointer; }
-
-/* App page content area */
-.app-page { flex: 1; padding: 24px 28px; background: var(--bg); min-height: 400px; overflow: hidden; }
-.page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-.page-title { font-weight: 800; font-size: 22px; text-transform: uppercase; letter-spacing: -0.02em; }
-
-/* Profile module */
-.profile-card { display: flex; gap: 20px; align-items: center; padding: 20px; background: var(--canvas); border: 1px solid var(--rule); border-radius: 14px; margin-bottom: 16px; }
-.profile-avatar { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-.profile-name { font-weight: 800; font-size: 18px; }
-.profile-meta { font-family: var(--mono); font-size: 10px; color: var(--ink3); margin-top: 2px; }
-
-/* Stat row */
-.stat-row { display: flex; gap: 12px; margin-bottom: 16px; }
-.stat-box { flex: 1; background: var(--canvas); border: 1px solid var(--rule); border-radius: 10px; padding: 14px; }
-.stat-val { font-family: var(--mono); font-weight: 800; font-size: 20px; }
-.stat-label { font-family: var(--mono); font-size: 9px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
-
-/* DLS speaker grid item */
-.speaker-grid-item { display: flex; gap: 14px; align-items: center; padding: 12px; border-radius: 10px; cursor: pointer; transition: background 0.15s; }
-.speaker-grid-item:hover { background: rgba(26,17,24,0.03); }
-.speaker-thumb { width: 56px; height: 56px; border-radius: 10px; flex-shrink: 0; position: relative; overflow: hidden; }
-.speaker-info-name { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--ink-dark); }
-.speaker-info-role { font-size: 11px; color: var(--ink-dark2); }
-.speaker-info-topic { font-family: var(--mono); font-size: 9px; color: var(--ink-dark3); margin-top: 3px; }
-</style>
 </head>
 <body>
 
@@ -77,13 +14,11 @@
   <div class="container topnav-inner">
     <div class="nav-brand">Design<span>X</span> System</div>
     <div class="nav-links">
-      <a class="nav-link" href="index.html">Positioning</a>
-      <a class="nav-link" href="designx.html">DesignX Dark</a>
-      <a class="nav-link" href="dls.html">DLS Light</a>
+      <a class="nav-link" href="index.html">Brand</a>
+      <a class="nav-link" href="foundations.html">Foundations</a>
       <a class="nav-link active" href="components.html">Components</a>
-      <a class="nav-link" href="initiatives.html">Initiatives</a>
+      <a class="nav-link" href="expressions.html">Expressions</a>
       <a class="nav-link" href="archetypes.html">Archetypes</a>
-      <a class="nav-link" href="spectrum.html">Spectrum</a>
     </div>
   </div>
 </nav>
@@ -94,17 +29,54 @@
 <div class="section section-dark">
 <div class="container">
 
-  <div class="sec-label" style="color:var(--ink3);">Website &amp; App UI</div>
+  <div class="sec-label" style="color:var(--ink3);">One Brand, Four Expressions</div>
   <div class="sec-title">Component<br>Library</div>
-  <div class="sec-desc" style="color:var(--ink2);">How components actually appear in context — full page layouts for the DesignX app (app.designx.community) and the DLS website (designleadership.io). Components wear the brand of where they live.</div>
+  <div class="sec-desc" style="color:var(--ink2);">Every component in context — dark platform UI, light editorial pages, social cards, content cards, and marketing assets. Components wear the brand of where they live.</div>
 
   <!-- ══════════════════════════════════════════════════════════════════ -->
-  <!-- DESIGNX APP                                                       -->
+  <!-- DARK PLATFORM — HOMEPAGE                                         -->
   <!-- ══════════════════════════════════════════════════════════════════ -->
 
+  <div class="divider"></div>
+  <div class="sec-label" style="color:var(--dx);">Dark Platform</div>
+  <div class="sec-title" style="font-size:clamp(28px,4vw,40px);">DesignX App UI</div>
+  <div class="sec-desc" style="color:var(--ink2);">How components appear on the DesignX platform (app.designx.community). Pure black backgrounds, product-world color gradients, film grain, halftone dots.</div>
+
+  <!-- ── Homepage Composition ──────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">Homepage Composition</div>
+
+  <div class="card mb-32" style="overflow:hidden;">
+    <!-- Nav -->
+    <div style="background:rgba(0,0,0,0.8);backdrop-filter:blur(20px);padding:10px 28px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;align-items:center;gap:20px;">
+        <span style="font-weight:900;font-size:14px;">DESIGN<span class="grad-text">X</span></span>
+        <span style="font-size:11px;color:var(--ink3);cursor:pointer;">Talks</span>
+        <span style="font-size:11px;color:var(--ink3);cursor:pointer;">Jobs</span>
+        <span style="font-size:11px;color:var(--ink3);cursor:pointer;">Salary</span>
+        <span style="font-size:11px;color:var(--purple);cursor:pointer;">DLS '26</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="badge-season">&#10022; Season '26</span>
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--glass3);border:1px solid var(--glass4);"></div>
+      </div>
+    </div>
+    <!-- Hero -->
+    <div style="padding:48px 28px;position:relative;" class="grain">
+      <div class="glow" style="width:400px;height:400px;background:var(--dx);left:60%;top:50%;transform:translate(-50%,-50%);"></div>
+      <div style="position:relative;z-index:4;">
+        <div style="font-weight:900;font-size:36px;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.9;margin-bottom:12px;">Where Design<br>Leaders Grow</div>
+        <div style="font-size:13px;color:var(--ink2);margin-bottom:20px;max-width:400px;">The professional platform for design leadership. Salary data, curated jobs, community events, and the DLS conference.</div>
+        <div class="flex gap-8">
+          <div class="btn btn-primary" style="font-size:11px;padding:8px 18px;">Join Community</div>
+          <div class="btn btn-secondary" style="font-size:11px;padding:8px 18px;">Explore DLS '26</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── App Frame: Jobs ──────────────────────────────────────────── -->
   <div class="sub-header" style="color:var(--ink3);">DesignX App — Jobs Page</div>
 
-  <!-- App Frame: Jobs -->
   <div class="frame">
     <div class="chrome">
       <div class="chrome-dot" style="background:#FF5F57;"></div>
@@ -284,11 +256,249 @@
   </div>
 
   <!-- ══════════════════════════════════════════════════════════════════ -->
-  <!-- DLS WEBSITE                                                        -->
+  <!-- DARK PLATFORM — SOCIAL CARDS                                      -->
   <!-- ══════════════════════════════════════════════════════════════════ -->
 
   <div class="divider"></div>
 
+  <div class="sub-header" style="color:var(--ink3);">Social Cards (6)</div>
+  <div class="g3 mb-32">
+
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-social grain">
+        <div class="glow" style="width:300px;height:300px;background:#AAFF00;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+        <div class="headline">Salary Insights<br>2026</div>
+        <div class="subline" style="color:var(--neon);">$185,000 median</div>
+      </div></div>
+      <div class="asset-label">dx-social-salary</div>
+    </div>
+
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-social grain">
+        <div class="glow" style="width:300px;height:300px;background:var(--electric);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+        <div class="headline">Design Jobs</div>
+        <div class="subline" style="color:var(--cyan);">2,400+ roles from top companies</div>
+      </div></div>
+      <div class="asset-label">dx-social-jobs</div>
+    </div>
+
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-social grain">
+        <div class="glow" style="width:300px;height:300px;background:var(--coral);top:50%;left:30%;transform:translate(-50%,-50%);"></div>
+        <div class="headline">Design<br>Community</div>
+        <div class="subline" style="color:var(--warm);">8,000+ designers</div>
+      </div></div>
+      <div class="asset-label">dx-social-community</div>
+    </div>
+
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-social grain">
+        <div class="glow" style="width:300px;height:300px;background:var(--crimson);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+        <div class="headline">The Stack</div>
+        <div class="subline" style="color:var(--crimson);">AI tools curated by designers who ship</div>
+      </div></div>
+      <div class="asset-label">dx-social-stack</div>
+    </div>
+
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-social mesh-dark-vivid" style="position:relative;">
+        <div class="headline" style="position:relative;z-index:10;">DesignX<br>Season '26</div>
+        <div class="subline" style="color:var(--amber);position:relative;z-index:10;">The year of intentional craft</div>
+      </div></div>
+      <div class="asset-label">dx-social-season (mesh)</div>
+    </div>
+
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-social grain">
+        <div class="glow" style="width:300px;height:300px;background:var(--purple);top:50%;left:40%;transform:translate(-50%,-50%);"></div>
+        <div class="headline">Design Leadership<br>Summit</div>
+        <div class="subline" style="color:var(--violet);">Toronto 2026</div>
+      </div></div>
+      <div class="asset-label">dx-social-dls</div>
+    </div>
+
+  </div>
+
+  <!-- ── Gradient Heroes ─────────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">Gradient Heroes (6)</div>
+  <div class="g3 mb-32">
+    <div class="asset-wrap">
+      <div class="dx-hero grain" style="background:var(--gDLS);">
+        <div class="dx-hero-blob" style="width:200px;height:200px;background:#A78BFA;top:10%;right:20%;"></div>
+        <div class="dx-hero-blob" style="width:150px;height:150px;background:#6D28D9;bottom:20%;left:10%;"></div>
+      </div>
+      <div class="asset-label">dx-hero-dls</div>
+    </div>
+    <div class="asset-wrap">
+      <div class="dx-hero grain" style="background:var(--gSalary);">
+        <div class="dx-hero-blob" style="width:180px;height:180px;background:#AAFF00;top:20%;right:15%;opacity:0.3;"></div>
+        <div class="dx-hero-blob" style="width:120px;height:120px;background:#15803D;bottom:15%;left:20%;"></div>
+      </div>
+      <div class="asset-label">dx-hero-salary</div>
+    </div>
+    <div class="asset-wrap">
+      <div class="dx-hero grain" style="background:var(--gJobs);">
+        <div class="dx-hero-blob" style="width:200px;height:200px;background:#06B6D4;top:10%;left:30%;"></div>
+        <div class="dx-hero-blob" style="width:140px;height:140px;background:#3B82F6;bottom:20%;right:10%;"></div>
+      </div>
+      <div class="asset-label">dx-hero-jobs</div>
+    </div>
+    <div class="asset-wrap">
+      <div class="dx-hero grain" style="background:var(--gCommunity);">
+        <div class="dx-hero-blob" style="width:160px;height:160px;background:#FCD34D;top:15%;right:20%;opacity:0.3;"></div>
+        <div class="dx-hero-blob" style="width:180px;height:180px;background:#E8927C;bottom:10%;left:15%;"></div>
+      </div>
+      <div class="asset-label">dx-hero-community</div>
+    </div>
+    <div class="asset-wrap">
+      <div class="dx-hero grain" style="background:var(--gStack);">
+        <div class="dx-hero-blob" style="width:200px;height:200px;background:#e94560;top:20%;right:10%;"></div>
+        <div class="dx-hero-blob" style="width:130px;height:130px;background:#FFB3C1;bottom:15%;left:25%;opacity:0.5;"></div>
+      </div>
+      <div class="asset-label">dx-hero-stack</div>
+    </div>
+    <div class="asset-wrap">
+      <div class="dx-hero mesh-dark-vivid" style="position:relative;">
+      </div>
+      <div class="asset-label">dx-hero-season (mesh)</div>
+    </div>
+  </div>
+
+  <!-- ── Talk Cards ────────────────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">Talk Cards</div>
+  <div class="g3 mb-32">
+
+    <div class="card">
+      <div class="talk-thumb" style="background:linear-gradient(135deg,#1a0040,#3a1080);">
+        <div class="thumb-dots"></div>
+        <div class="thumb-badge">DLS 2026</div>
+      </div>
+      <div class="cb">
+        <div style="font-weight:700;font-size:13px;">Designing Systems That Scale</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
+          <div style="width:20px;height:20px;border-radius:50%;background:var(--glass3);"></div>
+          <span style="font-size:11px;color:var(--ink2);">Sarah Chen</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:6px;">28:15 &middot; 12 Jan 2026 &middot; 2.1K views</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="talk-thumb" style="background:linear-gradient(135deg,#0A2E0A,#15803D);">
+        <div class="thumb-dots"></div>
+        <div class="thumb-badge" style="background:rgba(170,255,0,0.2);color:var(--neon);">Salary Data</div>
+      </div>
+      <div class="cb">
+        <div style="font-weight:700;font-size:13px;">The Design Leader Pay Gap</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
+          <div style="width:20px;height:20px;border-radius:50%;background:var(--glass3);"></div>
+          <span style="font-size:11px;color:var(--ink2);">Marcus Rivera</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:6px;">42:30 &middot; 8 Feb 2026 &middot; 4.8K views</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="talk-thumb" style="background:linear-gradient(135deg,#1E3A5F,#3B82F6);">
+        <div class="thumb-dots"></div>
+        <div class="thumb-badge" style="background:rgba(59,130,246,0.3);">Jobs Deep Dive</div>
+      </div>
+      <div class="cb">
+        <div style="font-weight:700;font-size:13px;">Landing Your Staff+ Role</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
+          <div style="width:20px;height:20px;border-radius:50%;background:var(--glass3);"></div>
+          <span style="font-size:11px;color:var(--ink2);">Priya Sharma</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:6px;">35:45 &middot; 14 Feb 2026 &middot; 1.7K views</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Content Cards ─────────────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">Content Cards</div>
+  <div class="g3 mb-32">
+
+    <!-- Salary Card -->
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-salary grain">
+        <div class="green-strip"></div>
+        <div class="neon-glow"></div>
+        <div class="salary-figure">$185,000</div>
+        <div class="salary-role">Sr. Product Designer</div>
+        <div class="salary-meta">Bay Area &middot; Remote US &middot; 2026 data</div>
+        <div class="salary-badge">Top 10% Earner</div>
+      </div></div>
+      <div class="asset-label">dx-salary-card</div>
+    </div>
+
+    <!-- Talk Card -->
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-talk grain">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gDLS);z-index:4;"></div>
+        <div class="pill" style="color:var(--violet);border:1px solid rgba(139,92,246,0.3);margin-bottom:10px;position:relative;z-index:4;">DLS 2026</div>
+        <div style="font-family:var(--sans);font-weight:700;font-size:18px;color:white;line-height:1.2;position:relative;z-index:4;">Designing Systems That Scale</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:8px;position:relative;z-index:4;">28:15 &middot; 12 Jan 2026 &middot; 2.1K views</div>
+      </div></div>
+      <div class="asset-label">dx-talk-card</div>
+    </div>
+
+    <!-- Newsletter Hero -->
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-newsletter grain" style="background:var(--gSeason);aspect-ratio:16/9;">
+        <div style="font-family:var(--sans);font-weight:900;font-size:28px;text-transform:uppercase;letter-spacing:-0.03em;color:white;position:relative;z-index:4;">DesignX Weekly</div>
+        <div style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px;position:relative;z-index:4;">FEB 2026</div>
+      </div></div>
+      <div class="asset-label">dx-newsletter-hero</div>
+    </div>
+
+    <!-- YouTube Thumb 1 -->
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-youtube grain">
+        <div class="glow" style="width:300px;height:300px;background:var(--purple);left:20%;top:50%;transform:translateY(-50%);"></div>
+        <div style="padding:24px;position:relative;z-index:4;flex:1;">
+          <div class="pill" style="color:var(--violet);border:1px solid rgba(139,92,246,0.3);margin-bottom:12px;">DLS 2026</div>
+          <div style="font-family:var(--sans);font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:-0.03em;color:white;line-height:0.95;">AI x<br>Design</div>
+        </div>
+        <div style="width:40%;height:100%;background:var(--bg3);position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:var(--gDLS);opacity:0.3;"></div>
+          <div style="position:absolute;inset:0;background-image:radial-gradient(circle, rgba(255,255,255,0.15) 1.5px, transparent 1.5px);background-size:4px 4px;"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="font-family:var(--serif);font-style:italic;font-size:48px;color:rgba(255,255,255,0.1);">S</div></div>
+        </div>
+      </div></div>
+      <div class="asset-label">dx-youtube-thumb-ai</div>
+    </div>
+
+    <!-- YouTube Thumb 2 -->
+    <div class="asset-wrap">
+      <div class="card"><div class="dx-youtube grain">
+        <div class="glow" style="width:300px;height:300px;background:var(--purple);left:20%;top:50%;transform:translateY(-50%);"></div>
+        <div style="padding:24px;position:relative;z-index:4;flex:1;">
+          <div class="pill" style="color:var(--violet);border:1px solid rgba(139,92,246,0.3);margin-bottom:12px;">DLS 2026</div>
+          <div style="font-family:var(--sans);font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:-0.03em;color:white;line-height:0.95;">Systems<br>Thinking</div>
+        </div>
+        <div style="width:40%;height:100%;background:var(--bg3);position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:var(--gDLS);opacity:0.3;"></div>
+          <div style="position:absolute;inset:0;background-image:radial-gradient(circle, rgba(255,255,255,0.15) 1.5px, transparent 1.5px);background-size:4px 4px;"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="font-family:var(--serif);font-style:italic;font-size:48px;color:rgba(255,255,255,0.1);">A</div></div>
+        </div>
+      </div></div>
+      <div class="asset-label">dx-youtube-thumb-systems</div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- DLS LIGHT MODE — WEBSITE                                          -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+
+  <div class="divider"></div>
+
+  <div class="sec-label" style="color:var(--purple);">Light Editorial</div>
+  <div class="sec-title" style="font-size:clamp(28px,4vw,40px);">DLS Website</div>
+  <div class="sec-desc" style="color:var(--ink2);">Bauhaus geometry, paper grain, halftone portraits, Instrument Serif italic — the DLS editorial print system on cream parchment. Speaker cards always stay light — they ARE the content.</div>
+
+  <!-- ── DLS: Homepage ─────────────────────────────────────────────── -->
   <div class="sub-header" style="color:var(--ink3);">DLS Website — Homepage (designleadership.io)</div>
 
   <div class="frame frame-light">
@@ -540,12 +750,249 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- DLS LIGHT — COMPONENT ASSETS                                      -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+
+  <div class="divider"></div>
+
+  <!-- ── Bauhaus Block System ──────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">Bauhaus Block System</div>
+
+  <div class="specbox" style="background:var(--parchment);border-color:var(--rule-light);margin-bottom:32px;">
+    <div style="font-weight:700;font-size:13px;color:var(--ink-dark);margin-bottom:12px;">Construction Rules</div>
+    <div class="specrow" style="border-color:var(--rule-light);"><span class="sp" style="color:var(--ink-dark3);">Blocks per card</span><span class="sv" style="color:var(--ink-dark2);">6–12 blocks (never fewer, never more)</span></div>
+    <div class="specrow" style="border-color:var(--rule-light);"><span class="sp" style="color:var(--ink-dark3);">Rotation</span><span class="sv" style="color:var(--ink-dark2);">Never rotated — always axis-aligned</span></div>
+    <div class="specrow" style="border-color:var(--rule-light);"><span class="sp" style="color:var(--ink-dark3);">Opacity range</span><span class="sv" style="color:var(--ink-dark2);">0.6–0.95 (never fully opaque)</span></div>
+    <div class="specrow" style="border-color:var(--rule-light);"><span class="sp" style="color:var(--ink-dark3);">Overlap</span><span class="sv" style="color:var(--ink-dark2);">30–50% overlap between blocks</span></div>
+    <div class="specrow" style="border-color:var(--rule-light);"><span class="sp" style="color:var(--ink-dark3);">Shapes</span><span class="sv" style="color:var(--ink-dark2);">Rectangles (majority) + circles (1–3 per card)</span></div>
+    <div class="specrow" style="border-color:var(--rule-light);"><span class="sp" style="color:var(--ink-dark3);">Colors</span><span class="sv" style="color:var(--ink-dark2);">All 6 Bauhaus colors, mixed per card</span></div>
+  </div>
+
+  <!-- Bauhaus Demo -->
+  <div style="display:flex;gap:16px;margin-bottom:48px;">
+    <div style="flex:1;aspect-ratio:1/1;background:var(--parchment);border:1px solid var(--rule-light);border-radius:14px;position:relative;overflow:hidden;" class="grain grain-heavy paper">
+      <div style="position:absolute;width:55px;height:55px;background:var(--bRed);top:12px;right:18px;opacity:0.85;z-index:1;"></div>
+      <div style="position:absolute;width:35px;height:35px;background:var(--bYellow);top:50px;left:12px;border-radius:50%;opacity:0.9;z-index:1;"></div>
+      <div style="position:absolute;width:45px;height:28px;background:var(--bBlue);bottom:40px;right:30px;opacity:0.8;z-index:1;"></div>
+      <div style="position:absolute;width:30px;height:42px;background:var(--bOrange);top:20px;left:40%;opacity:0.75;z-index:1;"></div>
+      <div style="position:absolute;width:25px;height:25px;background:var(--bGreen);bottom:20px;left:20px;border-radius:50%;opacity:0.85;z-index:1;"></div>
+      <div style="position:absolute;width:40px;height:20px;background:var(--bPurple);bottom:60px;left:50%;opacity:0.7;z-index:1;"></div>
+      <div style="position:absolute;bottom:10px;left:12px;z-index:6;font-family:var(--mono);font-size:9px;color:var(--ink-dark3);">6 blocks · axis-aligned</div>
+    </div>
+    <div style="flex:1;aspect-ratio:1/1;background:var(--parchment);border:1px solid var(--rule-light);border-radius:14px;position:relative;overflow:hidden;" class="grain grain-heavy paper">
+      <div style="position:absolute;width:60px;height:45px;background:var(--bRed);top:8px;left:8px;opacity:0.9;z-index:1;"></div>
+      <div style="position:absolute;width:40px;height:40px;background:var(--bYellow);top:30px;left:30px;border-radius:50%;opacity:0.85;z-index:1;"></div>
+      <div style="position:absolute;width:50px;height:30px;background:var(--bBlue);top:15px;right:12px;opacity:0.8;z-index:1;"></div>
+      <div style="position:absolute;width:35px;height:50px;background:var(--bGreen);bottom:35px;left:15px;opacity:0.75;z-index:1;"></div>
+      <div style="position:absolute;width:45px;height:25px;background:var(--bOrange);bottom:50px;right:20px;opacity:0.85;z-index:1;"></div>
+      <div style="position:absolute;width:30px;height:30px;background:var(--bPurple);top:60px;left:45%;opacity:0.7;z-index:1;"></div>
+      <div style="position:absolute;width:40px;height:35px;background:var(--bCoral);bottom:15px;right:40%;opacity:0.8;z-index:1;"></div>
+      <div style="position:absolute;width:25px;height:25px;background:var(--bYellow);bottom:10px;right:15px;border-radius:50%;opacity:0.7;z-index:1;"></div>
+      <div style="position:absolute;bottom:10px;left:12px;z-index:6;font-family:var(--mono);font-size:9px;color:var(--ink-dark3);">8 blocks · 30-50% overlap</div>
+    </div>
+    <div style="flex:1;aspect-ratio:1/1;background:var(--parchment);border:1px solid var(--rule-light);border-radius:14px;position:relative;overflow:hidden;" class="grain grain-heavy paper">
+      <div style="position:absolute;width:65px;height:40px;background:var(--bBlue);top:5px;left:5px;opacity:0.9;z-index:1;"></div>
+      <div style="position:absolute;width:45px;height:55px;background:var(--bRed);top:20px;left:35px;opacity:0.85;z-index:1;"></div>
+      <div style="position:absolute;width:30px;height:30px;background:var(--bYellow);top:10px;right:15px;border-radius:50%;opacity:0.9;z-index:1;"></div>
+      <div style="position:absolute;width:50px;height:28px;background:var(--bGreen);top:55px;right:10px;opacity:0.75;z-index:1;"></div>
+      <div style="position:absolute;width:35px;height:45px;background:var(--bOrange);bottom:30px;left:10px;opacity:0.8;z-index:1;"></div>
+      <div style="position:absolute;width:40px;height:20px;background:var(--bPurple);bottom:50px;left:45%;opacity:0.7;z-index:1;"></div>
+      <div style="position:absolute;width:28px;height:28px;background:var(--bCoral);bottom:15px;left:35px;border-radius:50%;opacity:0.85;z-index:1;"></div>
+      <div style="position:absolute;width:55px;height:25px;background:var(--bYellow);bottom:35px;right:10px;opacity:0.75;z-index:1;"></div>
+      <div style="position:absolute;width:20px;height:35px;background:var(--bBlue);bottom:10px;right:40px;opacity:0.65;z-index:1;"></div>
+      <div style="position:absolute;width:38px;height:22px;background:var(--bRed);top:40px;left:10px;opacity:0.7;z-index:1;"></div>
+      <div style="position:absolute;width:25px;height:25px;background:var(--bGreen);top:8px;left:50%;border-radius:50%;opacity:0.8;z-index:1;"></div>
+      <div style="position:absolute;width:30px;height:40px;background:var(--bOrange);bottom:5px;right:10px;opacity:0.7;z-index:1;"></div>
+      <div style="position:absolute;bottom:10px;left:12px;z-index:6;font-family:var(--mono);font-size:9px;color:var(--ink-dark3);">12 blocks · dense composition</div>
+    </div>
+  </div>
+
+  <!-- ── Speaker Cards ─────────────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">Speaker Cards (5)</div>
+  <div class="g5 mb-32">
+
+    <div class="asset-wrap">
+      <div class="dls-speaker grain grain-heavy" style="background:var(--bgOlive);">
+        <div class="watermark">Speaker Speaker Speaker Speaker Speaker Speaker</div>
+        <div class="bauhaus-block" style="width:55px;height:55px;background:var(--bRed);top:12px;right:18px;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:35px;height:35px;background:var(--bYellow);top:50px;left:12px;border-radius:50%;opacity:0.9;"></div>
+        <div class="bauhaus-block" style="width:45px;height:28px;background:var(--bBlue);bottom:80px;right:30px;opacity:0.8;"></div>
+        <div class="bauhaus-block" style="width:30px;height:42px;background:var(--bOrange);top:20px;left:40%;opacity:0.75;"></div>
+        <div class="bauhaus-block" style="width:25px;height:25px;background:var(--bGreen);bottom:40px;left:20px;border-radius:50%;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:40px;height:20px;background:var(--bPurple);bottom:110px;left:50%;opacity:0.7;"></div>
+        <div class="speaker-content">
+          <div class="speaker-label">Speaker</div>
+          <div class="speaker-name">Sarah Chen</div>
+          <div class="speaker-role">VP Design &middot; Stripe</div>
+        </div>
+      </div>
+      <div class="asset-label">dls-speaker-olive</div>
+    </div>
+
+    <div class="asset-wrap">
+      <div class="dls-speaker grain grain-heavy" style="background:var(--bgCoral);">
+        <div class="watermark">Speaker Speaker Speaker Speaker Speaker Speaker</div>
+        <div class="bauhaus-block" style="width:50px;height:40px;background:var(--bBlue);top:15px;left:15px;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:40px;height:40px;background:var(--bYellow);top:10px;right:25px;border-radius:50%;opacity:0.9;"></div>
+        <div class="bauhaus-block" style="width:35px;height:50px;background:var(--bGreen);bottom:90px;right:15px;opacity:0.8;"></div>
+        <div class="bauhaus-block" style="width:45px;height:25px;background:var(--bRed);bottom:50px;left:30px;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:28px;height:28px;background:var(--bOrange);top:60px;left:45%;border-radius:50%;opacity:0.75;"></div>
+        <div class="bauhaus-block" style="width:38px;height:22px;background:var(--bPurple);top:40px;right:60px;opacity:0.7;"></div>
+        <div class="speaker-content">
+          <div class="speaker-label">Speaker</div>
+          <div class="speaker-name">Marcus Rivera</div>
+          <div class="speaker-role">Director of Design &middot; Shopify</div>
+        </div>
+      </div>
+      <div class="asset-label">dls-speaker-coral</div>
+    </div>
+
+    <div class="asset-wrap">
+      <div class="dls-speaker grain grain-heavy" style="background:var(--bgTeal);">
+        <div class="watermark">Speaker Speaker Speaker Speaker Speaker Speaker</div>
+        <div class="bauhaus-block" style="width:48px;height:48px;background:var(--bRed);top:10px;right:12px;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:38px;height:38px;background:var(--bYellow);top:48px;left:18px;opacity:0.9;"></div>
+        <div class="bauhaus-block" style="width:30px;height:45px;background:var(--bBlue);bottom:85px;left:40%;opacity:0.8;"></div>
+        <div class="bauhaus-block" style="width:42px;height:22px;background:var(--bOrange);bottom:45px;right:20px;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:25px;height:25px;background:var(--bGreen);top:20px;left:35%;border-radius:50%;opacity:0.75;"></div>
+        <div class="bauhaus-block" style="width:32px;height:35px;background:var(--bPurple);bottom:100px;right:45%;opacity:0.7;"></div>
+        <div class="speaker-content">
+          <div class="speaker-label">Speaker</div>
+          <div class="speaker-name">Priya Sharma</div>
+          <div class="speaker-role">Head of Product Design &middot; Figma</div>
+        </div>
+      </div>
+      <div class="asset-label">dls-speaker-teal</div>
+    </div>
+
+    <div class="asset-wrap">
+      <div class="dls-speaker grain grain-heavy" style="background:var(--bgAmber);">
+        <div class="watermark">Speaker Speaker Speaker Speaker Speaker Speaker</div>
+        <div class="bauhaus-block" style="width:52px;height:35px;background:var(--bGreen);top:14px;left:12px;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:36px;height:36px;background:var(--bBlue);top:8px;right:20px;border-radius:50%;opacity:0.9;"></div>
+        <div class="bauhaus-block" style="width:40px;height:55px;background:var(--bRed);bottom:75px;right:12px;opacity:0.8;"></div>
+        <div class="bauhaus-block" style="width:28px;height:40px;background:var(--bYellow);bottom:50px;left:25px;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:30px;height:30px;background:var(--bPurple);top:55px;left:42%;border-radius:50%;opacity:0.75;"></div>
+        <div class="bauhaus-block" style="width:35px;height:18px;background:var(--bOrange);bottom:105px;left:15%;opacity:0.7;"></div>
+        <div class="speaker-content">
+          <div class="speaker-label">Speaker</div>
+          <div class="speaker-name">James Okafor</div>
+          <div class="speaker-role">Design Director &middot; Notion</div>
+        </div>
+      </div>
+      <div class="asset-label">dls-speaker-amber</div>
+    </div>
+
+    <div class="asset-wrap">
+      <div class="dls-speaker grain grain-heavy" style="background:var(--bgForest);">
+        <div class="watermark">Speaker Speaker Speaker Speaker Speaker Speaker</div>
+        <div class="bauhaus-block" style="width:45px;height:50px;background:var(--bYellow);top:10px;right:15px;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:40px;height:40px;background:var(--bRed);top:15px;left:10px;opacity:0.9;"></div>
+        <div class="bauhaus-block" style="width:35px;height:30px;background:var(--bBlue);bottom:90px;left:40%;opacity:0.8;"></div>
+        <div class="bauhaus-block" style="width:30px;height:30px;background:var(--bOrange);bottom:50px;right:25px;border-radius:50%;opacity:0.85;"></div>
+        <div class="bauhaus-block" style="width:42px;height:22px;background:var(--bGreen);top:60px;left:20%;opacity:0.75;"></div>
+        <div class="bauhaus-block" style="width:28px;height:38px;background:var(--bPurple);bottom:80px;right:50%;opacity:0.7;"></div>
+        <div class="speaker-content">
+          <div class="speaker-label">Speaker</div>
+          <div class="speaker-name">Elena Voss</div>
+          <div class="speaker-role">VP Product &middot; Linear</div>
+        </div>
+      </div>
+      <div class="asset-label">dls-speaker-forest</div>
+    </div>
+
+  </div>
+
+  <!-- ── Other DLS Cards ───────────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">Other DLS Cards</div>
+  <div class="g3 mb-32">
+
+    <!-- Talk Title -->
+    <div class="asset-wrap">
+      <div class="dls-talk grain grain-heavy paper">
+        <div style="position:absolute;width:32px;height:32px;background:var(--bYellow);top:16px;left:18px;z-index:2;opacity:0.85;"></div>
+        <div style="position:absolute;width:22px;height:22px;background:var(--bGreen);bottom:18px;right:20px;border-radius:50%;z-index:2;opacity:0.8;"></div>
+        <div style="position:absolute;width:28px;height:18px;background:var(--bRed);top:20px;right:30px;z-index:2;opacity:0.75;"></div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:12px;border:1px solid var(--rule-light);padding:5px 12px;border-radius:20px;color:var(--ink-dark);margin-bottom:16px;position:relative;z-index:6;">Interactive Session</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:28px;color:var(--ink-dark);position:relative;z-index:6;line-height:1.15;">The Art of<br>Letting Go</div>
+        <div style="display:flex;gap:8px;margin-top:20px;position:relative;z-index:6;">
+          <div style="width:40px;height:52px;background:var(--bRed);border-radius:3px;"></div>
+          <div style="width:40px;height:52px;background:var(--bBlue);border-radius:3px;margin-left:-16px;"></div>
+        </div>
+      </div>
+      <div class="asset-label">dls-talk-title</div>
+    </div>
+
+    <!-- Sponsor -->
+    <div class="asset-wrap">
+      <div class="dls-sponsor grain grain-heavy paper">
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;padding-top:8px;z-index:2;overflow:hidden;">
+          <div style="font-family:var(--serif);font-size:7px;color:var(--bRed);white-space:nowrap;letter-spacing:0.05em;opacity:0.6;">DESIGN LEADERSHIP SUMMIT &middot; DESIGN LEADERSHIP SUMMIT &middot; DESIGN LEADERSHIP SUMMIT &middot; DESIGN LEADERSHIP SUMMIT</div>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;z-index:2;overflow:hidden;">
+          <div style="font-family:var(--serif);font-size:7px;color:var(--bBlue);white-space:nowrap;letter-spacing:0.05em;opacity:0.6;">DESIGN LEADERSHIP SUMMIT &middot; DESIGN LEADERSHIP SUMMIT &middot; DESIGN LEADERSHIP SUMMIT &middot; DESIGN LEADERSHIP SUMMIT</div>
+        </div>
+        <div style="position:relative;z-index:6;">
+          <div style="font-family:var(--serif);font-style:italic;font-size:42px;color:var(--ink-dark);margin-bottom:14px;">Patrons</div>
+          <div style="position:relative;width:80px;height:50px;margin:0 auto;">
+            <div style="position:absolute;width:30px;height:30px;background:var(--bRed);top:0;left:5px;opacity:0.85;"></div>
+            <div style="position:absolute;width:25px;height:25px;background:var(--bYellow);top:10px;left:22px;border-radius:50%;opacity:0.9;"></div>
+            <div style="position:absolute;width:30px;height:20px;background:var(--bBlue);top:25px;left:30px;opacity:0.8;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="asset-label">dls-sponsor</div>
+    </div>
+
+    <!-- Website Hero -->
+    <div class="asset-wrap">
+      <div class="dls-hero grain grain-heavy paper">
+        <div style="position:relative;z-index:6;flex:1;">
+          <div style="font-family:var(--serif);font-style:italic;font-size:28px;color:var(--ink-dark);line-height:1.15;">Design<br>Leadership<br>Summit</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-dark3);text-transform:uppercase;letter-spacing:0.1em;margin-top:12px;">Toronto 2026</div>
+        </div>
+        <div style="position:relative;z-index:6;display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
+          <div style="position:relative;width:120px;height:80px;">
+            <div style="position:absolute;width:50px;height:60px;background:var(--bRed);top:0;left:0;opacity:0.85;"></div>
+            <div style="position:absolute;width:40px;height:40px;background:var(--bYellow);top:5px;left:30px;opacity:0.9;"></div>
+            <div style="position:absolute;width:45px;height:35px;background:var(--bBlue);top:30px;left:40px;opacity:0.8;"></div>
+            <div style="position:absolute;width:30px;height:30px;background:var(--bGreen);top:20px;left:70px;border-radius:50%;opacity:0.75;"></div>
+            <div style="position:absolute;width:35px;height:25px;background:var(--bOrange);top:50px;left:15px;opacity:0.7;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="asset-label">dls-website-hero</div>
+    </div>
+
+  </div>
+
+  <!-- ── Halftone Dot System ───────────────────────────────────────── -->
+  <div class="sub-header" style="color:var(--ink3);">Halftone Dot System</div>
+  <div class="g3 mb-32">
+    <div class="lcard">
+      <div style="aspect-ratio:1.5/1;background:var(--bgOlive);position:relative;overflow:hidden;" class="htd-fine">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl" style="color:white;">Fine — 3px</div><div class="cd" style="color:rgba(255,255,255,.6);">Subtle texture, backgrounds</div></div>
+      </div>
+    </div>
+    <div class="lcard">
+      <div style="aspect-ratio:1.5/1;background:var(--bgCoral);position:relative;overflow:hidden;" class="htd">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl" style="color:white;">Medium — 4px (default)</div><div class="cd" style="color:rgba(255,255,255,.6);">Standard halftone grid</div></div>
+      </div>
+    </div>
+    <div class="lcard">
+      <div style="aspect-ratio:1.5/1;background:var(--bgTeal);position:relative;overflow:hidden;" class="htd-bold">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;z-index:10;"><div class="cl" style="color:white;">Bold — 6px</div><div class="cd" style="color:rgba(255,255,255,.6);">Statement texture, heroes</div></div>
+      </div>
+    </div>
+  </div>
+
 </div>
 </div>
 
 <!-- Footer -->
 <div style="padding:32px 0;text-align:center;">
-  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;">Components · Website & App UI · v2.0</div>
+  <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;">Components · One Brand, Four Expressions · v3.0</div>
 </div>
 
 </body>
